@@ -13,11 +13,12 @@ import {
   ListItemText,
   makeStyles,
 } from "@material-ui/core";
+import YouTubeIcon from "../youtubeIcon/YoutubeIcon";
 
-const draweList = (
+const drawerList = () => (
   <List>
-    {["Home", "Explore"].map((listItem) => (
-      <ListItem button>
+    {["Home", "Explore"].map((listItem, index) => (
+      <ListItem button key={index}>
         <ListItemIcon>
           <MenuIcon />
         </ListItemIcon>
@@ -35,7 +36,7 @@ const useStyle = makeStyles(() => {
   };
 });
 const Layout = () => {
-  const [SideDrawer, setSideDrawer] = useState(true);
+  const [SideDrawer, setSideDrawer] = useState(false);
   const classes = useStyle();
   return (
     <Fragment>
@@ -44,7 +45,9 @@ const Layout = () => {
           <IconButton onClick={() => setSideDrawer(true)}>
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6">YouTube</Typography>
+          <div style={{ width: "80px" }}>
+            <YouTubeIcon />
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -53,7 +56,7 @@ const Layout = () => {
         open={SideDrawer}
         onClose={() => setSideDrawer(false)}
       >
-        {draweList}
+        {drawerList()}
       </Drawer>
     </Fragment>
   );
