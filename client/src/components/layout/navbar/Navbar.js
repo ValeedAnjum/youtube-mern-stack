@@ -1,22 +1,48 @@
 import React, { Fragment, useState } from "react";
-import {
-  AppBar,
-  Button,
-  Grid,
-  IconButton,
-  makeStyles,
-  Toolbar,
-  Menu,
-  MenuItem,
-  MenuList,
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import MicIcon from "@material-ui/icons/Mic";
-import YouTubeIcon from "../../youtubeIcon/YoutubeIcon";
-import SearchIcon from "@material-ui/icons/Search";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import AppsIcon from "@material-ui/icons/Apps";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { AppBar, Grid, makeStyles, Toolbar } from "@material-ui/core";
+
+import LogoAndMenu from "./LogoAndMenu";
+import Searchbar from "./Searchbar";
+import NavTabs from "./NavTabs";
+
+const Navbar = ({ setSideDrawer }) => {
+  const classes = useStyle();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const moreBtnClickHnd = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const onMenuClose = () => {
+    setAnchorEl(null);
+  };
+  return (
+    <Fragment>
+      <AppBar position="static" color="primary" className={classes.appbar}>
+        <Toolbar>
+          <Grid container>
+            <Grid item sm={3}>
+              <LogoAndMenu setSideDrawer={setSideDrawer} />
+            </Grid>
+            {/* Search bar  */}
+            <Grid item sm={6}>
+              <Searchbar classes={classes} />
+            </Grid>
+            {/* navtabs  */}
+            <Grid item sm={3}>
+              <NavTabs
+                classes={classes}
+                moreBtnClickHnd={moreBtnClickHnd}
+                onMenuClose={onMenuClose}
+                anchorEl={anchorEl}
+              />
+            </Grid>
+          </Grid>
+        </Toolbar>
+      </AppBar>
+    </Fragment>
+  );
+};
+
+export default Navbar;
 
 const useStyle = makeStyles(() => {
   return {
@@ -48,110 +74,22 @@ const useStyle = makeStyles(() => {
         backgroundColor: "transparent",
       },
     },
+    more: {
+      width: "280px",
+      "& .MuiListItemText-root": {
+        margin: "0",
+      },
+      "& .MuiListItemIcon-root": {
+        minWidth: "33px",
+      },
+      "& .MuiTypography-body1": {
+        fontSize: "0.9rem",
+      },
+    },
+    dropDownPopOver: {
+      boxShadow: "none",
+      borderRadius: "0",
+      border: "1px solid #00000026",
+    },
   };
 });
-
-const Navbar = ({ setSideDrawer }) => {
-  const classes = useStyle();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const moreBtnClickHnd = (event) => {
-    // console.log(event.currentTarget);
-    setAnchorEl(event.currentTarget);
-  };
-  const onMenuClose = () => {
-    console.log("onMenuClose");
-    setAnchorEl(null);
-  };
-  return (
-    <Fragment>
-      <AppBar position="static" color="primary" className={classes.appbar}>
-        <Toolbar>
-          <Grid container>
-            <Grid item sm={3}>
-              <Grid container>
-                <IconButton onClick={() => setSideDrawer(true)}>
-                  <MenuIcon />
-                </IconButton>
-                <div style={{ width: "80px" }}>
-                  <YouTubeIcon />
-                </div>
-              </Grid>
-            </Grid>
-            {/* Search bar  */}
-            <Grid item sm={6}>
-              <Grid container>
-                <Grid container justify="center" alignItems="center">
-                  <div
-                    style={{
-                      display: "flex",
-                      width: "70%",
-                      height: "60%",
-                    }}
-                  >
-                    <input
-                      type="text"
-                      placeholder="Search"
-                      className={classes.searchTextBox}
-                    />
-                    <button
-                      aria-label="search-video"
-                      className={classes.searchTextBoxButton}
-                    >
-                      <SearchIcon />
-                    </button>
-                  </div>
-                  <IconButton classes={{ root: classes.disableHoverBgClr }}>
-                    <MicIcon />
-                  </IconButton>
-                </Grid>
-              </Grid>
-            </Grid>
-            {/* navtabs  */}
-            <Grid item sm={3}>
-              <Grid container justify="flex-end" alignItems="center">
-                <IconButton classes={{ root: classes.disableHoverBgClr }}>
-                  <AppsIcon />
-                </IconButton>
-                <IconButton
-                  classes={{ root: classes.disableHoverBgClr }}
-                  onClick={moreBtnClickHnd}
-                >
-                  <MoreVertIcon />
-                </IconButton>
-                <Menu
-                  getContentAnchorEl={null}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "center",
-                  }}
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "center",
-                  }}
-                  transitionDuration={0}
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={Boolean(anchorEl)}
-                  onClose={onMenuClose}
-                >
-                  <div>
-                    <h1>Menu</h1>
-                  </div>
-                </Menu>
-                <Button
-                  disableRipple
-                  startIcon={<AccountCircleIcon />}
-                  className={classes.signinBtn}
-                >
-                  sign in
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
-    </Fragment>
-  );
-};
-
-export default Navbar;
