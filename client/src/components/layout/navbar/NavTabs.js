@@ -1,5 +1,13 @@
-import React from "react";
-import { Button, Grid, IconButton, Menu } from "@material-ui/core";
+import React, { Fragment } from "react";
+import {
+  Button,
+  Divider,
+  Grid,
+  IconButton,
+  List,
+  Menu,
+  MenuItem,
+} from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AppsIcon from "@material-ui/icons/Apps";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -19,6 +27,7 @@ import YouTubeIcon from "@material-ui/icons/YouTube";
 
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import DropdownListContainer from "./DropdownListContainer";
+import DropdownListItem from "./DropdownListItem";
 
 const styleForArrowIcon = { width: "0.7rem", height: "0.7rem" };
 const ArrowForwardIosIconWithStyle = () => (
@@ -72,6 +81,20 @@ const appsDropDownListData = [
   },
 ];
 
+const appsDropDownList = (list) => (
+  <List>
+    {list.map(({ text, Icon, lastIcon, divider }, index) => {
+      return (
+        <Fragment key={index}>
+          <DropdownListItem options={{ text, Icon, lastIcon }} />
+          {divider ? (
+            <Divider style={{ marginBottom: "8px", marginTop: "8px" }} />
+          ) : null}
+        </Fragment>
+      );
+    })}
+  </List>
+);
 const NavTabs = ({
   classes,
   moreBtnClickHnd,
@@ -106,8 +129,11 @@ const NavTabs = ({
         PopoverClasses={{
           paper: classes.dropDownPopOver,
         }}
+        getContentAnchorEl={null}
       >
-        <DropdownListContainer options={{ list: appsDropDownListData }} />
+        <DropdownListContainer>
+          {appsDropDownList(appsDropDownListData)}
+        </DropdownListContainer>
       </Menu>
       <IconButton
         classes={{ root: classes.disableHoverBgClr }}
@@ -133,8 +159,11 @@ const NavTabs = ({
         PopoverClasses={{
           paper: classes.dropDownPopOver,
         }}
+        getContentAnchorEl={null}
       >
-        <DropdownListContainer options={{ list: moreDropDownListData }} />
+        <DropdownListContainer>
+          {appsDropDownList(moreDropDownListData)}
+        </DropdownListContainer>
       </Menu>
       <Button
         disableRipple

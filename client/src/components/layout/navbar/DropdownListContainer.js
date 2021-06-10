@@ -1,6 +1,5 @@
-import { Divider, List, makeStyles } from "@material-ui/core";
-import React, { Fragment } from "react";
-import DropdownListItem from "./DropdownListItem";
+import { makeStyles } from "@material-ui/core";
+import React from "react";
 
 const useStyle = makeStyles(() => {
   return {
@@ -18,27 +17,18 @@ const useStyle = makeStyles(() => {
   };
 });
 
-const DropdownListContainer = ({ options: { list } }) => {
+// const DropdownListContainer = (props) => {
+//   const classes = useStyle();
+//   return <div className={classes.more}>{props.children}</div>;
+// };
+
+const DropdownListContainer = React.forwardRef((props, ref) => {
   const classes = useStyle();
   return (
-    <div className={classes.more}>
-      <List>
-        {list.map(({ text, Icon, lastIcon, divider }, index) => {
-          return (
-            <Fragment>
-              <DropdownListItem
-                key={index}
-                options={{ text, Icon, lastIcon }}
-              />
-              {divider ? (
-                <Divider style={{ marginBottom: "8px", marginTop: "8px" }} />
-              ) : null}
-            </Fragment>
-          );
-        })}
-      </List>
+    <div ref={ref} className={classes.more}>
+      {props.children}
     </div>
   );
-};
+});
 
 export default DropdownListContainer;
