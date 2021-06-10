@@ -7,12 +7,17 @@ import NavTabs from "./NavTabs";
 
 const Navbar = ({ setSideDrawer }) => {
   const classes = useStyle();
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorElForMore, setAnchorElForMore] = useState(null);
+  const [anchorElForApps, setAnchorElForApps] = useState(null);
   const moreBtnClickHnd = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorElForMore(event.currentTarget);
+  };
+  const appsBtnClickHnd = (event) => {
+    setAnchorElForApps(event.currentTarget);
   };
   const onMenuClose = () => {
-    setAnchorEl(null);
+    setAnchorElForMore(null);
+    setAnchorElForApps(null);
   };
   return (
     <Fragment>
@@ -32,7 +37,9 @@ const Navbar = ({ setSideDrawer }) => {
                 classes={classes}
                 moreBtnClickHnd={moreBtnClickHnd}
                 onMenuClose={onMenuClose}
-                anchorEl={anchorEl}
+                anchorElForMore={anchorElForMore}
+                appsBtnClickHnd={appsBtnClickHnd}
+                anchorElForApps={anchorElForApps}
               />
             </Grid>
           </Grid>
@@ -74,22 +81,17 @@ const useStyle = makeStyles(() => {
         backgroundColor: "transparent",
       },
     },
-    more: {
-      width: "280px",
-      "& .MuiListItemText-root": {
-        margin: "0",
-      },
-      "& .MuiListItemIcon-root": {
-        minWidth: "33px",
-      },
-      "& .MuiTypography-body1": {
-        fontSize: "0.9rem",
-      },
-    },
+
     dropDownPopOver: {
       boxShadow: "none",
       borderRadius: "0",
       border: "1px solid #00000026",
+      "&::-webkit-scrollbar": {
+        width: "0.5em",
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#d4d4d4",
+      },
     },
   };
 });

@@ -1,11 +1,11 @@
 import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import React from "react";
 
-const DropdownListItem = ({ pro: { text, Icon, lastIcon } }) => {
+const DropdownListItem = ({ options: { text, Icon, lastIcon } }) => {
   return (
     <ListItem button key={text}>
-      <ListItemIcon>{Icon}</ListItemIcon>
-      <ListItemText primary={text} />
+      {Icon ? <ListItemIcon>{Icon}</ListItemIcon> : null}
+      {text ? <ListItemText primary={text} /> : null}
       {lastIcon ? lastIcon : null}
     </ListItem>
   );
