@@ -6,7 +6,6 @@ import {
   IconButton,
   List,
   Menu,
-  MenuItem,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AppsIcon from "@material-ui/icons/Apps";

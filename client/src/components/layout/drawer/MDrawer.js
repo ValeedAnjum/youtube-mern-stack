@@ -6,49 +6,121 @@ import {
   ListItemIcon,
   ListItemText,
   makeStyles,
-  Divider,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
 import ExploreIcon from "@material-ui/icons/Explore";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
+import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
+import HistoryIcon from "@material-ui/icons/History";
+import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
+import SportsIcon from "@material-ui/icons/Sports";
+import SportsEsportsIcon from "@material-ui/icons/SportsEsports";
+import AnnouncementIcon from "@material-ui/icons/Announcement";
+import SignalCellularAltIcon from "@material-ui/icons/SignalCellularAlt";
+import SlowMotionVideoIcon from "@material-ui/icons/SlowMotionVideo";
+import AddIcon from "@material-ui/icons/Add";
+import SignalWifi4BarIcon from "@material-ui/icons/SignalWifi4Bar";
+import SettingsIcon from "@material-ui/icons/Settings";
+import FlagIcon from "@material-ui/icons/Flag";
+import HelpIcon from "@material-ui/icons/Help";
 
 import YouTubeIcon from "../../youtubeIcon/YoutubeIcon";
+import SidenavBarListData from "../../sidenavbarlistdata/SidenavBarListData";
 
 const drawerListContentData = [
   {
-    text: "Home",
+    Text: "Home",
     Icon: <HomeIcon />,
-    Heading: "more from youtube",
   },
   {
-    text: "Explore",
+    Text: "Explore",
     Icon: <ExploreIcon />,
   },
   {
-    text: "Subscritions",
+    Text: "Subscritions",
     Icon: <SubscriptionsIcon />,
+    Dividr: true,
+  },
+  {
+    Text: "Library",
+    Icon: <VideoLibraryIcon />,
+  },
+  {
+    Text: "History",
+    Icon: <HistoryIcon />,
+    Dividr: true,
+  },
+  {
+    Heading: "best of youtube",
+  },
+  {
+    Text: "Music",
+    Icon: <LibraryMusicIcon />,
+  },
+  {
+    Text: "Sports",
+    Icon: <SportsIcon />,
+  },
+  {
+    Text: "Gaming",
+    Icon: <SportsEsportsIcon />,
+  },
+  {
+    Text: "News",
+    Icon: <AnnouncementIcon />,
+  },
+  {
+    Text: "Live",
+    Icon: <SignalCellularAltIcon />,
+  },
+  {
+    Text: "360 videos",
+    Icon: <SlowMotionVideoIcon />,
+    Dividr: true,
+  },
+  {
+    Text: "Browse channels",
+    Icon: <AddIcon />,
+    Dividr: true,
+  },
+  {
+    Heading: "more from youtube",
+  },
+  {
+    Text: "Live",
+    Icon: <SignalWifi4BarIcon />,
+    Dividr: true,
+  },
+  {
+    Text: "Settings",
+    Icon: <SettingsIcon />,
+  },
+  {
+    Text: "Report history",
+    Icon: <FlagIcon />,
+  },
+  {
+    Text: "Help",
+    Icon: <HelpIcon />,
+  },
+  {
+    Text: "Send feedback",
+    Icon: <AnnouncementIcon />,
+    Dividr: true,
   },
 ];
-
-const SingleListItem = ({ text, Icon, Heading, Divider }) => (
-  <ListItem button>
-    {Icon ? <ListItemIcon>{Icon}</ListItemIcon> : null}
-    {text ? <ListItemText>{text}</ListItemText> : null}
-  </ListItem>
-);
-const drawerListContent = (listItems) => (
-  <Fragment>
-    {listItems.map((item, index) => {
-      return <SingleListItem key={index} {...item} />;
-    })}
-  </Fragment>
-);
 
 const useStyle = makeStyles((theme) => {
   return {
     drawerPaper: {
       width: "230px",
+      "&::-webkit-scrollbar": {
+        width: "0.5em",
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#d4d4d4",
+      },
     },
     toolbar: theme.mixins.toolbar,
     list: {
@@ -84,7 +156,9 @@ const MDrawer = ({ setSideDrawer, SideDrawer }) => {
               </ListItemText>
             </ListItem>
           </div>
-          {drawerListContent(drawerListContentData)}
+          {/* {drawerListContent(drawerListContentData)} */}
+          {/* list data container  */}
+          <SidenavBarListData listItems={drawerListContentData} />
         </List>
       </Drawer>
     </Fragment>

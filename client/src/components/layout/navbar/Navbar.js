@@ -54,7 +54,7 @@ export default Navbar;
 const useStyle = makeStyles(() => {
   return {
     appbar: {
-      backgroundColor: "transparent",
+      backgroundColor: "white",
       borderBottom: "1px solid #00000026",
       boxShadow: "none",
     },
