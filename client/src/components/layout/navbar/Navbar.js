@@ -1,5 +1,11 @@
 import React, { Fragment, useState } from "react";
-import { AppBar, Grid, makeStyles, Toolbar } from "@material-ui/core";
+import {
+  AppBar,
+  Grid,
+  makeStyles,
+  Toolbar,
+  CssBaseline,
+} from "@material-ui/core";
 
 import LogoAndMenu from "./LogoAndMenu";
 import Searchbar from "./Searchbar";
@@ -21,6 +27,7 @@ const Navbar = ({ setSideDrawer }) => {
   };
   return (
     <Fragment>
+      <CssBaseline />
       <AppBar position="static" color="primary" className={classes.appbar}>
         <Toolbar>
           <Grid container>
@@ -51,9 +58,10 @@ const Navbar = ({ setSideDrawer }) => {
 
 export default Navbar;
 
-const useStyle = makeStyles(() => {
+const useStyle = makeStyles((theme) => {
   return {
     appbar: {
+      zIndex: theme.zIndex.drawer + 1,
       backgroundColor: "white",
       borderBottom: "1px solid #00000026",
       boxShadow: "none",

@@ -24,7 +24,8 @@ const drawerList = () => (
     ))}
   </List>
 );
-const useStyle = makeStyles(() => {
+const useStyle = makeStyles((theme) => {
+  // console.log(theme.zIndex.appBar);
   return {
     root: {
       display: "flex",
@@ -44,7 +45,6 @@ const Home = () => {
   console.log(path);
   return (
     <div className={classes.root}>
-      <CssBaseline />
       <Drawer
         className={classes.drawer}
         variant="permanent"
