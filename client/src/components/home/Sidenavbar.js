@@ -1,6 +1,5 @@
 import React from "react";
 import { List, makeStyles } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
 import ExploreIcon from "@material-ui/icons/Explore";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
@@ -107,6 +106,7 @@ const useStyle = makeStyles(() => {
     list: {
       padding: 0,
       overflow: "scroll",
+      overflowX: "hidden",
       "&:hover": {
         "&::-webkit-scrollbar-thumb": {
           backgroundColor: "#d4d4d4",

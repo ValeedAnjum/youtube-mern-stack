@@ -156,8 +156,6 @@ const MDrawer = ({ setSideDrawer, SideDrawer }) => {
               </ListItemText>
             </ListItem>
           </div>
-          {/* {drawerListContent(drawerListContentData)} */}
-          {/* list data container  */}
           <SidenavBarListData listItems={drawerListContentData} />
         </List>
       </Drawer>

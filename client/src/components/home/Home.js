@@ -1,29 +1,9 @@
 import React from "react";
 import Drawer from "@material-ui/core/Drawer";
-import {
-  CssBaseline,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  makeStyles,
-  Toolbar,
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+import { makeStyles, Toolbar } from "@material-ui/core";
 import { BrowserRouter, Switch, Route, useRouteMatch } from "react-router-dom";
 import Sidenavbar from "./Sidenavbar";
-const drawerList = () => (
-  <List>
-    {["Home", "Explore"].map((listItem, index) => (
-      <ListItem button key={index}>
-        <ListItemIcon>
-          <MenuIcon />
-        </ListItemIcon>
-        <ListItemText>{listItem}</ListItemText>
-      </ListItem>
-    ))}
-  </List>
-);
+
 const useStyle = makeStyles((theme) => {
   // console.log(theme.zIndex.appBar);
   return {
