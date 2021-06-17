@@ -29,7 +29,7 @@ const Navbar = ({ setSideDrawer }) => {
     <Fragment>
       <CssBaseline />
       <AppBar position="static" color="primary" className={classes.appbar}>
-        <Toolbar>
+        <Toolbar className={classes.toolbar}>
           <Grid container>
             <Grid item sm={3}>
               <LogoAndMenu setSideDrawer={setSideDrawer} />
@@ -61,10 +61,12 @@ export default Navbar;
 const useStyle = makeStyles((theme) => {
   return {
     appbar: {
-      zIndex: theme.zIndex.drawer + 1,
       backgroundColor: "white",
       borderBottom: "1px solid #00000026",
       boxShadow: "none",
+    },
+    toolbar: {
+      zIndex: theme.zIndex.drawer + 1,
     },
     searchTextBox: {
       border: "1px solid #00000026",

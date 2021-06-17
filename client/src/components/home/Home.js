@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { BrowserRouter, Switch, Route, useRouteMatch } from "react-router-dom";
-
+import Sidenavbar from "./Sidenavbar";
 const drawerList = () => (
   <List>
     {["Home", "Explore"].map((listItem, index) => (
@@ -31,10 +31,11 @@ const useStyle = makeStyles((theme) => {
       display: "flex",
     },
     drawer: {
-      width: "240px",
+      width: "230px",
     },
     drawerPaper: {
-      width: "240px",
+      width: "230px",
+      overflow: "hidden",
     },
   };
 });
@@ -52,7 +53,7 @@ const Home = () => {
         classes={{ paper: classes.drawerPaper }}
       >
         <Toolbar />
-        {drawerList()}
+        <Sidenavbar />
       </Drawer>
       <div>
         <BrowserRouter>
