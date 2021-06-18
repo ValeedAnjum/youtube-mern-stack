@@ -29,15 +29,18 @@ export const drawerListContentData = [
     Text: "Subscritions",
     Icon: <SubscriptionsIcon />,
     Dividr: true,
+    To: "/home/subscritions",
   },
   {
     Text: "Library",
     Icon: <VideoLibraryIcon />,
+    To: "/home/library",
   },
   {
     Text: "History",
     Icon: <HistoryIcon />,
     Dividr: true,
+    To: "/home/history",
   },
   {
     Heading: "best of youtube",
@@ -45,32 +48,39 @@ export const drawerListContentData = [
   {
     Text: "Music",
     Icon: <LibraryMusicIcon />,
+    To: "/home/music",
   },
   {
     Text: "Sports",
     Icon: <SportsIcon />,
+    To: "/home/sports",
   },
   {
     Text: "Gaming",
     Icon: <SportsEsportsIcon />,
+    To: "/home/gaming",
   },
   {
     Text: "News",
     Icon: <AnnouncementIcon />,
+    To: "/home/news",
   },
   {
     Text: "Live",
     Icon: <SignalCellularAltIcon />,
+    To: "/home/live",
   },
   {
     Text: "360 videos",
     Icon: <SlowMotionVideoIcon />,
     Dividr: true,
+    To: "/home/360videos",
   },
   {
     Text: "Browse channels",
     Icon: <AddIcon />,
     Dividr: true,
+    To: "/home/browsechannels",
   },
   {
     Heading: "more from youtube",
@@ -79,22 +89,27 @@ export const drawerListContentData = [
     Text: "Live",
     Icon: <SignalWifi4BarIcon />,
     Dividr: true,
+    To: "/home/livestreaming",
   },
   {
     Text: "Settings",
     Icon: <SettingsIcon />,
+    To: "/home/settings",
   },
   {
     Text: "Report history",
     Icon: <FlagIcon />,
+    To: "/home/reporthistory",
   },
   {
     Text: "Help",
     Icon: <HelpIcon />,
+    To: "/home/help",
   },
   {
     Text: "Send feedback",
     Icon: <AnnouncementIcon />,
     Dividr: true,
+    To: "/home/sendfeedback",
   },
 ];
