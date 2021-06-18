@@ -1,20 +1,25 @@
 import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
 import { drawerListContentData } from "./listdataInArray";
-const Routes = ({ path }) => {
+import { RoutesComponentsArray } from "./routesComponentsArray";
+const Routes = () => {
   const paths = drawerListContentData
     .filter((data) => data.To)
     .map((filterdData) => filterdData.To);
+  const RoutesComponents = new Array(paths.length).fill(null, 0, paths.length);
+  RoutesComponentsArray.forEach(
+    (item, index) => (RoutesComponents[index] = item)
+  );
   return (
     <Fragment>
-      {/* <Route path="/home" exact render={() => <h1>I am Video container</h1>} /> */}
-      {paths.map((path) => {
+      {paths.map((path, index) => {
         return (
           <Route
             key={path}
             path={path}
             exact
-            render={() => <h1>I am {path}</h1>}
+            // render={() => <h1>I am {path}</h1>}
+            component={() => RoutesComponents[index]}
           />
         );
       })}

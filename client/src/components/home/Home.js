@@ -1,7 +1,7 @@
 import React from "react";
 import Drawer from "@material-ui/core/Drawer";
 import { makeStyles, Toolbar } from "@material-ui/core";
-import { BrowserRouter, Switch, useRouteMatch } from "react-router-dom";
+import { BrowserRouter, Switch } from "react-router-dom";
 import Sidenavbar from "./Sidenavbar";
 import Routes from "./Routes";
 
@@ -23,7 +23,6 @@ const useStyle = makeStyles((theme) => {
 
 const Home = () => {
   const classes = useStyle();
-  const { path } = useRouteMatch();
   return (
     <div className={classes.root}>
       <BrowserRouter>
@@ -38,7 +37,7 @@ const Home = () => {
         </Drawer>
         <div>
           <Switch>
-            <Routes path={path} />
+            <Routes />
           </Switch>
         </div>
       </BrowserRouter>

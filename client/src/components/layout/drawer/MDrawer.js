@@ -42,7 +42,7 @@ const MDrawer = ({ setSideDrawer, SideDrawer }) => {
         open={SideDrawer}
         onClose={() => setSideDrawer(false)}
       >
-        <List className={classes.list}>
+        <List className={classes.list} onClick={() => setSideDrawer(false)}>
           <div
             className={classes.toolbar}
             style={{ borderBottom: "1px solid #0000001a", display: "flex" }}

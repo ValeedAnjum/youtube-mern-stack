@@ -27,9 +27,6 @@ const useStyle = makeStyles(() => {
         color: "#606060bd",
       },
     },
-    activeClassName: {
-      backgroundColor: "red",
-    },
   };
 });
 const SingleListItem = (props) => {
@@ -43,7 +40,6 @@ const SingleListItem = (props) => {
         className={classes.listItem}
         component={Heading ? null : NavLink}
         to={To ? To : "/"}
-        // activeClassName={classes.activeClassName}
       >
         {Icon ? <ListItemIcon>{Icon}</ListItemIcon> : null}
         {Text ? <ListItemText>{Text}</ListItemText> : null}
