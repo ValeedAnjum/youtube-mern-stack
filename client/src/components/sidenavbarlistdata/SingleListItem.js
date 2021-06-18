@@ -6,7 +6,7 @@ import {
   makeStyles,
   Divider,
 } from "@material-ui/core";
-
+import { NavLink, withRouter, Link } from "react-router-dom";
 const useStyle = makeStyles(() => {
   return {
     listItem: {
@@ -29,14 +29,25 @@ const useStyle = makeStyles(() => {
     },
   };
 });
-const SingleListItem = ({ Text, Icon, Heading, Dividr }) => {
+const SingleListItem = (props) => {
+  const { Text, Icon, Heading, Dividr, To, history } = props;
   const classes = useStyle();
   const buttonBehav = () => (Heading ? false : true);
+  const linkTo = () => {
+    history.push(`/home/explore`);
+  };
   return (
     <Fragment>
-      <ListItem button={buttonBehav()} className={classes.listItem}>
+      <ListItem
+        button={buttonBehav()}
+        className={classes.listItem}
+        // onClick={linkTo}
+        component={Link}
+        to={To ? To : "/home"}
+      >
         {Icon ? <ListItemIcon>{Icon}</ListItemIcon> : null}
         {Text ? <ListItemText>{Text}</ListItemText> : null}
+
         {Heading ? (
           <ListItemText className={classes.heading}>{Heading}</ListItemText>
         ) : null}
@@ -47,4 +58,4 @@ const SingleListItem = ({ Text, Icon, Heading, Dividr }) => {
   );
 };
 
-export default SingleListItem;
+export default withRouter(SingleListItem);

@@ -1,7 +1,7 @@
 import React from "react";
 import { List, makeStyles } from "@material-ui/core";
 import SidenavBarListData from "../sidenavbarlistdata/SidenavBarListData";
-import { drawerListContentData } from "../ListDataInArray/listdataInArray";
+import { drawerListContentData } from "./listdataInArray";
 
 const useStyle = makeStyles(() => {
   return {

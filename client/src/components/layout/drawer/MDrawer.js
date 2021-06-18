@@ -11,7 +11,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 
 import YouTubeIcon from "../../youtubeIcon/YoutubeIcon";
 import SidenavBarListData from "../../sidenavbarlistdata/SidenavBarListData";
-import { drawerListContentData } from "../../ListDataInArray/listdataInArray";
+import { drawerListContentData } from "./listdataInArray";
 
 const useStyle = makeStyles((theme) => {
   return {

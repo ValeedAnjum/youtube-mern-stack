@@ -23,20 +23,19 @@ const useStyle = makeStyles((theme) => {
 const Home = () => {
   const classes = useStyle();
   const { path } = useRouteMatch();
-  console.log(path);
   return (
     <div className={classes.root}>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        anchor="left"
-        classes={{ paper: classes.drawerPaper }}
-      >
-        <Toolbar />
-        <Sidenavbar />
-      </Drawer>
-      <div>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          anchor="left"
+          classes={{ paper: classes.drawerPaper }}
+        >
+          <Toolbar />
+          <Sidenavbar />
+        </Drawer>
+        <div>
           <Switch>
             <Route
               path={path}
@@ -44,12 +43,13 @@ const Home = () => {
               render={() => <h1>I am Video container</h1>}
             />
             <Route
+              exact
               path={`${path}/explore`}
               render={() => <h1>I am explore</h1>}
             />
           </Switch>
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
     </div>
   );
 };
