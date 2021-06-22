@@ -9,7 +9,7 @@ const videos = [
       "Raqs-e-Bismil | Episode 25 | Presented by Master Paints, Powered by West Marina & Sandal",
     channelName: "HUM TV",
     views: "10K",
-    videoLength: "3 hours ago",
+    timeStamp: "3 hours ago",
   },
 ];
 
@@ -38,10 +38,24 @@ const useStyle = makeStyles(() => {
       height: "inherit",
       borderRadius: "50%",
     },
+    title: {
+      margin: "0",
+    },
     moreVertiIcon: {
+      padding: "6px",
       "&:hover": {
         backgroundColor: "transparent",
       },
+    },
+    channel: {
+      margin: "0",
+      fontSize: "0.8em",
+      color: "#939191c9",
+    },
+    viewsAndTime: {
+      margin: "0",
+      fontSize: "0.8em",
+      color: "#939191c9",
     },
   };
 });
@@ -49,7 +63,7 @@ const VideosOnHome = () => {
   const classes = useStyle();
   return (
     <Grid container className={classes.videosContainer}>
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => {
+      {[1, 2, 3, 4, 5, 6].map((item) => {
         return (
           <VideoContainer
             key={item}
@@ -57,7 +71,7 @@ const VideosOnHome = () => {
             title={videos[0].title}
             channelName={videos[0].channelName}
             views={videos[0].views}
-            videoLength={videos[0].videoLength}
+            timeStamp={videos[0].timeStamp}
             img={videos[0].img}
           />
         );

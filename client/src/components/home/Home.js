@@ -25,22 +25,20 @@ const Home = () => {
   const classes = useStyle();
   return (
     <div className={classes.root}>
-      <BrowserRouter>
-        <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          anchor="left"
-          classes={{ paper: classes.drawerPaper }}
-        >
-          <Toolbar />
-          <Sidenavbar />
-        </Drawer>
-        <div>
-          <Switch>
-            <Routes />
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        anchor="left"
+        classes={{ paper: classes.drawerPaper }}
+      >
+        <Toolbar />
+        <Sidenavbar />
+      </Drawer>
+      <div>
+        <Switch>
+          <Routes />
+        </Switch>
+      </div>
     </div>
   );
 };
