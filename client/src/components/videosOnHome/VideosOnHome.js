@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
-import VideoContainer from "./VideoContainer";
+import VideoCard from "./VideoCard";
 const videos = [
   {
     img: "https://i.ytimg.com/vi/PcHa6xPvlbg/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDBi0mZN-OTmcoxDmZIgO99T5xBoA",
@@ -20,6 +20,7 @@ const useStyle = makeStyles(() => {
     },
     videoContainer: {
       padding: "3px",
+      userSelect: "none",
     },
     contentContainer: {
       cursor: "pointer",
@@ -65,7 +66,7 @@ const VideosOnHome = () => {
     <Grid container className={classes.videosContainer}>
       {[1, 2, 3, 4, 5, 6].map((item) => {
         return (
-          <VideoContainer
+          <VideoCard
             key={item}
             classes={classes}
             title={videos[0].title}

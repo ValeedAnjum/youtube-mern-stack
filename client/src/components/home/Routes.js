@@ -18,7 +18,6 @@ const Routes = () => {
             key={path}
             path={path}
             exact
-            // render={() => <h1>I am {path}</h1>}
             component={() => RoutesComponents[index]}
           />
         );
