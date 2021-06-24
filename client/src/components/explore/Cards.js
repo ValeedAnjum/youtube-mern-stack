@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { makeStyles, Grid } from "@material-ui/core";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
@@ -41,6 +41,7 @@ const useStyle = makeStyles(() => {
     },
     cardIcon: {
       backgroundColor: "transparent !important",
+      color: "red",
     },
     cardHeading: {
       userSelect: "none",
@@ -51,7 +52,7 @@ const useStyle = makeStyles(() => {
 const Cards = () => {
   const classes = useStyle();
   return (
-    <Grid container>
+    <Grid container spacing={2}>
       {cards.map((item, index) => (
         <CardLocal classes={classes} key={index} item={item} />
       ))}

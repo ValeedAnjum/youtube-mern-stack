@@ -1,13 +1,24 @@
 import React from "react";
 import Drawer from "@material-ui/core/Drawer";
 import { makeStyles, Toolbar } from "@material-ui/core";
-import { BrowserRouter, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import Sidenavbar from "./Sidenavbar";
 import Routes from "./Routes";
 
 const useStyle = makeStyles((theme) => {
   // console.log(theme.zIndex.appBar);
   return {
+    "@global": {
+      body: {
+        scrollBehavior: "smooth",
+        "&::-webkit-scrollbar": {
+          width: "0.5em",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: "#d4d4d4",
+        },
+      },
+    },
     root: {
       display: "flex",
     },
@@ -17,6 +28,9 @@ const useStyle = makeStyles((theme) => {
     drawerPaper: {
       width: "230px",
       overflow: "hidden",
+    },
+    routesContainer: {
+      width: "100%",
     },
   };
 });
@@ -34,7 +48,7 @@ const Home = () => {
         <Toolbar />
         <Sidenavbar />
       </Drawer>
-      <div>
+      <div className={classes.routesContainer}>
         <Switch>
           <Routes />
         </Switch>

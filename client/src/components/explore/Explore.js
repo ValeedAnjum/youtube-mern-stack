@@ -1,8 +1,7 @@
 import React from "react";
-import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
-import SlowMotionVideoIcon from "@material-ui/icons/SlowMotionVideo";
+import { makeStyles } from "@material-ui/core";
 import Cards from "./Cards";
-
+import VideosContainer from "./VideosContainer";
 const useStyle = makeStyles(() => {
   return {
     mainContainer: {
@@ -15,6 +14,7 @@ const Explore = () => {
   return (
     <div className={classes.mainContainer}>
       <Cards />
+      <VideosContainer />
     </div>
   );
 };
