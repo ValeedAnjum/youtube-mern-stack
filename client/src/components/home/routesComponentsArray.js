@@ -1,7 +1,8 @@
 import VideosOnHome from "../videosOnHome/VideosOnHome";
+import Explore from "../explore/Explore";
 export const RoutesComponentsArray = [
   <VideosOnHome />,
-  <h1>Explore</h1>,
+  <Explore />,
   <h1>Subscribtions</h1>,
   <h1>Library</h1>,
   <h1>History</h1>,
