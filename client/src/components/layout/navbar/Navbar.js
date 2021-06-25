@@ -64,6 +64,9 @@ const useStyle = makeStyles((theme) => {
       backgroundColor: "white",
       borderBottom: "1px solid #00000026",
       boxShadow: "none",
+      position: "sticky",
+      top: "0",
+      zIndex: theme.zIndex.drawer + 1,
     },
     toolbar: {
       zIndex: theme.zIndex.drawer + 1,
