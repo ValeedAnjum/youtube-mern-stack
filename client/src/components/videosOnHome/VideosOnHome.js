@@ -64,7 +64,7 @@ const VideosOnHome = () => {
   const classes = useStyle();
   return (
     <Grid container className={classes.videosContainer}>
-      {[1, 2, 3, 4, 5, 6].map((item) => {
+      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => {
         return (
           <VideoCard
             key={item}

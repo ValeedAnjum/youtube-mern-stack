@@ -11,6 +11,8 @@ const useStyle = makeStyles((theme) => {
     "@global": {
       body: {
         scrollBehavior: "smooth",
+        paddingRight: "0px !important",
+        overflow: "auto !important",
         "&::-webkit-scrollbar": {
           width: "0.5em",
         },
