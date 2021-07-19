@@ -1,9 +1,11 @@
 import VideosOnHome from "../videosOnHome/VideosOnHome";
 import Explore from "../explore/Explore";
+import WillWork from "../willwork/WillWork";
+
 export const RoutesComponentsArray = [
   <VideosOnHome />,
   <Explore />,
-  <h1>Subscribtions</h1>,
+  <WillWork />,
   <h1>Library</h1>,
   <h1>History</h1>,
   <h1>Music</h1>,
