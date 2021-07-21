@@ -1,6 +1,8 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import { withRouter } from "react-router-dom";
+import MoreVideoOptions from "./MoreVideoOptions";
+
 const videos = [
   {
     img: "https://i.ytimg.com/vi/PcHa6xPvlbg/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDBi0mZN-OTmcoxDmZIgO99T5xBoA",
@@ -22,10 +24,13 @@ const useStyle = makeStyles(() => {
     imgContainer: { position: "relative" },
     timeDurition: {
       position: "absolute",
-      bottom: "5px",
-      right: "5px",
+      padding: "0px 4px",
+      bottom: "13px",
+      right: "10px",
       color: "white",
       margin: "0",
+      borderRadius: "5px",
+      backgroundColor: "#000000ed",
     },
     title: {
       color: "black",
@@ -60,12 +65,17 @@ const VideoCard = (props) => {
       </Grid>
       <Grid item sm={9}>
         <Grid container direction="column">
-          <Grid item>
-            <Typography className={classes.title}>
-              {videos[0].title.length > 133
-                ? videos[0].title.slice(0, 130) + "..."
-                : videos[0].title}
-            </Typography>
+          <Grid container item>
+            <Grid item sm={11}>
+              <Typography className={classes.title}>
+                {videos[0].title.length > 133
+                  ? videos[0].title.slice(0, 130) + "..."
+                  : videos[0].title}
+              </Typography>
+            </Grid>
+            <Grid item sm={1}>
+              <MoreVideoOptions />
+            </Grid>
           </Grid>
           <Grid item>
             <p className={classes.channelNameAndViews}>

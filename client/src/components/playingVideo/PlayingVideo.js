@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { Grid, makeStyles } from "@material-ui/core";
 import Video from "./Video";
+import RelatedVideos from "./RelatedVideos";
 
 const useStyles = makeStyles(() => {
   return {
@@ -19,7 +20,7 @@ const PlayingVideo = (props) => {
         <Video />
       </Grid>
       <Grid item sm={4}>
-        Related Videos
+        <RelatedVideos />
       </Grid>
     </Grid>
   );

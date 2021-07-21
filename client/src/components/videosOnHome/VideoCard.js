@@ -13,8 +13,9 @@ const VideoCard = (props) => {
     <Grid item sm={3} className={classes.videoContainer}>
       <Grid container direction="column" className={classes.contentContainer}>
         {/* video thumbnail  */}
-        <Grid item onClick={playVideo}>
+        <Grid item onClick={playVideo} className={classes.timeDuritionCon}>
           <img className={classes.img} src={img} alt="video_thumbnail" />
+          <p className={classes.timeDurition}>8:44</p>
         </Grid>
         {/* logo title more views and timestamp  */}
         <Grid container>

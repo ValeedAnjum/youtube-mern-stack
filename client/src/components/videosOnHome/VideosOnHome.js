@@ -28,6 +28,19 @@ const useStyle = makeStyles(() => {
     img: {
       width: "100%",
     },
+    timeDurition: {
+      position: "absolute",
+      padding: "0px 4px",
+      bottom: "13px",
+      right: "10px",
+      color: "white",
+      margin: "0",
+      borderRadius: "5px",
+      backgroundColor: "#000000ed",
+    },
+    timeDuritionCon: {
+      position: "relative",
+    },
     channelLogoContainer: {
       border: "1px solid black",
       width: "30px",
