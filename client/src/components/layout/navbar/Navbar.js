@@ -5,6 +5,7 @@ import {
   makeStyles,
   Toolbar,
   CssBaseline,
+  Hidden,
 } from "@material-ui/core";
 
 import LogoAndMenu from "./LogoAndMenu";
@@ -31,15 +32,17 @@ const Navbar = ({ setSideDrawer }) => {
       <AppBar position="static" color="primary" className={classes.appbar}>
         <Toolbar className={classes.toolbar}>
           <Grid container>
-            <Grid item sm={3}>
+            <Grid item sm={3} xs={6}>
               <LogoAndMenu setSideDrawer={setSideDrawer} />
             </Grid>
             {/* Search bar  */}
-            <Grid item sm={6}>
-              <Searchbar classes={classes} />
-            </Grid>
+            <Hidden xsDown>
+              <Grid item sm={6}>
+                <Searchbar classes={classes} />
+              </Grid>
+            </Hidden>
             {/* navtabs  */}
-            <Grid item sm={3}>
+            <Grid item sm={3} xs={6}>
               <NavTabs
                 classes={classes}
                 moreBtnClickHnd={moreBtnClickHnd}
