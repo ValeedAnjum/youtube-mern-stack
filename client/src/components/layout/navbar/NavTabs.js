@@ -1,12 +1,5 @@
 import React, { Fragment, useState } from "react";
-import {
-  Button,
-  Divider,
-  Grid,
-  IconButton,
-  List,
-  Menu,
-} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 import GuestNavTabs from "./GuestNavTabs";
 
