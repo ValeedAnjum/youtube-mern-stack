@@ -18,17 +18,17 @@ const VideoCard = (props) => {
           <p className={classes.timeDurition}>8:44</p>
         </Grid>
         {/* logo title more views and timestamp  */}
-        <Grid container>
-          <Grid item sm={2}>
+        <Grid container className={classes.logoAndHeadingCon}>
+          <Grid item sm={2} xs={2} className={classes.channelLogoContainerCon}>
             <ChannelLogo img={img} classes={classes} />
           </Grid>
-          <Grid container item sm={10}>
+          <Grid container item sm={10} xs={10}>
             <VideoTitleAndMore
               playVideo={playVideo}
               classes={classes}
               title={title}
             />
-            <Grid item sm={12}>
+            <Grid item sm={12} xs={12}>
               <p className={classes.channel}>{channelName}</p>
             </Grid>
             <Grid item>

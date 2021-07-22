@@ -13,7 +13,7 @@ const videos = [
   },
 ];
 
-const useStyle = makeStyles(() => {
+const useStyle = makeStyles((theme) => {
   return {
     videosContainer: {
       padding: "10px",
@@ -40,12 +40,24 @@ const useStyle = makeStyles(() => {
     },
     timeDuritionCon: {
       position: "relative",
+      overflow: "hidden",
     },
     channelLogoContainer: {
       border: "1px solid black",
       width: "30px",
       height: "30px",
       borderRadius: "50%",
+      [theme.breakpoints.down("xs")]: {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%,-50%)",
+      },
+    },
+    channelLogoContainerCon: {
+      [theme.breakpoints.down("xs")]: {
+        position: "relative",
+      },
     },
     channelLogoImg: {
       width: "100%",
@@ -54,6 +66,9 @@ const useStyle = makeStyles(() => {
     },
     title: {
       margin: "0",
+    },
+    videoTitleCon: {
+      margin: "auto",
     },
     moreVertiIcon: {
       padding: "6px",
@@ -70,6 +85,9 @@ const useStyle = makeStyles(() => {
       margin: "0",
       fontSize: "0.8em",
       color: "#939191c9",
+    },
+    logoAndHeadingCon: {
+      flexWrap: "nowrap",
     },
   };
 });

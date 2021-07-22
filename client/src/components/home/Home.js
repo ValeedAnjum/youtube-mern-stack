@@ -1,6 +1,6 @@
 import React from "react";
 import Drawer from "@material-ui/core/Drawer";
-import { makeStyles, Toolbar } from "@material-ui/core";
+import { Hidden, makeStyles, Toolbar } from "@material-ui/core";
 import { Switch } from "react-router-dom";
 import Sidenavbar from "./Sidenavbar";
 import Routes from "./Routes";
@@ -41,15 +41,17 @@ const Home = () => {
   const classes = useStyle();
   return (
     <div className={classes.root}>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        anchor="left"
-        classes={{ paper: classes.drawerPaper }}
-      >
-        <Toolbar />
-        <Sidenavbar />
-      </Drawer>
+      <Hidden xsDown>
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          anchor="left"
+          classes={{ paper: classes.drawerPaper }}
+        >
+          <Toolbar />
+          <Sidenavbar />
+        </Drawer>
+      </Hidden>
       <div className={classes.routesContainer}>
         <Switch>
           <Routes />

@@ -59,23 +59,23 @@ const VideoTitleAndMore = ({ classes, title, playVideo }) => {
   };
   return (
     <Fragment>
-      <Grid item sm={10}>
+      <Grid item sm={10} xs={11} className={classes.videoTitleCon}>
         <p className={classes.title} onClick={playVideo}>
           {title.length > 53 ? title.slice(0, 50) + "..." : title}
         </p>
       </Grid>
-      <Grid item sm={2}>
+      <Grid item sm={2} xs={1}>
         <IconButton className={classes.moreVertiIcon} onClick={moreBtnClickHnd}>
           <MoreVertIcon />
         </IconButton>
         <Menu
           anchorOrigin={{
             vertical: "bottom",
-            horizontal: "left",
+            horizontal: "right",
           }}
           transformOrigin={{
             vertical: "top",
-            horizontal: "left",
+            horizontal: "right",
           }}
           transitionDuration={0}
           anchorEl={anchorElForMore}

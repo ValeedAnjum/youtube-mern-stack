@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import {
   Button,
   Divider,
@@ -102,75 +102,80 @@ const NavTabs = ({
   anchorElForApps,
   appsBtnClickHnd,
 }) => {
+  const [auth, setAuth] = useState(true);
   return (
     <Grid container justify="flex-end" alignItems="center">
-      <IconButton
-        classes={{ root: classes.disableHoverBgClr }}
-        onClick={appsBtnClickHnd}
-      >
-        <AppsIcon />
-      </IconButton>
-      {/* menu for app icon button  */}
-      <Menu
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        transitionDuration={0}
-        anchorEl={anchorElForApps}
-        keepMounted
-        open={Boolean(anchorElForApps)}
-        onClose={onMenuClose}
-        PopoverClasses={{
-          paper: classes.dropDownPopOver,
-        }}
-        getContentAnchorEl={null}
-      >
-        <DropdownListContainer>
-          {appsDropDownList(appsDropDownListData)}
-        </DropdownListContainer>
-      </Menu>
-      <IconButton
-        classes={{ root: classes.disableHoverBgClr }}
-        onClick={moreBtnClickHnd}
-      >
-        <MoreVertIcon />
-      </IconButton>
-      {/* dropdown menu for more icon button  */}
-      <Menu
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        transitionDuration={0}
-        anchorEl={anchorElForMore}
-        keepMounted
-        open={Boolean(anchorElForMore)}
-        onClose={onMenuClose}
-        PopoverClasses={{
-          paper: classes.dropDownPopOver,
-        }}
-        getContentAnchorEl={null}
-      >
-        <DropdownListContainer>
-          {appsDropDownList(moreDropDownListData)}
-        </DropdownListContainer>
-      </Menu>
-      <Button
-        disableRipple
-        startIcon={<AccountCircleIcon />}
-        className={classes.signinBtn}
-      >
-        sign in
-      </Button>
+      {!auth ? (
+        <Fragment>
+          <IconButton
+            classes={{ root: classes.disableHoverBgClr }}
+            onClick={appsBtnClickHnd}
+          >
+            <AppsIcon />
+          </IconButton>
+          {/* menu for app icon button  */}
+          <Menu
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            transitionDuration={0}
+            anchorEl={anchorElForApps}
+            keepMounted
+            open={Boolean(anchorElForApps)}
+            onClose={onMenuClose}
+            PopoverClasses={{
+              paper: classes.dropDownPopOver,
+            }}
+            getContentAnchorEl={null}
+          >
+            <DropdownListContainer>
+              {appsDropDownList(appsDropDownListData)}
+            </DropdownListContainer>
+          </Menu>
+          <IconButton
+            classes={{ root: classes.disableHoverBgClr }}
+            onClick={moreBtnClickHnd}
+          >
+            <MoreVertIcon />
+          </IconButton>
+          {/* dropdown menu for more icon button  */}
+          <Menu
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            transitionDuration={0}
+            anchorEl={anchorElForMore}
+            keepMounted
+            open={Boolean(anchorElForMore)}
+            onClose={onMenuClose}
+            PopoverClasses={{
+              paper: classes.dropDownPopOver,
+            }}
+            getContentAnchorEl={null}
+          >
+            <DropdownListContainer>
+              {appsDropDownList(moreDropDownListData)}
+            </DropdownListContainer>
+          </Menu>
+          <Button
+            disableRipple
+            startIcon={<AccountCircleIcon />}
+            className={classes.signinBtn}
+          >
+            sign in
+          </Button>
+        </Fragment>
+      ) : null}
     </Grid>
   );
 };
