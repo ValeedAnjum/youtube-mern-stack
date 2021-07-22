@@ -1,7 +1,8 @@
-import React, { Fragment, useState } from "react";
+import React from "react";
 import { Grid } from "@material-ui/core";
 
 import GuestNavTabs from "./GuestNavTabs";
+import AuthNavTabs from "./AuthNavTabs";
 
 const NavTabs = ({
   classes,
@@ -10,22 +11,36 @@ const NavTabs = ({
   anchorElForMore,
   anchorElForApps,
   appsBtnClickHnd,
+  createVideoBtnClickHnd,
+  anchorElForCreateVideos,
+  userBtnClickHnd,
+  anchorElForUser,
 }) => {
-  const [auth, setAuth] = useState(false);
+  // const [auth, setAuth] = useState(false);
+  const auth = true;
   return (
     <Grid container justify="flex-end" alignItems="center">
       {!auth ? (
-        <Fragment>
-          <GuestNavTabs
-            classes={classes}
-            moreBtnClickHnd={moreBtnClickHnd}
-            onMenuClose={onMenuClose}
-            anchorElForMore={anchorElForMore}
-            anchorElForApps={anchorElForApps}
-            appsBtnClickHnd={appsBtnClickHnd}
-          />
-        </Fragment>
-      ) : null}
+        <GuestNavTabs
+          classes={classes}
+          moreBtnClickHnd={moreBtnClickHnd}
+          onMenuClose={onMenuClose}
+          anchorElForMore={anchorElForMore}
+          anchorElForApps={anchorElForApps}
+          appsBtnClickHnd={appsBtnClickHnd}
+        />
+      ) : (
+        <AuthNavTabs
+          classes={classes}
+          onMenuClose={onMenuClose}
+          appsBtnClickHnd={appsBtnClickHnd}
+          anchorElForApps={anchorElForApps}
+          createVideoBtnClickHnd={createVideoBtnClickHnd}
+          anchorElForCreateVideos={anchorElForCreateVideos}
+          userBtnClickHnd={userBtnClickHnd}
+          anchorElForUser={anchorElForUser}
+        />
+      )}
     </Grid>
   );
 };

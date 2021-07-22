@@ -1,6 +1,5 @@
-import { Grid, IconButton, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import React, { Fragment } from "react";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import MoreVideoOptions from "./MoreVideoOptions";
 
 const imgSrc =

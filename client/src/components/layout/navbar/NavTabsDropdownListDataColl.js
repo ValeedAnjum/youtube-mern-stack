@@ -13,6 +13,7 @@ import HelpIcon from "@material-ui/icons/Help";
 import FeedbackIcon from "@material-ui/icons/Feedback";
 import KeyboardIcon from "@material-ui/icons/Keyboard";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import SettingsInputAntennaIcon from "@material-ui/icons/SettingsInputAntenna";
 
 const styleForAppsIcons = { color: "#ff0000" };
 export const appsDropDownListData = [
@@ -65,4 +66,19 @@ export const moreDropDownListData = [
   { text: "Send feedback", Icon: <FeedbackIcon /> },
   { text: "Keyboard shortcuts", Icon: <KeyboardIcon />, divider: true },
   { text: "Restricted Mode: On" },
+];
+
+//create video dropdown list data
+
+const styleForCreateVideosIcons = { color: "#ff0000" };
+
+export const createVideosDropDownListData = [
+  {
+    text: "Upload video",
+    Icon: <LiveTvIcon style={styleForCreateVideosIcons} />,
+  },
+  {
+    text: "Go live",
+    Icon: <SettingsInputAntennaIcon style={styleForCreateVideosIcons} />,
+  },
 ];

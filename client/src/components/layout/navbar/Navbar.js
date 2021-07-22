@@ -16,15 +16,26 @@ const Navbar = ({ setSideDrawer }) => {
   const classes = useStyle();
   const [anchorElForMore, setAnchorElForMore] = useState(null);
   const [anchorElForApps, setAnchorElForApps] = useState(null);
+  const [anchorElForCreateVideos, setAnchorElForCreateVideos] = useState(null);
+  const [anchorElForUser, setAnchorElForUser] = useState(null);
   const moreBtnClickHnd = (event) => {
     setAnchorElForMore(event.currentTarget);
   };
   const appsBtnClickHnd = (event) => {
     setAnchorElForApps(event.currentTarget);
   };
+  const createVideoBtnClickHnd = (event) => {
+    setAnchorElForCreateVideos(event.currentTarget);
+  };
+
+  const userBtnClickHnd = (event) => {
+    setAnchorElForUser(event.currentTarget);
+  };
   const onMenuClose = () => {
     setAnchorElForMore(null);
     setAnchorElForApps(null);
+    setAnchorElForCreateVideos(null);
+    setAnchorElForUser(null);
   };
   return (
     <Fragment>
@@ -45,11 +56,15 @@ const Navbar = ({ setSideDrawer }) => {
             <Grid item sm={3} xs={6}>
               <NavTabs
                 classes={classes}
-                moreBtnClickHnd={moreBtnClickHnd}
                 onMenuClose={onMenuClose}
+                moreBtnClickHnd={moreBtnClickHnd}
                 anchorElForMore={anchorElForMore}
                 appsBtnClickHnd={appsBtnClickHnd}
                 anchorElForApps={anchorElForApps}
+                createVideoBtnClickHnd={createVideoBtnClickHnd}
+                anchorElForCreateVideos={anchorElForCreateVideos}
+                userBtnClickHnd={userBtnClickHnd}
+                anchorElForUser={anchorElForUser}
               />
             </Grid>
           </Grid>
