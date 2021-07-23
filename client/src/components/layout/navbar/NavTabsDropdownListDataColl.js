@@ -1,9 +1,10 @@
+// icons for app dropdown list
 import LiveTvIcon from "@material-ui/icons/LiveTv";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import FaceIcon from "@material-ui/icons/Face";
 import ArtTrackIcon from "@material-ui/icons/ArtTrack";
 import YouTubeIcon from "@material-ui/icons/YouTube";
-
+// icons for more dropdown list
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import TranslateIcon from "@material-ui/icons/Translate";
 import LanguageIcon from "@material-ui/icons/Language";
@@ -14,6 +15,13 @@ import FeedbackIcon from "@material-ui/icons/Feedback";
 import KeyboardIcon from "@material-ui/icons/Keyboard";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import SettingsInputAntennaIcon from "@material-ui/icons/SettingsInputAntenna";
+import UserNavTabDropDownListHeader from "./UserNavTabDropDownListHeader";
+// icons for user dropdown list
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
+import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import SaveAltIcon from "@material-ui/icons/SaveAlt";
 
 const styleForAppsIcons = { color: "#ff0000" };
 export const appsDropDownListData = [
@@ -80,5 +88,75 @@ export const createVideosDropDownListData = [
   {
     text: "Go live",
     Icon: <SettingsInputAntennaIcon style={styleForCreateVideosIcons} />,
+  },
+];
+
+//user dropdown list data
+
+export const userDropDownListData = [
+  {
+    header: <UserNavTabDropDownListHeader />,
+  },
+  {
+    text: "Your channel",
+    Icon: <AccountBoxIcon />,
+  },
+  {
+    text: "Purchases and memberships",
+    Icon: <MonetizationOnIcon />,
+  },
+  {
+    text: "YouTube Studio",
+    Icon: <SettingsIcon />,
+  },
+  {
+    text: "Switch account",
+    Icon: <SupervisorAccountIcon />,
+    lastIcon: <ArrowForwardIosIconWithStyle />,
+  },
+  {
+    text: "Sign out",
+    Icon: <ExitToAppIcon />,
+    divider: true,
+  },
+  {
+    text: "Appearance: Light",
+    Icon: <Brightness4Icon />,
+    lastIcon: <ArrowForwardIosIconWithStyle />,
+  },
+  {
+    text: "Language: English",
+    Icon: <TranslateIcon />,
+    lastIcon: <ArrowForwardIosIconWithStyle />,
+  },
+  {
+    text: "Location: Pakistan",
+    Icon: <LanguageIcon />,
+    lastIcon: <ArrowForwardIosIconWithStyle />,
+  },
+  {
+    text: "Settings",
+    Icon: <SettingsIcon />,
+  },
+  {
+    text: "Your data in YouTube",
+    Icon: <SaveAltIcon />,
+  },
+  {
+    text: "Help",
+    Icon: <HelpIcon />,
+  },
+  {
+    text: "Send feedback",
+    Icon: <FeedbackIcon />,
+  },
+  {
+    text: "Keyboard shortcuts",
+    Icon: <KeyboardIcon />,
+    divider: true,
+  },
+  {
+    text: "Restricted Mode: off",
+    lastIcon: <ArrowForwardIosIconWithStyle />,
   },
 ];

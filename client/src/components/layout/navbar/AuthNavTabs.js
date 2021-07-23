@@ -5,6 +5,7 @@ import TabWithMenuGen from "./TabWithMenuGen";
 import {
   appsDropDownListData,
   createVideosDropDownListData,
+  userDropDownListData,
 } from "./NavTabsDropdownListDataColl";
 import UserTab from "./UserTab";
 
@@ -39,7 +40,15 @@ const AuthNavTabs = ({
         onTabClickHandler={appsBtnClickHnd}
       />
       {/* user tab */}
-      <UserTab />
+      {/* <UserTab /> */}
+      <TabWithMenuGen
+        classes={classes}
+        TabIcon={UserTab}
+        onTabClickHandler={userBtnClickHnd}
+        anchorEl={anchorElForUser}
+        dropdownListData={userDropDownListData}
+        onMenuClose={onMenuClose}
+      />
     </Fragment>
   );
 };

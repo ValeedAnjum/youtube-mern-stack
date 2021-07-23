@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { Fragment } from "react";
 
 const useStyle = makeStyles(() => {
   return {
@@ -21,9 +21,11 @@ const DropdownListContainer = React.forwardRef((props, ref) => {
   const classes = useStyle();
 
   return (
-    <div ref={ref} className={classes.more}>
-      {props.children}
-    </div>
+    <Fragment>
+      <div ref={ref} className={classes.more}>
+        {props.children}
+      </div>
+    </Fragment>
   );
 });
 

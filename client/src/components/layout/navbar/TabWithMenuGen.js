@@ -5,10 +5,16 @@ import DropdownListItem from "./DropdownListItem";
 
 const appsDropDownList = (list) => (
   <List>
-    {list.map(({ text, Icon, lastIcon, divider }, index) => {
+    {list.map(({ text, Icon, lastIcon, divider, header }, index) => {
       return (
         <Fragment key={index}>
-          <DropdownListItem options={{ text, Icon, lastIcon }} />
+          {/* checking if there is a header component for list */}
+          {header ? header : null}
+
+          {text ? (
+            <DropdownListItem options={{ text, Icon, lastIcon }} />
+          ) : null}
+
           {divider ? (
             <Divider style={{ marginBottom: "8px", marginTop: "8px" }} />
           ) : null}
