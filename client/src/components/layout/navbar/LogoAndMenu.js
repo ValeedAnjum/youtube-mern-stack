@@ -1,16 +1,14 @@
 import { Grid, IconButton } from "@material-ui/core";
 import React from "react";
-import { withRouter } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 
 import YouTubeIcon from "../../youtubeIcon/YoutubeIcon";
 
 const LogoAndMenu = (props) => {
-  const { setSideDrawer, location } = props;
+  const { setSideDrawer } = props;
 
   const openSideDrawer = () => {
-    const isOnHome = location.pathname.includes("/home");
-    if (!isOnHome) setSideDrawer(true);
+    setSideDrawer(true);
   };
   return (
     <Grid container>
@@ -24,4 +22,4 @@ const LogoAndMenu = (props) => {
   );
 };
 
-export default withRouter(LogoAndMenu);
+export default LogoAndMenu;

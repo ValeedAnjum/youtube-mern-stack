@@ -1,4 +1,4 @@
-import { Grid, makeStyles, Typography } from "@material-ui/core";
+import { Grid, Hidden, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import { withRouter } from "react-router-dom";
 import MoreVideoOptions from "./MoreVideoOptions";
@@ -46,6 +46,9 @@ const useStyle = makeStyles(() => {
       margin: "0",
       fontSize: "small",
     },
+    headingAndMoreCon: {
+      flexWrap: "nowrap",
+    },
   };
 });
 const VideoCard = (props) => {
@@ -65,31 +68,42 @@ const VideoCard = (props) => {
       </Grid>
       <Grid item sm={9}>
         <Grid container direction="column">
-          <Grid container item>
+          <Grid container item className={classes.headingAndMoreCon}>
             <Grid item sm={11}>
-              <Typography className={classes.title}>
-                {videos[0].title.length > 133
-                  ? videos[0].title.slice(0, 130) + "..."
-                  : videos[0].title}
-              </Typography>
+              <Hidden xsDown>
+                <Typography className={classes.title}>
+                  {videos[0].title.length > 133
+                    ? videos[0].title.slice(0, 130) + "..."
+                    : videos[0].title}
+                </Typography>
+              </Hidden>
+              <Hidden smUp>
+                <Typography className={classes.title}>
+                  {videos[0].title.length > 73
+                    ? videos[0].title.slice(0, 70) + "..."
+                    : videos[0].title}
+                </Typography>
+              </Hidden>
             </Grid>
             <Grid item sm={1}>
               <MoreVideoOptions />
             </Grid>
           </Grid>
-          <Grid item>
-            <p className={classes.channelNameAndViews}>
-              {" "}
-              {`${videos[0].channelName} ${videos[0].views} views . ${videos[0].timeStamp}`}
-            </p>
-          </Grid>
-          <Grid item>
-            <p className={classes.description}>
-              {videos[0].description.length > 153
-                ? videos[0].description.slice(0, 150) + "..."
-                : videos[0].description}
-            </p>
-          </Grid>
+          <Hidden xsDown>
+            <Grid item>
+              <p className={classes.channelNameAndViews}>
+                {" "}
+                {`${videos[0].channelName} ${videos[0].views} views . ${videos[0].timeStamp}`}
+              </p>
+            </Grid>
+            <Grid item>
+              <p className={classes.description}>
+                {videos[0].description.length > 153
+                  ? videos[0].description.slice(0, 150) + "..."
+                  : videos[0].description}
+              </p>
+            </Grid>
+          </Hidden>
         </Grid>
       </Grid>
     </Grid>

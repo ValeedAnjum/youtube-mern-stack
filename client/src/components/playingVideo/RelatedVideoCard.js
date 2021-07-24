@@ -8,13 +8,14 @@ const imgSrc =
 const RelatedVideoCard = ({ classes }) => {
   return (
     <Fragment>
-      <Grid item sm={5} className={classes.timeDurationcCon}>
+      <Grid item sm={5} xs={5} className={classes.timeDurationcCon}>
         <img src={imgSrc} className={classes.img} alt="video_thumbnail" />
         <p className={classes.timeDuration}>8:22</p>
       </Grid>
       <Grid
         item
         sm={6}
+        xs={6}
         container
         direction="column"
         className={classes.videoInfoCon}
@@ -35,7 +36,7 @@ const RelatedVideoCard = ({ classes }) => {
           </Typography>
         </Grid>
       </Grid>
-      <Grid item sm={1}>
+      <Grid item sm={1} xs={1}>
         <MoreVideoOptions classes={classes} />
       </Grid>
     </Fragment>

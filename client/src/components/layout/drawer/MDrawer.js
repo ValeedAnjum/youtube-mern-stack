@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import {
   Drawer,
+  Hidden,
   List,
   ListItem,
   ListItemIcon,
@@ -36,31 +37,33 @@ const MDrawer = ({ setSideDrawer, SideDrawer }) => {
 
   return (
     <Fragment>
-      <Drawer
-        classes={{ paper: classes.drawerPaper }}
-        anchor="left"
-        open={SideDrawer}
-        onClose={() => setSideDrawer(false)}
-      >
-        <List className={classes.list} onClick={() => setSideDrawer(false)}>
-          <div
-            className={classes.toolbar}
-            style={{ borderBottom: "1px solid #0000001a", display: "flex" }}
-          >
-            <ListItem>
-              <ListItemIcon onClick={() => setSideDrawer(false)}>
-                <MenuIcon />
-              </ListItemIcon>
-              <ListItemText>
-                <div style={{ width: "80px", cursor: "pointer" }}>
-                  <YouTubeIcon />
-                </div>
-              </ListItemText>
-            </ListItem>
-          </div>
-          <SidenavBarListData listItems={drawerListContentData} />
-        </List>
-      </Drawer>
+      <Hidden smUp>
+        <Drawer
+          classes={{ paper: classes.drawerPaper }}
+          anchor="left"
+          open={SideDrawer}
+          onClose={() => setSideDrawer(false)}
+        >
+          <List className={classes.list} onClick={() => setSideDrawer(false)}>
+            <div
+              className={classes.toolbar}
+              style={{ borderBottom: "1px solid #0000001a", display: "flex" }}
+            >
+              <ListItem>
+                <ListItemIcon onClick={() => setSideDrawer(false)}>
+                  <MenuIcon />
+                </ListItemIcon>
+                <ListItemText>
+                  <div style={{ width: "80px", cursor: "pointer" }}>
+                    <YouTubeIcon />
+                  </div>
+                </ListItemText>
+              </ListItem>
+            </div>
+            <SidenavBarListData listItems={drawerListContentData} />
+          </List>
+        </Drawer>
+      </Hidden>
     </Fragment>
   );
 };

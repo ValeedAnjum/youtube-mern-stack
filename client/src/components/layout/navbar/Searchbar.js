@@ -3,6 +3,7 @@ import React from "react";
 import { Grid, IconButton } from "@material-ui/core";
 import MicIcon from "@material-ui/icons/Mic";
 import SearchIcon from "@material-ui/icons/Search";
+import SearchResult from "./SearchResult";
 
 const Searchbar = ({ classes }) => {
   return (
@@ -13,6 +14,7 @@ const Searchbar = ({ classes }) => {
             display: "flex",
             width: "70%",
             height: "60%",
+            position: "relative",
           }}
         >
           <input
@@ -20,6 +22,7 @@ const Searchbar = ({ classes }) => {
             placeholder="Search"
             className={classes.searchTextBox}
           />
+          <SearchResult />
           <button
             aria-label="search-video"
             className={classes.searchTextBoxButton}
