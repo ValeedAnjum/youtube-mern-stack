@@ -30,6 +30,7 @@ const useStyles = makeStyles(() => {
       color: "black",
       cursor: "pointer",
       padding: "5px 3px",
+      userSelect: "none",
       "&:hover": {
         backgroundColor: "#e5e5e5",
       },

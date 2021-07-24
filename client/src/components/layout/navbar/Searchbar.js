@@ -3,7 +3,7 @@ import React from "react";
 import { Grid, IconButton } from "@material-ui/core";
 import MicIcon from "@material-ui/icons/Mic";
 import SearchIcon from "@material-ui/icons/Search";
-import SearchResult from "./SearchResult";
+// import SearchResult from "./SearchResult";
 
 const Searchbar = ({ classes }) => {
   return (
@@ -22,7 +22,7 @@ const Searchbar = ({ classes }) => {
             placeholder="Search"
             className={classes.searchTextBox}
           />
-          <SearchResult />
+          {/* <SearchResult /> */}
           <button
             aria-label="search-video"
             className={classes.searchTextBoxButton}
