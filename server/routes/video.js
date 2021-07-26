@@ -2,29 +2,33 @@ const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const Video = require("../models/video");
+const videosData = require("../temp_data/videosData");
 
 router.post(
   "/save",
   [
-    check("title", "Please enter a title").isEmail().isLength({ min: 20 }),
+    check("title", "Please enter a title").isEmail(),
     check("thumbnail", "Please enter thumbnail source").not().isEmpty(),
     check("src", "Please enter a source url").not().isEmpty(),
   ],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).json({ errors: errors.array() });
+    // }
 
     const { title, thumbnail, src } = req.body;
     try {
-      const video = new Video({
-        title,
-        thumbnail,
-        src,
+      videosData.forEach(async (data) => {
+        const { title, thumbnail, src } = data;
+        const video = new Video({
+          title,
+          thumbnail,
+          src,
+        });
+        const result = await video.save();
       });
-      const videoRes = await video.save();
-      return res.json(videoRes);
+      return res.sned("Success");
     } catch (error) {
       // console.log(error.message);
       return res.status(500).send("Server Error");
