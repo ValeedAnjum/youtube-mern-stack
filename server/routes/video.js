@@ -36,17 +36,24 @@ const videosData = require("../temp_data/videosData");
 // );
 
 router.get("/randomvideos/:num", async (req, res) => {
+  const { num } = req.params;
   try {
-    const videos = await Video.aggregate([{ $sample: { size: 10 } }]);
+    const videos = await Video.aggregate([{ $sample: { size: Number(num) } }]);
     return res.json(videos);
   } catch (error) {
     return res.status(500).send("Server Error");
   }
 });
+
 router.get("/search/:q", async (req, res) => {
   const { q } = req.params;
-  console.log(q);
-  res.send("Search videos");
+  try {
+    const regex = new RegExp(q, "i");
+    const result = await Video.find({ title: regex });
+    res.json(result);
+  } catch (error) {
+    res.status(500).send("Server Error");
+  }
 });
 
 module.exports = router;

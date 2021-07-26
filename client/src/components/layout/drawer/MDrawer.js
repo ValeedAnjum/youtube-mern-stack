@@ -37,33 +37,31 @@ const MDrawer = ({ setSideDrawer, SideDrawer }) => {
 
   return (
     <Fragment>
-      <Hidden smUp>
-        <Drawer
-          classes={{ paper: classes.drawerPaper }}
-          anchor="left"
-          open={SideDrawer}
-          onClose={() => setSideDrawer(false)}
-        >
-          <List className={classes.list} onClick={() => setSideDrawer(false)}>
-            <div
-              className={classes.toolbar}
-              style={{ borderBottom: "1px solid #0000001a", display: "flex" }}
-            >
-              <ListItem>
-                <ListItemIcon onClick={() => setSideDrawer(false)}>
-                  <MenuIcon />
-                </ListItemIcon>
-                <ListItemText>
-                  <div style={{ width: "80px", cursor: "pointer" }}>
-                    <YouTubeIcon />
-                  </div>
-                </ListItemText>
-              </ListItem>
-            </div>
-            <SidenavBarListData listItems={drawerListContentData} />
-          </List>
-        </Drawer>
-      </Hidden>
+      <Drawer
+        classes={{ paper: classes.drawerPaper }}
+        anchor="left"
+        open={SideDrawer}
+        onClose={() => setSideDrawer(false)}
+      >
+        <List className={classes.list} onClick={() => setSideDrawer(false)}>
+          <div
+            className={classes.toolbar}
+            style={{ borderBottom: "1px solid #0000001a", display: "flex" }}
+          >
+            <ListItem>
+              <ListItemIcon onClick={() => setSideDrawer(false)}>
+                <MenuIcon />
+              </ListItemIcon>
+              <ListItemText>
+                <div style={{ width: "80px", cursor: "pointer" }}>
+                  <YouTubeIcon />
+                </div>
+              </ListItemText>
+            </ListItem>
+          </div>
+          <SidenavBarListData listItems={drawerListContentData} />
+        </List>
+      </Drawer>
     </Fragment>
   );
 };

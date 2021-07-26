@@ -43,12 +43,12 @@ const Navbar = ({ setSideDrawer }) => {
       <AppBar position="static" color="primary" className={classes.appbar}>
         <Toolbar className={classes.toolbar}>
           <Grid container>
-            <Grid item sm={3} xs={6}>
+            <Grid item sm={3} xs={6} container>
               <LogoAndMenu setSideDrawer={setSideDrawer} />
             </Grid>
             {/* Search bar  */}
             <Hidden xsDown>
-              <Grid item sm={6}>
+              <Grid item sm={6} container>
                 <Searchbar classes={classes} />
               </Grid>
             </Hidden>
