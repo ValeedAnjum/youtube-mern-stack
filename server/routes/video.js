@@ -7,7 +7,7 @@ const videosData = require("../temp_data/videosData");
 // router.post(
 //   "/save",
 //   [
-//     check("title", "Please enter a title").isEmail(),
+//     check("title", "Please enter a title").not().isEmpty(),
 //     check("thumbnail", "Please enter thumbnail source").not().isEmpty(),
 //     check("src", "Please enter a source url").not().isEmpty(),
 //   ],
@@ -16,22 +16,22 @@ const videosData = require("../temp_data/videosData");
 //     if (!errors.isEmpty()) {
 //       return res.status(400).json({ errors: errors.array() });
 //     }
-//     // const { title, thumbnail, src } = req.body;
-//     try {
+//     const { title, thumbnail, src } = req.body;
 //     videosData.forEach(async (data) => {
-//       const { title, thumbnail, src } = data;
+//       const { title, thumbnail, src, searchTitle } = data;
 //       const video = new Video({
 //         title,
 //         thumbnail,
 //         src,
+//         searchTitle,
 //       });
-//       const result = await video.save();
+//       try {
+//         await video.save();
+//       } catch (error) {
+//         return res.status(500).send("Server error");
+//       }
 //     });
-//     return res.sned("Success");
-//     } catch (error) {
-//     console.log(error.message);
-//     return res.status(500).send("Server Error");
-//     }
+//     return res.send("Success");
 //   }
 // );
 
@@ -49,7 +49,7 @@ router.get("/search/:q", async (req, res) => {
   const { q } = req.params;
   try {
     const regex = new RegExp(q, "i");
-    const result = await Video.find({ title: regex });
+    const result = await Video.find({ title: regex }).select("searchTitle");
     res.json(result);
   } catch (error) {
     res.status(500).send("Server Error");

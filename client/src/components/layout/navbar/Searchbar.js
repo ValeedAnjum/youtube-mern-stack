@@ -5,8 +5,9 @@ import MicIcon from "@material-ui/icons/Mic";
 import SearchIcon from "@material-ui/icons/Search";
 
 import SearchResult from "./SearchResult";
+import { withRouter } from "react-router-dom";
 
-const Searchbar = ({ classes }) => {
+const Searchbar = ({ classes, history }) => {
   const [searchTextBoxValue, setSearchTextBoxValue] = useState("");
   const [searchResult, setSearchResult] = useState(null);
   const searchTextBoxValChangeHan = (event) => {
@@ -22,6 +23,7 @@ const Searchbar = ({ classes }) => {
       const results = await axios.get(
         `http://localhost:5000/video/search/${value}`
       );
+      console.log(results.data);
       setSearchResult(results.data);
     } catch (error) {
       console.log(error);
@@ -32,6 +34,16 @@ const Searchbar = ({ classes }) => {
     const val = event.target.value;
     if (val !== "") {
       searchRes(val);
+    }
+  };
+  const goToResultPage = () => {
+    setSearchResult(null);
+    const withPlusSignsInString = searchTextBoxValue.replaceAll(" ", "+");
+    history.push(`/home/search/q=${withPlusSignsInString}`);
+  };
+  const onKeyDown = (event) => {
+    if (event.key === "Enter" && searchTextBoxValue !== "") {
+      goToResultPage();
     }
   };
   return (
@@ -52,9 +64,11 @@ const Searchbar = ({ classes }) => {
             className={classes.searchTextBox}
             onChange={searchTextBoxValChangeHan}
             onFocus={onFocus}
+            onKeyDown={onKeyDown}
           />
           {searchResult && searchResult.length > 0 && (
             <SearchResult
+              setSearchTextBoxValue={setSearchTextBoxValue}
               setSearchResult={setSearchResult}
               searchResult={searchResult}
             />
@@ -62,6 +76,7 @@ const Searchbar = ({ classes }) => {
           <button
             aria-label="search-video"
             className={classes.searchTextBoxButton}
+            onClick={goToResultPage}
           >
             <SearchIcon />
           </button>
@@ -74,4 +89,4 @@ const Searchbar = ({ classes }) => {
   );
 };
 
-export default Searchbar;
+export default withRouter(Searchbar);

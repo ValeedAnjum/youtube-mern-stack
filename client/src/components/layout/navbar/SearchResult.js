@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { Fragment } from "react";
+import { withRouter } from "react-router-dom";
 
 const demoSearchResult = [
   "react portfolio website",
@@ -46,16 +47,32 @@ const useStyles = makeStyles(() => {
     },
   };
 });
-const SearchResult = ({ searchResult, setSearchResult }) => {
+const SearchResult = ({
+  searchResult,
+  setSearchResult,
+  history,
+  setSearchTextBoxValue,
+}) => {
   const classes = useStyles();
-
+  // const { searchResult, setSearchResult,history } = props;
+  const goToResultPage = (val) => {
+    // console.log(history);
+    setSearchTextBoxValue(val);
+    setSearchResult(null);
+    const withPlusSignsInString = val.replaceAll(" ", "+");
+    history.push(`/home/search/q=${withPlusSignsInString}`);
+  };
   return (
     <Fragment>
       <div id="searchResCon" className={classes.searchResultCon}>
         {searchResult.map((res) => {
           return (
-            <p className={classes.singleSearchResult} key={res._id}>
-              {res.title}
+            <p
+              className={classes.singleSearchResult}
+              key={res._id}
+              onClick={() => goToResultPage(res.searchTitle)}
+            >
+              {res.searchTitle}
             </p>
           );
         })}
@@ -68,4 +85,4 @@ const SearchResult = ({ searchResult, setSearchResult }) => {
   );
 };
 
-export default SearchResult;
+export default withRouter(SearchResult);

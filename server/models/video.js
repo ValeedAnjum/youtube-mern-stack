@@ -12,6 +12,10 @@ const videoSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  searchTitle: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = Video = mongoose.model("YOUTUBE_VIDEO", videoSchema);

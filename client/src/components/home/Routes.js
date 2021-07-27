@@ -22,6 +22,11 @@ const Routes = () => {
           />
         );
       })}
+      <Route
+        path="/home/search/q=:query"
+        exact
+        component={() => <h1>Search Result will be here..</h1>}
+      />
     </Fragment>
   );
 };
