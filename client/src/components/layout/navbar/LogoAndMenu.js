@@ -11,6 +11,11 @@ const useStyles = makeStyles(() => {
       width: "80px",
       cursor: "pointer",
     },
+    menuIconBtn: {
+      "&:hover": {
+        backgroundColor: "transparent",
+      },
+    },
   };
 });
 const LogoAndMenu = (props) => {
@@ -25,7 +30,7 @@ const LogoAndMenu = (props) => {
   };
   return (
     <Grid container>
-      <IconButton onClick={openSideDrawer}>
+      <IconButton onClick={openSideDrawer} className={classes.menuIconBtn}>
         <MenuIcon />
       </IconButton>
       <div className={classes.youTubeLogoContainer} onClick={goToHomePage}>

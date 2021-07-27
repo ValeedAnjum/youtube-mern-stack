@@ -46,7 +46,7 @@ const Navbar = ({ setSideDrawer }) => {
             <Grid item sm={3} xs={6} container>
               <LogoAndMenu setSideDrawer={setSideDrawer} />
             </Grid>
-            {/* Search bar  */}
+            {/* Search bar */}
             <Hidden xsDown>
               <Grid item sm={6} container>
                 <Searchbar classes={classes} />

@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
+import { Fragment } from "react";
 
 const demoSearchResult = [
   "react portfolio website",
@@ -20,10 +21,10 @@ const useStyles = makeStyles(() => {
     searchResultCon: {
       position: "absolute",
       width: "90%",
-      height: "13rem",
       top: "100%",
       backgroundColor: "white",
       overflow: "hidden",
+      zIndex: "2",
     },
     singleSearchResult: {
       margin: "0",
@@ -35,20 +36,35 @@ const useStyles = makeStyles(() => {
         backgroundColor: "#e5e5e5",
       },
     },
+    forClosingSearchRes: {
+      position: "fixed",
+      width: "100%",
+      top: "0",
+      left: "0",
+      height: "100vh",
+      zIndex: "1",
+    },
   };
 });
-const SearchResult = () => {
+const SearchResult = ({ searchResult, setSearchResult }) => {
   const classes = useStyles();
+
   return (
-    <div className={classes.searchResultCon}>
-      {demoSearchResult.map((res, index) => {
-        return (
-          <p className={classes.singleSearchResult} key={index}>
-            {res}
-          </p>
-        );
-      })}
-    </div>
+    <Fragment>
+      <div id="searchResCon" className={classes.searchResultCon}>
+        {searchResult.map((res) => {
+          return (
+            <p className={classes.singleSearchResult} key={res._id}>
+              {res.title}
+            </p>
+          );
+        })}
+      </div>
+      <div
+        className={classes.forClosingSearchRes}
+        onClick={() => setSearchResult(null)}
+      ></div>
+    </Fragment>
   );
 };
 
