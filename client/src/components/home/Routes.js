@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
+import Search from "../search/Search";
 import { drawerListContentData } from "./listdataInArray";
 import { RoutesComponentsArray } from "./routesComponentsArray";
 const Routes = () => {
@@ -22,11 +23,7 @@ const Routes = () => {
           />
         );
       })}
-      <Route
-        path="/home/search/q=:query"
-        exact
-        component={() => <h1>Search Result will be here..</h1>}
-      />
+      <Route path="/home/search/q=:query" exact component={() => <Search />} />
     </Fragment>
   );
 };
