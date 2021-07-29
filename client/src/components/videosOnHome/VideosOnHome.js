@@ -90,22 +90,46 @@ const useStyle = makeStyles((theme) => {
     logoAndHeadingCon: {
       flexWrap: "nowrap",
     },
+    spinner: {
+      width: "30px !important",
+      height: "30px !important",
+      color: "#939191",
+    },
   };
 });
 const VideosOnHome = () => {
-  const [videos, setVideos] = useState(null);
+  const [videos, setVideos] = useState([]);
   const [loadingVideos, setLoadingVideos] = useState(false);
   const classes = useStyle();
   useEffect(() => {
+    console.log("UE");
     fetchVideos();
+    window.addEventListener("scroll", onScrolling);
+    return () => {
+      console.log("Cleaner");
+    };
   }, []);
+  const onScrolling = (event) => {
+    // console.log(document.documentElement.scrollHeight);
+    // console.log(window.innerHeight);
+    // console.log(window.scrollY);
+    const scroolIsAtBottom =
+      document.documentElement.scrollHeight - window.innerHeight - 100 <=
+      window.scrollY;
+    if (scroolIsAtBottom) {
+      fetchVideos();
+    }
+  };
   const fetchVideos = async () => {
     setLoadingVideos(true);
-    const result = await axios.get("/video/randomvideos/20");
+    const result = await axios.get("/video/randomvideos/12");
     setLoadingVideos(false);
 
     console.log(result.data);
-    setVideos(result.data);
+    setVideos((oldData) => {
+      console.log(oldData);
+      return [...oldData, ...result.data];
+    });
   };
   return (
     <Grid container className={classes.videosContainer}>

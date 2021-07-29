@@ -46,7 +46,7 @@ const Searchbar = ({ classes, history }) => {
   };
   return (
     <Grid container>
-      <Grid container justify="center" alignItems="center">
+      <Grid container justifyContent="center" alignItems="center">
         <div
           style={{
             display: "flex",

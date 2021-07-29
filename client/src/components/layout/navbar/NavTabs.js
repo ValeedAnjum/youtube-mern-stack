@@ -19,7 +19,7 @@ const NavTabs = ({
   // const [auth, setAuth] = useState(false);
   const auth = true;
   return (
-    <Grid container justify="flex-end" alignItems="center">
+    <Grid container justifyContent="flex-end" alignItems="center">
       {!auth ? (
         <GuestNavTabs
           classes={classes}

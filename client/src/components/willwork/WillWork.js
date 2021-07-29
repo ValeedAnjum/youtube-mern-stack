@@ -28,7 +28,7 @@ const WillWork = ({ Icon, heading1, heading2 }) => {
     <Grid
       container
       className={classes.willWorkHeight}
-      justify="center"
+      justifyContent="center"
       alignItems="center"
       direction="column"
     >
