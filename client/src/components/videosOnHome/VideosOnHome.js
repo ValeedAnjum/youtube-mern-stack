@@ -102,20 +102,17 @@ const VideosOnHome = () => {
   const [loadingVideos, setLoadingVideos] = useState(false);
   const classes = useStyle();
   useEffect(() => {
-    console.log("UE");
     fetchVideos();
     window.addEventListener("scroll", onScrolling);
     return () => {
-      console.log("Cleaner");
+      window.removeEventListener("scroll", onScrolling);
     };
   }, []);
   const onScrolling = (event) => {
-    // console.log(document.documentElement.scrollHeight);
-    // console.log(window.innerHeight);
-    // console.log(window.scrollY);
+    const scrollHeight = document.documentElement.scrollHeight;
+    const winInerHeight = window.innerHeight;
     const scroolIsAtBottom =
-      document.documentElement.scrollHeight - window.innerHeight - 100 <=
-      window.scrollY;
+      scrollHeight - winInerHeight - 100 <= window.scrollY;
     if (scroolIsAtBottom) {
       fetchVideos();
     }
@@ -126,10 +123,7 @@ const VideosOnHome = () => {
     setLoadingVideos(false);
 
     console.log(result.data);
-    setVideos((oldData) => {
-      console.log(oldData);
-      return [...oldData, ...result.data];
-    });
+    setVideos((oldData) => [...oldData, ...result.data]);
   };
   return (
     <Grid container className={classes.videosContainer}>

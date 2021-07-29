@@ -49,12 +49,17 @@ const useStyle = makeStyles(() => {
     },
   };
 });
-const Cards = () => {
+const Cards = ({ videoLabelHan }) => {
   const classes = useStyle();
   return (
     <Grid container spacing={2}>
       {cards.map((item, index) => (
-        <CardLocal classes={classes} key={index} item={item} />
+        <CardLocal
+          classes={classes}
+          videoLabelHan={videoLabelHan}
+          key={index}
+          item={item}
+        />
       ))}
     </Grid>
   );

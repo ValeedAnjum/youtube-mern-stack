@@ -51,19 +51,15 @@ const useStyle = makeStyles(() => {
     },
   };
 });
-const VideoCard = (props) => {
+const VideoCard = ({ history, video: { thumbnail, title } }) => {
   const classes = useStyle();
   const playVideo = () => {
-    props.history.push("/video/IamFromExplore");
+    history.push("/video/IamFromExplore");
   };
   return (
     <Grid container spacing={1}>
       <Grid item sm={3} className={classes.imgContainer} onClick={playVideo}>
-        <img
-          className={classes.img}
-          src={videos[0].img}
-          alt={"video_thumbnail"}
-        />
+        <img className={classes.img} src={thumbnail} alt={"video_thumbnail"} />
         <p className={classes.timeDurition}>8:44</p>
       </Grid>
       <Grid item sm={9}>
@@ -72,9 +68,7 @@ const VideoCard = (props) => {
             <Grid item sm={11}>
               <Hidden xsDown>
                 <Typography className={classes.title}>
-                  {videos[0].title.length > 133
-                    ? videos[0].title.slice(0, 130) + "..."
-                    : videos[0].title}
+                  {title.length > 133 ? title.slice(0, 130) + "..." : title}
                 </Typography>
               </Hidden>
               <Hidden smUp>
