@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
+import axios from "axios";
 import VideoCard from "./VideoCard";
-const videos = [
+import LoadingSkeleton from "./LoadingSkeleton";
+const videosLocal = [
   {
     img: "https://i.ytimg.com/vi/PcHa6xPvlbg/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDBi0mZN-OTmcoxDmZIgO99T5xBoA",
     title:
@@ -43,7 +45,6 @@ const useStyle = makeStyles((theme) => {
       overflow: "hidden",
     },
     channelLogoContainer: {
-      border: "1px solid black",
       width: "30px",
       height: "30px",
       borderRadius: "50%",
@@ -92,22 +93,52 @@ const useStyle = makeStyles((theme) => {
   };
 });
 const VideosOnHome = () => {
+  const [videos, setVideos] = useState(null);
+  const [loadingVideos, setLoadingVideos] = useState(false);
   const classes = useStyle();
+  useEffect(() => {
+    fetchVideos();
+  }, []);
+  const fetchVideos = async () => {
+    setLoadingVideos(true);
+    const result = await axios.get("/video/randomvideos/20");
+    setLoadingVideos(false);
+
+    console.log(result.data);
+    setVideos(result.data);
+  };
   return (
     <Grid container className={classes.videosContainer}>
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => {
+      {/* {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => {
         return (
           <VideoCard
             key={item}
             classes={classes}
-            title={videos[0].title}
-            channelName={videos[0].channelName}
-            views={videos[0].views}
-            timeStamp={videos[0].timeStamp}
-            img={videos[0].img}
+            title={videosLocal[0].title}
+            channelName={videosLocal[0].channelName}
+            views={videosLocal[0].views}
+            timeStamp={videosLocal[0].timeStamp}
+            img={videosLocal[0].img}
           />
         );
-      })}
+      })} */}
+      {videos &&
+        videos.length > 0 &&
+        videos.map((video, index) => {
+          return (
+            <VideoCard
+              key={index}
+              classes={classes}
+              title={video.title}
+              channelName={videosLocal[0].channelName}
+              views={videosLocal[0].views}
+              timeStamp={videosLocal[0].timeStamp}
+              img={video.thumbnail}
+            />
+          );
+        })}
+      {/* loading placeholder */}
+      {loadingVideos ? <LoadingSkeleton classes={classes} /> : null}
     </Grid>
   );
 };

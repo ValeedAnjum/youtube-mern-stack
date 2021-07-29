@@ -10,7 +10,7 @@ const VideoCard = (props) => {
     history.push("/video/Iamid");
   };
   return (
-    <Grid item sm={3} className={classes.videoContainer}>
+    <Grid item sm={3} xs={12} className={classes.videoContainer}>
       <Grid container direction="column" className={classes.contentContainer}>
         {/* video thumbnail  */}
         <Grid item onClick={playVideo} className={classes.timeDuritionCon}>
