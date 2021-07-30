@@ -39,6 +39,10 @@ router.get("/randomvideos/:num", async (req, res) => {
   const { num } = req.params;
   try {
     const videos = await Video.aggregate([{ $sample: { size: Number(num) } }]);
+    videos.forEach((vid) => {
+      delete vid.src;
+      delete vid.searchTitle;
+    });
     return res.json(videos);
   } catch (error) {
     return res.status(500).send("Server Error");
