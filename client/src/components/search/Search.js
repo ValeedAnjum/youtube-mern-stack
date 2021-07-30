@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
+import axios from "axios";
 import VideoCard from "../videoCard/VideoCard";
+import LoadingVideosSkeleton from "./LoadingVideosSkeleton";
 
 const useStyle = makeStyles(() => {
   return {
@@ -9,13 +11,43 @@ const useStyle = makeStyles(() => {
     },
   };
 });
+
 const Search = () => {
+  const [videos, setVideos] = useState([]);
+  const [loadingVideos, setLoadingVideos] = useState(false);
   const classes = useStyle();
+
+  useEffect(() => {
+    console.log("UE");
+    fetchVideos();
+    window.addEventListener("scroll", onScrolling);
+    return () => {
+      window.removeEventListener("scroll", onScrolling);
+    };
+  }, []);
+  const onScrolling = (event) => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const winInerHeight = window.innerHeight;
+    const scroolIsAtBottom =
+      scrollHeight - winInerHeight - 100 <= window.scrollY;
+    if (scroolIsAtBottom) {
+      fetchVideos();
+    }
+  };
+  const fetchVideos = async () => {
+    setLoadingVideos(true);
+    const result = await axios.get("/video/randomvideos/12");
+    setLoadingVideos(false);
+
+    console.log(result.data);
+    setVideos((oldData) => [...oldData, ...result.data]);
+  };
   return (
     <div className={classes.mainContainer}>
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => {
-        return <VideoCard key={num} />;
-      })}
+      {videos &&
+        videos.length > 0 &&
+        videos.map((video, index) => <VideoCard key={index} video={video} />)}
+      {loadingVideos ? <LoadingVideosSkeleton /> : null}
     </div>
   );
 };
