@@ -42,15 +42,24 @@ const Explore = () => {
   };
   const videoLabelHan = async (label) => {
     setVideosLabel(label);
-    setLoadingVideos(true);
-    const result = await axios.get("/video/randomvideos/12");
-    setLoadingVideos(false);
-    setVideos(result.data);
+    try {
+      setLoadingVideos(true);
+      setVideos([]);
+      const result = await axios.get("/video/randomvideos/12");
+      setLoadingVideos(false);
+      setVideos(result.data);
+    } catch (error) {
+      setLoadingVideos(false);
+    }
   };
   return (
     <div className={classes.mainContainer}>
       <Cards videoLabelHan={videoLabelHan} />
-      <VideosContainer videos={videos} videosLabel={videosLabel} />
+      <VideosContainer
+        loadingVideos={loadingVideos}
+        videos={videos}
+        videosLabel={videosLabel}
+      />
     </div>
   );
 };
