@@ -1,11 +1,11 @@
 import React from "react";
 
-const Video = () => {
+const Video = ({ src }) => {
   return (
     <iframe
       width="100%"
       height="400px"
-      src="https://www.youtube.com/embed/HfdIaumPj6o"
+      src={src}
       title="YouTube video player"
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -5,9 +5,10 @@ import ChannelLogo from "./ChannelLogo";
 import VideoTitleAndMore from "./VideoTitleAndMore";
 
 const VideoCard = (props) => {
-  const { classes, img, title, channelName, views, timeStamp, history } = props;
+  const { classes, img, title, channelName, views, timeStamp, history, id } =
+    props;
   const playVideo = () => {
-    history.push("/video/Iamid");
+    history.push(`/video/${id}`);
   };
   return (
     <Grid item sm={3} xs={12} className={classes.videoContainer}>

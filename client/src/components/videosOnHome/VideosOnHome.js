@@ -121,25 +121,11 @@ const VideosOnHome = () => {
     setLoadingVideos(true);
     const result = await axios.get("/video/randomvideos/12");
     setLoadingVideos(false);
-
-    console.log(result.data);
     setVideos((oldData) => [...oldData, ...result.data]);
   };
+
   return (
     <Grid container className={classes.videosContainer}>
-      {/* {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => {
-        return (
-          <VideoCard
-            key={item}
-            classes={classes}
-            title={videosLocal[0].title}
-            channelName={videosLocal[0].channelName}
-            views={videosLocal[0].views}
-            timeStamp={videosLocal[0].timeStamp}
-            img={videosLocal[0].img}
-          />
-        );
-      })} */}
       {videos &&
         videos.length > 0 &&
         videos.map((video, index) => {
@@ -152,6 +138,7 @@ const VideosOnHome = () => {
               views={videosLocal[0].views}
               timeStamp={videosLocal[0].timeStamp}
               img={video.thumbnail}
+              id={video._id}
             />
           );
         })}

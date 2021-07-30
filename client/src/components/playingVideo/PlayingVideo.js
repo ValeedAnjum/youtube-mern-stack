@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Grid, makeStyles } from "@material-ui/core";
 import Video from "./Video";
 import RelatedVideos from "./RelatedVideos";
+import axios from "axios";
+import PlayingVideoSkeleton from "./PlayingVideoSkeleton";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -15,12 +17,29 @@ const useStyles = makeStyles((theme) => {
   };
 });
 const PlayingVideo = (props) => {
-  console.log(props.match.params.id);
+  // console.log(props.match.params.id);
+  const [videoSrc, setVideoSrc] = useState(null);
+  const [loadingVideo, setLoadingVideo] = useState(false);
+  const { id } = props.match.params;
   const classes = useStyles();
+  useEffect(() => {
+    fetchVideoIframe();
+  }, []);
+  const fetchVideoIframe = async () => {
+    try {
+      setLoadingVideo(true);
+      const response = await axios.get(`/video/playvideo/${id}`);
+      setVideoSrc(response.data.src);
+      setLoadingVideo(false);
+      // console.log(response.data);
+    } catch (error) {
+      setLoadingVideo(false);
+    }
+  };
   return (
     <Grid container className={classes.videoplaying}>
       <Grid item sm={8} xs={12}>
-        <Video />
+        {videoSrc ? <Video src={videoSrc} /> : <PlayingVideoSkeleton />}
       </Grid>
       <Grid item sm={4} xs={12}>
         <RelatedVideos />

@@ -21,7 +21,7 @@ const useStyle = makeStyles(() => {
     img: {
       width: "100%",
     },
-    imgContainer: { position: "relative" },
+    imgContainer: { position: "relative", cursor: "pointer" },
     timeDurition: {
       position: "absolute",
       padding: "0px 4px",
@@ -35,6 +35,7 @@ const useStyle = makeStyles(() => {
     title: {
       color: "black",
       margin: "0",
+      cursor: "pointer",
     },
     channelNameAndViews: {
       color: "rgb(0 0 0 / 54%)",
@@ -51,14 +52,20 @@ const useStyle = makeStyles(() => {
     },
   };
 });
-const VideoCard = ({ history, video: { thumbnail, title } }) => {
+const VideoCard = ({ history, video: { thumbnail, title, _id } }) => {
   const classes = useStyle();
   const playVideo = () => {
-    history.push("/video/IamFromExplore");
+    history.push(`/video/${_id}`);
   };
   return (
     <Grid container spacing={1}>
-      <Grid item sm={3} className={classes.imgContainer} onClick={playVideo}>
+      <Grid
+        item
+        sm={3}
+        container
+        className={classes.imgContainer}
+        onClick={playVideo}
+      >
         <img className={classes.img} src={thumbnail} alt={"video_thumbnail"} />
         <p className={classes.timeDurition}>8:44</p>
       </Grid>
@@ -67,7 +74,7 @@ const VideoCard = ({ history, video: { thumbnail, title } }) => {
           <Grid container item className={classes.headingAndMoreCon}>
             <Grid item sm={11}>
               <Hidden xsDown>
-                <Typography className={classes.title}>
+                <Typography className={classes.title} onClick={playVideo}>
                   {title.length > 133 ? title.slice(0, 130) + "..." : title}
                 </Typography>
               </Hidden>
