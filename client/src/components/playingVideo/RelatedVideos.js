@@ -1,6 +1,8 @@
 import { Grid, makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import RelatedVideoCard from "./RelatedVideoCard";
+import RelatedVideoSkeleton from "./RelatedVideoSkeleton";
 
 const useStyles = makeStyles(() => {
   return {
@@ -12,10 +14,12 @@ const useStyles = makeStyles(() => {
     },
     img: {
       width: "100%",
+      cursor: "pointer",
     },
     videoTitle: {
       fontSize: "0.9rem",
       fontWeight: "600",
+      cursor: "pointer",
     },
     channelName: {
       fontSize: "0.8rem",
@@ -43,13 +47,50 @@ const useStyles = makeStyles(() => {
     },
   };
 });
-const RelatedVideos = () => {
+const RelatedVideos = ({ setVideoSrc }) => {
+  const [videos, setVideos] = useState([]);
+  const [loadingVideos, setLoadingVideos] = useState(false);
   const classes = useStyles();
+  useEffect(() => {
+    console.log("RV");
+    fetchVideos();
+    window.addEventListener("scroll", onScrolling);
+    return () => {
+      window.removeEventListener("scroll", onScrolling);
+    };
+  }, []);
+  const onScrolling = (event) => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const winInerHeight = window.innerHeight;
+    const scroolIsAtBottom =
+      scrollHeight - winInerHeight - 100 <= window.scrollY;
+    if (scroolIsAtBottom) {
+      fetchVideos();
+    }
+  };
+  const fetchVideos = async () => {
+    setLoadingVideos(true);
+    const result = await axios.get("/video/randomvideos/12");
+    setLoadingVideos(false);
+    console.log(result.data);
+    setVideos((oldData) => [...oldData, ...result.data]);
+  };
+
   return (
     <Grid container className={classes.relatedVideos}>
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => {
-        return <RelatedVideoCard key={num} classes={classes} />;
-      })}
+      {videos &&
+        videos.length > 0 &&
+        videos.map((video, index) => {
+          return (
+            <RelatedVideoCard
+              key={index}
+              video={video}
+              setVideoSrc={setVideoSrc}
+              classes={classes}
+            />
+          );
+        })}
+      {loadingVideos ? <RelatedVideoSkeleton /> : null}
     </Grid>
   );
 };

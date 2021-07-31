@@ -24,7 +24,7 @@ const PlayingVideo = (props) => {
   const classes = useStyles();
   useEffect(() => {
     fetchVideoIframe();
-  }, []);
+  }, [id]);
   const fetchVideoIframe = async () => {
     try {
       setLoadingVideo(true);
@@ -42,7 +42,7 @@ const PlayingVideo = (props) => {
         {videoSrc ? <Video src={videoSrc} /> : <PlayingVideoSkeleton />}
       </Grid>
       <Grid item sm={4} xs={12}>
-        <RelatedVideos />
+        <RelatedVideos setVideoSrc={setVideoSrc} />
       </Grid>
     </Grid>
   );

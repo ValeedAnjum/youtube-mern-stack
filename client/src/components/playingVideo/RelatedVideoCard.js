@@ -1,15 +1,32 @@
 import { Grid, Typography } from "@material-ui/core";
 import React, { Fragment } from "react";
+import { withRouter } from "react-router-dom";
 import MoreVideoOptions from "./MoreVideoOptions";
 
 const imgSrc =
   "https://i.ytimg.com/vi/PcHa6xPvlbg/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDBi0mZN-OTmcoxDmZIgO99T5xBoA";
 
-const RelatedVideoCard = ({ classes }) => {
+const RelatedVideoCard = ({
+  classes,
+  video: { thumbnail, title, _id },
+  history,
+  setVideoSrc,
+}) => {
+  // console.log(video);
+  const playVideo = () => {
+    setVideoSrc(null);
+
+    history.push(`/video/${_id}`);
+  };
   return (
     <Fragment>
       <Grid item sm={5} xs={5} className={classes.timeDurationcCon}>
-        <img src={imgSrc} className={classes.img} alt="video_thumbnail" />
+        <img
+          src={thumbnail}
+          className={classes.img}
+          alt="video_thumbnail"
+          onClick={playVideo}
+        />
         <p className={classes.timeDuration}>8:22</p>
       </Grid>
       <Grid
@@ -21,8 +38,8 @@ const RelatedVideoCard = ({ classes }) => {
         className={classes.videoInfoCon}
       >
         <Grid item>
-          <Typography className={classes.videoTitle}>
-            EP-05 | Mahnoor Valley | Kaghan Series
+          <Typography className={classes.videoTitle} onClick={playVideo}>
+            {title.length > 43 ? title.slice(0, 40) + "..." : title}
           </Typography>
         </Grid>
         <Grid item>
@@ -43,4 +60,4 @@ const RelatedVideoCard = ({ classes }) => {
   );
 };
 
-export default RelatedVideoCard;
+export default withRouter(RelatedVideoCard);
