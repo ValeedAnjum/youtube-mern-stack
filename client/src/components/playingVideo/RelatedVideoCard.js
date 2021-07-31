@@ -15,7 +15,6 @@ const RelatedVideoCard = ({
   // console.log(video);
   const playVideo = () => {
     setVideoSrc(null);
-
     history.push(`/video/${_id}`);
   };
   return (
