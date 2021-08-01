@@ -35,6 +35,10 @@ const PlayingVideo = (props) => {
       window.removeEventListener("scroll", onScrolling);
     };
   }, [id]);
+  useEffect(() => {
+    if (!isFetching) return;
+    fetchRelatedVideosOnScrolling();
+  }, [isFetching]);
   const fetchVideoIframe = async () => {
     try {
       setLoadingVideo(true);
@@ -63,18 +67,17 @@ const PlayingVideo = (props) => {
     const scroolIsAtBottom =
       scrollHeight - winInerHeight - 100 <= window.scrollY;
     if (scroolIsAtBottom) {
-      // if (isFetching) return;
-      await fetchRelatedVideosOnScrolling();
-      setIsFetching(false);
-      console.log("will");
+      console.log("bottom");
+      // fetchRelatedVideosOnScrolling();
+      setIsFetching(true);
     }
   };
   const fetchRelatedVideosOnScrolling = async () => {
     try {
       // setLoadingRelatedVideos(true);
-      console.log("Haha");
-      setIsFetching(true);
+      console.log("fv");
       const result = await axios.get("/video/randomvideos/12");
+      setIsFetching(false);
       setRelatedVideos((data) => [...data, ...result.data]);
     } catch (error) {
       setLoadingRelatedVideos(false);
