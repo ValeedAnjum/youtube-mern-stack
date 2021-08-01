@@ -100,6 +100,7 @@ const useStyle = makeStyles((theme) => {
 const VideosOnHome = () => {
   const [videos, setVideos] = useState([]);
   const [loadingVideos, setLoadingVideos] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   const classes = useStyle();
   useEffect(() => {
     fetchVideos();
@@ -108,19 +109,24 @@ const VideosOnHome = () => {
       window.removeEventListener("scroll", onScrolling);
     };
   }, []);
-  const onScrolling = (event) => {
+  useEffect(() => {
+    if (!isFetching) return;
+    fetchVideos();
+  }, [isFetching]);
+  const onScrolling = () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const winInerHeight = window.innerHeight;
     const scroolIsAtBottom =
       scrollHeight - winInerHeight - 100 <= window.scrollY;
     if (scroolIsAtBottom) {
-      fetchVideos();
+      setIsFetching(true);
     }
   };
   const fetchVideos = async () => {
     setLoadingVideos(true);
     const result = await axios.get("/video/randomvideos/12");
     setLoadingVideos(false);
+    setIsFetching(false);
     setVideos((oldData) => [...oldData, ...result.data]);
   };
 

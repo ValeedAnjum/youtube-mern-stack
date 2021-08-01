@@ -1,11 +1,8 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { connect } from "react-redux";
 import RelatedVideoCard from "./RelatedVideoCard";
 import RelatedVideoSkeleton from "./RelatedVideoSkeleton";
-import { compose } from "redux";
-import { fetchRelatedVideos } from "../../store/actions/videosActions";
 
 const useStyles = makeStyles(() => {
   return {
@@ -50,28 +47,35 @@ const useStyles = makeStyles(() => {
     },
   };
 });
-const RelatedVideos = ({ setVideoSrc, videos, loading, fetchVideos }) => {
+const RelatedVideos = ({ setVideoSrc, videos, loadingVideos }) => {
   // const [videos, setVideos] = useState([]);
   // const [loadingVideos, setLoadingVideos] = useState(false);
-
   const classes = useStyles();
-  useEffect(() => {
-    console.log("RV");
-    fetchVideos();
-    window.addEventListener("scroll", onScrolling);
-    return () => {
-      window.removeEventListener("scroll", onScrolling);
-    };
-  }, []);
-  const onScrolling = (event) => {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const winInerHeight = window.innerHeight;
-    const scroolIsAtBottom =
-      scrollHeight - winInerHeight - 100 <= window.scrollY;
-    if (scroolIsAtBottom) {
-      fetchVideos();
-    }
-  };
+  // useEffect(() => {
+  //   console.log("RV");
+  //   fetchVideos();
+  //   window.addEventListener("scroll", onScrolling);
+  //   return () => {
+  //     window.removeEventListener("scroll", onScrolling);
+  //   };
+  // }, []);
+  // const onScrolling = (event) => {
+  //   const scrollHeight = document.documentElement.scrollHeight;
+  //   const winInerHeight = window.innerHeight;
+  //   const scroolIsAtBottom =
+  //     scrollHeight - winInerHeight - 100 <= window.scrollY;
+  //   if (scroolIsAtBottom) {
+  //     fetchVideos();
+  //   }
+  // };
+  // const fetchVideos = async () => {
+  //   setLoadingVideos(true);
+  //   const result = await axios.get("/video/randomvideos/12");
+  //   setLoadingVideos(false);
+  //   console.log(result.data);
+  //   setVideos((oldData) => [...oldData, ...result.data]);
+  // };
+
   return (
     <Grid container className={classes.relatedVideos}>
       {videos &&
@@ -86,23 +90,9 @@ const RelatedVideos = ({ setVideoSrc, videos, loading, fetchVideos }) => {
             />
           );
         })}
-      {loading ? <RelatedVideoSkeleton /> : null}
+      {loadingVideos ? <RelatedVideoSkeleton /> : null}
     </Grid>
   );
 };
 
-const mapState = (state) => {
-  // console.log(state.videos.relatedVideos);
-  return {
-    videos: state.videos.relatedVideos,
-    loading: state.videos.loadingRelatedVideos,
-  };
-};
-
-const mapDispatch = (dispatch) => {
-  return {
-    fetchVideos: () => dispatch(fetchRelatedVideos()),
-  };
-};
-// export default compose(connect(mapState))(RelatedVideos);
-export default connect(mapState, mapDispatch)(RelatedVideos);
+export default RelatedVideos;
