@@ -13,32 +13,40 @@ const useStyle = makeStyles(() => {
 const Explore = () => {
   const [videos, setVideos] = useState([]);
   const [loadingVideos, setLoadingVideos] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   const [videosLabel, setVideosLabel] = useState("Trending");
   const classes = useStyle();
   useEffect(() => {
-    console.log("UE");
     fetchVideos();
     window.addEventListener("scroll", onScrolling);
     return () => {
       window.removeEventListener("scroll", onScrolling);
     };
   }, []);
+  useEffect(() => {
+    if (!isFetching) return;
+    fetchVideos();
+  }, [isFetching]);
   const onScrolling = (event) => {
     const scrollHeight = document.documentElement.scrollHeight;
     const winInerHeight = window.innerHeight;
     const scroolIsAtBottom =
       scrollHeight - winInerHeight - 100 <= window.scrollY;
     if (scroolIsAtBottom) {
-      fetchVideos();
+      setIsFetching(true);
     }
   };
   const fetchVideos = async () => {
-    setLoadingVideos(true);
-    const result = await axios.get("/video/randomvideos/12");
-    setLoadingVideos(false);
-
-    console.log(result.data);
-    setVideos((oldData) => [...oldData, ...result.data]);
+    try {
+      setLoadingVideos(true);
+      const result = await axios.get("/video/randomvideos/12");
+      setLoadingVideos(false);
+      setIsFetching(false);
+      setVideos((oldData) => [...oldData, ...result.data]);
+    } catch (error) {
+      setLoadingVideos(false);
+      isFetching(false);
+    }
   };
   const videoLabelHan = async (label) => {
     setVideosLabel(label);
@@ -47,9 +55,11 @@ const Explore = () => {
       setVideos([]);
       const result = await axios.get("/video/randomvideos/12");
       setLoadingVideos(false);
+      setIsFetching(false);
       setVideos(result.data);
     } catch (error) {
       setLoadingVideos(false);
+      setIsFetching(false);
     }
   };
   return (
