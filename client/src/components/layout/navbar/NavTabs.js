@@ -17,7 +17,7 @@ const NavTabs = ({
   anchorElForUser,
 }) => {
   // const [auth, setAuth] = useState(false);
-  const auth = true;
+  const auth = false;
   return (
     <Grid container justifyContent="flex-end" alignItems="center">
       {!auth ? (

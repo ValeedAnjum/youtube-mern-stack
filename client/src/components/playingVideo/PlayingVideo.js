@@ -27,7 +27,6 @@ const PlayingVideo = (props) => {
   const { id } = props.match.params;
   const classes = useStyles();
   useEffect(() => {
-    console.log("US");
     fetchVideoIframe();
     fetchRelatedVideos();
     window.addEventListener("scroll", onScrolling);
@@ -67,15 +66,11 @@ const PlayingVideo = (props) => {
     const scroolIsAtBottom =
       scrollHeight - winInerHeight - 100 <= window.scrollY;
     if (scroolIsAtBottom) {
-      console.log("bottom");
-      // fetchRelatedVideosOnScrolling();
       setIsFetching(true);
     }
   };
   const fetchRelatedVideosOnScrolling = async () => {
     try {
-      // setLoadingRelatedVideos(true);
-      console.log("fv");
       const result = await axios.get("/video/randomvideos/12");
       setIsFetching(false);
       setRelatedVideos((data) => [...data, ...result.data]);
