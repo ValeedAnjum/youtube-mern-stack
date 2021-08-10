@@ -6,22 +6,16 @@ import {
   Slide,
   Typography,
   LinearProgress,
-  TextField,
 } from "@material-ui/core";
 import IconAndHeadingCon from "../IconAndHeadingCon/IconAndHeadingCon";
 
 import InputField from "../../form/InputField";
 import { withRouter } from "react-router-dom";
 
-const SignIn = (props) => {
+const SignUp = ({ history }) => {
   const classes = useStyles();
-  const { history } = props;
-  const goToSignUp = () => {
-    history.push("/signup");
-  };
-  const signIn = () => {
-    console.log("do something");
-    // props.history.goBack();
+  const goToSignIn = () => {
+    history.push("/signin");
   };
   return (
     <div className={classes.signin}>
@@ -39,10 +33,10 @@ const SignIn = (props) => {
           direction="column"
           spacing={2}
         >
-          {/* <LinearProgress
+          <LinearProgress
             variant="indeterminate"
             className={classes.progressBar}
-          /> */}
+          />
           <Slide direction="left" in={true} mountOnEnter unmountOnExit>
             <div>
               <Grid
@@ -53,7 +47,7 @@ const SignIn = (props) => {
                 spacing={1}
                 className={classes.iconHeadingContainer}
               >
-                <IconAndHeadingCon heading="Sign in" classes={classes} />
+                <IconAndHeadingCon heading="Sign up" classes={classes} />
               </Grid>
               <Grid item>
                 <Grid
@@ -66,23 +60,24 @@ const SignIn = (props) => {
                   <Grid item sm={12} className={classes.textFieldCon}>
                     <InputField label="Email or phone" />
                   </Grid>
-                  <Grid item xs={12} className={classes.textFieldCon}>
+                  <Grid item sm={12} className={classes.textFieldCon}>
                     <InputField label="Password" />
-                    <div>
-                      <Typography className={classes.forgotHeading}>
-                        Forgot password?
-                      </Typography>
-                    </div>
-                    <Grid container justifyContent="space-between">
+                  </Grid>
+                  <Grid item xs={12} className={classes.textFieldCon}>
+                    <InputField label="Repeat Password" />
+
+                    <Grid
+                      container
+                      justifyContent="space-between"
+                      className={classes.btnCon}
+                    >
                       <Button
-                        className={classes.createAccBtn}
-                        onClick={goToSignUp}
+                        className={classes.signInBtn}
+                        onClick={goToSignIn}
                       >
-                        Create account
+                        Sign In
                       </Button>
-                      <Button className={classes.nextBtn} onClick={signIn}>
-                        Next
-                      </Button>
+                      <Button className={classes.nextBtn}>Next</Button>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -129,17 +124,11 @@ const useStyles = makeStyles(() => {
       fontSize: "16px",
       fontWeight: "400",
     },
-    forgotHeading: {
-      color: "#1a73e8",
-      fontWeight: "500",
-      cursor: "pointer",
-      display: "inline-block",
-      padding: "10px 0px",
-    },
+
     textFieldCon: {
       width: "90%",
     },
-    createAccBtn: {
+    signInBtn: {
       color: "#1a73e8",
       textTransform: "initial",
       marginLeft: "-8px",
@@ -155,7 +144,10 @@ const useStyles = makeStyles(() => {
     progressBar: {
       backgroundColor: "#e0e0e0",
     },
+    btnCon: {
+      paddingTop: "25px",
+    },
   };
 });
 
-export default withRouter(SignIn);
+export default withRouter(SignUp);

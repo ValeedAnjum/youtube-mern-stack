@@ -6,6 +6,7 @@ import PlayingVideo from "./components/playingVideo/PlayingVideo";
 import ScrollToTop from "./components/scrollToTop/scrollToTop";
 import store from "./store";
 import SignIn from "./components/auth/signIn/SignIn";
+import SignUp from "./components/auth/signup/SignUp";
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +17,7 @@ function App() {
             <Route path="/home" component={Home} />
             <Route path="/video/:id" component={PlayingVideo} />
             <Route path="/signin" component={SignIn} />
+            <Route path="/signup" component={SignUp} />
           </Switch>
         </ScrollToTop>
       </Provider>

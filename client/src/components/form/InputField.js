@@ -8,15 +8,11 @@ const useStyles = makeStyles(() => {
     },
   };
 });
-const InputField = ({ label }) => {
+const InputField = (prpos) => {
   const classes = useStyles();
   return (
     <Fragment>
-      <TextField
-        className={classes.textField}
-        label={label}
-        variant="outlined"
-      />
+      <TextField className={classes.textField} {...prpos} variant="outlined" />
     </Fragment>
   );
 };
