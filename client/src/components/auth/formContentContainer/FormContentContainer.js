@@ -13,19 +13,13 @@ import IconAndHeadingCon from "../IconAndHeadingCon/IconAndHeadingCon";
 import InputField from "../../form/InputField";
 import { withRouter } from "react-router-dom";
 
-const SignIn = (props) => {
+const FormContentContainer = ({
+  heading,
+  inputFieldLabel,
+  leftBtnLabel,
+  rightBtnLabel,
+}) => {
   const classes = useStyles();
-  const { history } = props;
-  const goToSignUp = () => {
-    history.push("/signup");
-  };
-  const signIn = () => {
-    console.log("do something");
-    // props.history.goBack();
-  };
-  const changeEmailHan = (event) => {
-    console.log(event.target.value);
-  };
   return (
     <div className={classes.signin}>
       <Grid
@@ -56,7 +50,7 @@ const SignIn = (props) => {
                 spacing={1}
                 className={classes.iconHeadingContainer}
               >
-                <IconAndHeadingCon heading="Sign in" classes={classes} />
+                <IconAndHeadingCon heading={heading} classes={classes} />
               </Grid>
               <Grid item>
                 <Grid
@@ -67,24 +61,21 @@ const SignIn = (props) => {
                   spacing={2}
                 >
                   <Grid item sm={12} className={classes.textFieldCon}>
-                    <InputField label="Email or phone" />
+                    <InputField label={inputFieldLabel} />
                   </Grid>
                   <Grid item xs={12} className={classes.textFieldCon}>
-                    <InputField label="Password" />
+                    {/* <InputField label="Password" />
                     <div>
                       <Typography className={classes.forgotHeading}>
                         Forgot password?
                       </Typography>
-                    </div>
+                    </div> */}
                     <Grid container justifyContent="space-between">
-                      <Button
-                        className={classes.createAccBtn}
-                        onClick={goToSignUp}
-                      >
-                        Create account
+                      <Button className={classes.createAccBtn}>
+                        {leftBtnLabel}
                       </Button>
-                      <Button className={classes.nextBtn} onClick={signIn}>
-                        Next
+                      <Button className={classes.nextBtn}>
+                        {rightBtnLabel}
                       </Button>
                     </Grid>
                   </Grid>
@@ -161,4 +152,4 @@ const useStyles = makeStyles(() => {
   };
 });
 
-export default withRouter(SignIn);
+export default withRouter(FormContentContainer);
