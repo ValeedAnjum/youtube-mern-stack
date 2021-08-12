@@ -20,14 +20,14 @@ const GuestNavTabs = ({
   history,
 }) => {
   const goToSignIn = () => {
-    history.push("/signin");
+    history.push("/signin/email");
   };
   return (
     <Fragment>
       {/* App tab */}
       <TabWithMenuGen
         classes={classes}
-        TabIcon={AppsIcon}
+        TabIcon={<AppsIcon />}
         anchorEl={anchorElForApps}
         onMenuClose={onMenuClose}
         dropdownListData={appsDropDownListData}
@@ -36,7 +36,7 @@ const GuestNavTabs = ({
       {/* More tab */}
       <TabWithMenuGen
         classes={classes}
-        TabIcon={MoreVertIcon}
+        TabIcon={<MoreVertIcon />}
         anchorEl={anchorElForMore}
         onMenuClose={onMenuClose}
         dropdownListData={moreDropDownListData}

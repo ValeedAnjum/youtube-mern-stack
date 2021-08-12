@@ -8,6 +8,7 @@ import {
   userDropDownListData,
 } from "./NavTabsDropdownListDataColl";
 import UserTab from "./UserTab";
+import { connect } from "react-redux";
 
 const AuthNavTabs = ({
   classes,
@@ -18,13 +19,14 @@ const AuthNavTabs = ({
   anchorElForCreateVideos,
   userBtnClickHnd,
   anchorElForUser,
+  profile: { name },
 }) => {
   return (
     <Fragment>
       {/* Create Videos tab */}
       <TabWithMenuGen
         classes={classes}
-        TabIcon={VideoCallIcon}
+        TabIcon={<VideoCallIcon />}
         onTabClickHandler={createVideoBtnClickHnd}
         anchorEl={anchorElForCreateVideos}
         dropdownListData={createVideosDropDownListData}
@@ -33,7 +35,7 @@ const AuthNavTabs = ({
       {/* App tab */}
       <TabWithMenuGen
         classes={classes}
-        TabIcon={AppsIcon}
+        TabIcon={<AppsIcon />}
         anchorEl={anchorElForApps}
         onMenuClose={onMenuClose}
         dropdownListData={appsDropDownListData}
@@ -43,7 +45,7 @@ const AuthNavTabs = ({
       {/* <UserTab /> */}
       <TabWithMenuGen
         classes={classes}
-        TabIcon={UserTab}
+        TabIcon={<UserTab heading={name ? name[0] : "X"} />}
         onTabClickHandler={userBtnClickHnd}
         anchorEl={anchorElForUser}
         dropdownListData={userDropDownListData}
@@ -53,4 +55,9 @@ const AuthNavTabs = ({
   );
 };
 
-export default AuthNavTabs;
+const mapState = (state) => {
+  return {
+    profile: state.auth.userProfile,
+  };
+};
+export default connect(mapState)(AuthNavTabs);

@@ -5,14 +5,17 @@ import DropdownListItem from "./DropdownListItem";
 
 const appsDropDownList = (list) => (
   <List>
-    {list.map(({ text, Icon, lastIcon, divider, header }, index) => {
+    {list.map(({ text, Icon, lastIcon, divider, header, onClick }, index) => {
       return (
         <Fragment key={index}>
           {/* checking if there is a header component for list */}
           {header ? header : null}
 
           {text ? (
-            <DropdownListItem options={{ text, Icon, lastIcon }} />
+            <DropdownListItem
+              options={{ text, Icon, lastIcon }}
+              onClick={onClick}
+            />
           ) : null}
 
           {divider ? (
@@ -38,7 +41,7 @@ const TabWithMenuGen = ({
         classes={{ root: classes.disableHoverBgClr }}
         onClick={onTabClickHandler}
       >
-        <TabIcon />
+        {TabIcon}
       </IconButton>
       <Menu
         anchorOrigin={{

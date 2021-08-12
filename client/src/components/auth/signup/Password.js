@@ -3,30 +3,34 @@ import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import FormContentContainer from "../formContentContainer/FormContentContainer";
 
-const SignUp = ({ history }) => {
+const Password = ({ history }) => {
   const [loading, setLoading] = useState(false);
   const goToSignIn = () => {
     history.push("/signin/email");
   };
-  const signUp = () => {
-    console.log("do something");
+  const register = () => {
+    console.log("regsiter an account");
     setLoading(true);
     // history.goBack();
   };
-  const changeEmailHan = (event) => {
+  const changePassHan = (event) => {
     console.log(event.target.value);
   };
   return (
     <FormContentContainer
       heading="Sign up"
-      inputFieldLabel="Email"
-      leftBtnLabel="Sign in"
+      inputFieldLabels={[
+        { labelText: "Name" },
+        { labelText: "Password", inputFieldType: "password" },
+      ]}
+      inputFieldType="password"
+      leftBtnLabel="Create account"
       leftBtnClickHandler={goToSignIn}
       rightBtnLabel="Next"
-      rightBtnClickHandler={signUp}
+      rightBtnClickHandler={register}
       loading={loading}
     />
   );
 };
 
-export default withRouter(SignUp);
+export default withRouter(Password);

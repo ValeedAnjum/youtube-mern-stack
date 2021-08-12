@@ -22,7 +22,8 @@ import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SaveAltIcon from "@material-ui/icons/SaveAlt";
-
+import { logOut } from "../../../store/actions/authActions";
+import store from "../../../store";
 const styleForAppsIcons = { color: "#ff0000" };
 export const appsDropDownListData = [
   {
@@ -118,6 +119,7 @@ export const userDropDownListData = [
     text: "Sign out",
     Icon: <ExitToAppIcon />,
     divider: true,
+    onClick: logOut(store.dispatch),
   },
   {
     text: "Appearance: Light",

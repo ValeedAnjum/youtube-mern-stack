@@ -7,7 +7,7 @@ const { check, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 const User = require("../models/user");
 
-router.get(
+router.post(
   "/signin",
   [
     check("email", "Please enter a valid email address").isEmail(),
@@ -113,6 +113,22 @@ router.get("/user", auth, async (req, res) => {
     if (!user) {
       res.status(400).json({ error: [{ msg: "User deos not exists" }] });
     }
+    res.json(user);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.post("/checkemailregistration", async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await User.find({ email: email }).select("name");
+    // if (user.length === 0) {
+    //   return res
+    //     .status(400)
+    //     .json({ errors: [{ msg: "User does not exists" }] });
+    // }
     res.json(user);
   } catch (error) {
     console.log(error.message);

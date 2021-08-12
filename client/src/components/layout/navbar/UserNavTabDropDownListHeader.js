@@ -1,5 +1,6 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
+import { connect } from "react-redux";
 import UserTab from "./UserTab";
 
 const useStyles = makeStyles(() => {
@@ -10,6 +11,7 @@ const useStyles = makeStyles(() => {
     },
     userNameHead: {
       fontWeight: "600",
+      textTransform: "capitalize",
     },
     manageHaed: {
       fontWeight: "500",
@@ -17,16 +19,19 @@ const useStyles = makeStyles(() => {
     },
   };
 });
-const UserNavTabDropDownListHeader = () => {
+
+const UserNavTabDropDownListHeader = ({ profile: { name } }) => {
   const classes = useStyles();
   return (
     <Grid container className={classes.header}>
       <Grid item xs={2}>
-        <UserTab />
+        <UserTab heading={name ? name[0] : "X"} />
       </Grid>
       <Grid item container direction="column" xs={10}>
         <Grid item>
-          <Typography className={classes.userNameHead}>Valeed Anjum</Typography>
+          <Typography className={classes.userNameHead}>
+            {name ? name : "X"}
+          </Typography>
         </Grid>
         <Grid item>
           <Typography className={classes.manageHaed}>
@@ -38,4 +43,10 @@ const UserNavTabDropDownListHeader = () => {
   );
 };
 
-export default UserNavTabDropDownListHeader;
+const mapState = (state) => {
+  return {
+    profile: state.auth.userProfile,
+  };
+};
+
+export default connect(mapState)(UserNavTabDropDownListHeader);

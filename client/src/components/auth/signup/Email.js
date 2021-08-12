@@ -3,14 +3,15 @@ import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import FormContentContainer from "../formContentContainer/FormContentContainer";
 
-const SignUp = ({ history }) => {
+const Email = ({ history }) => {
   const [loading, setLoading] = useState(false);
-  const goToSignIn = () => {
+  const goToSignin = () => {
     history.push("/signin/email");
   };
-  const signUp = () => {
+  const checkEmailIsReg = () => {
     console.log("do something");
     setLoading(true);
+    history.push("/signup/password");
     // history.goBack();
   };
   const changeEmailHan = (event) => {
@@ -19,14 +20,14 @@ const SignUp = ({ history }) => {
   return (
     <FormContentContainer
       heading="Sign up"
-      inputFieldLabel="Email"
+      inputFieldLabels={[{ labelText: "Email" }]}
       leftBtnLabel="Sign in"
-      leftBtnClickHandler={goToSignIn}
+      leftBtnClickHandler={goToSignin}
       rightBtnLabel="Next"
-      rightBtnClickHandler={signUp}
+      rightBtnClickHandler={checkEmailIsReg}
       loading={loading}
     />
   );
 };
 
-export default withRouter(SignUp);
+export default withRouter(Email);

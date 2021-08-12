@@ -15,9 +15,12 @@ import { withRouter } from "react-router-dom";
 
 const FormContentContainer = ({
   heading,
-  inputFieldLabel,
+  inputFieldLabels,
   leftBtnLabel,
   rightBtnLabel,
+  leftBtnClickHandler,
+  rightBtnClickHandler,
+  loading,
 }) => {
   const classes = useStyles();
   return (
@@ -36,10 +39,12 @@ const FormContentContainer = ({
           direction="column"
           spacing={2}
         >
-          {/* <LinearProgress
-            variant="indeterminate"
-            className={classes.progressBar}
-          /> */}
+          {loading && (
+            <LinearProgress
+              variant="indeterminate"
+              className={classes.progressBar}
+            />
+          )}
           <Slide direction="left" in={true} mountOnEnter unmountOnExit>
             <div>
               <Grid
@@ -60,9 +65,36 @@ const FormContentContainer = ({
                   alignItems="center"
                   spacing={2}
                 >
-                  <Grid item sm={12} className={classes.textFieldCon}>
-                    <InputField label={inputFieldLabel} />
-                  </Grid>
+                  {inputFieldLabels.map((inputFieldData, index) => {
+                    const {
+                      labelText,
+                      inputFieldType,
+                      valueChangeHandler,
+                      value,
+                      error,
+                      helperText,
+                      onFocusOfTextField,
+                    } = inputFieldData;
+                    return (
+                      <Grid
+                        key={index}
+                        item
+                        sm={12}
+                        className={classes.textFieldCon}
+                      >
+                        <InputField
+                          label={labelText}
+                          type={inputFieldType ? inputFieldType : "text"}
+                          onChange={valueChangeHandler}
+                          onFocus={onFocusOfTextField}
+                          value={value}
+                          error={error}
+                          helperText={helperText}
+                        />
+                      </Grid>
+                    );
+                  })}
+
                   <Grid item xs={12} className={classes.textFieldCon}>
                     {/* <InputField label="Password" />
                     <div>
@@ -71,10 +103,16 @@ const FormContentContainer = ({
                       </Typography>
                     </div> */}
                     <Grid container justifyContent="space-between">
-                      <Button className={classes.createAccBtn}>
+                      <Button
+                        className={classes.leftBtn}
+                        onClick={leftBtnClickHandler}
+                      >
                         {leftBtnLabel}
                       </Button>
-                      <Button className={classes.nextBtn}>
+                      <Button
+                        className={classes.rightBtn}
+                        onClick={rightBtnClickHandler}
+                      >
                         {rightBtnLabel}
                       </Button>
                     </Grid>
@@ -133,12 +171,12 @@ const useStyles = makeStyles(() => {
     textFieldCon: {
       width: "90%",
     },
-    createAccBtn: {
+    leftBtn: {
       color: "#1a73e8",
       textTransform: "initial",
       marginLeft: "-8px",
     },
-    nextBtn: {
+    rightBtn: {
       textTransform: "initial",
       backgroundColor: "#1a73e8eb",
       color: "white",

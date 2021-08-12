@@ -1,7 +1,7 @@
 import { Avatar } from "@material-ui/core";
 import React from "react";
-const UserTab = () => {
-  return <Avatar>H</Avatar>;
+const UserTab = ({ heading }) => {
+  return <Avatar>{heading}</Avatar>;
 };
 
 export default UserTab;

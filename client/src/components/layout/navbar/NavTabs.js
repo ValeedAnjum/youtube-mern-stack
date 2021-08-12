@@ -3,6 +3,7 @@ import { Grid } from "@material-ui/core";
 
 import GuestNavTabs from "./GuestNavTabs";
 import AuthNavTabs from "./AuthNavTabs";
+import { connect } from "react-redux";
 
 const NavTabs = ({
   classes,
@@ -15,9 +16,8 @@ const NavTabs = ({
   anchorElForCreateVideos,
   userBtnClickHnd,
   anchorElForUser,
+  auth,
 }) => {
-  // const [auth, setAuth] = useState(false);
-  const auth = false;
   return (
     <Grid container justifyContent="flex-end" alignItems="center">
       {!auth ? (
@@ -45,4 +45,10 @@ const NavTabs = ({
   );
 };
 
-export default NavTabs;
+const mapState = (state) => {
+  return {
+    auth: state.auth.authenticated,
+  };
+};
+
+export default connect(mapState)(NavTabs);
