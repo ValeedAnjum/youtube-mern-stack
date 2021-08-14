@@ -2,7 +2,7 @@ const initialState = {
   authenticated: false,
   emailIsReg: false,
   emailIsRegChecking: false,
-  emailAddress: "",
+  emailAddress: null,
   userProfile: {
     name: null,
   },

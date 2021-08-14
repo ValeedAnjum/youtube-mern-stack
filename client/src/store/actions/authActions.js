@@ -57,6 +57,13 @@ export const signIn =
     }
   };
 
+export const register = (name, email, password) => async (dispatch) => {
+  console.log(name);
+  console.log(email);
+  console.log(password);
+  console.log("Register Action");
+};
+
 export const logOut = (dispatch) => async () => {
   dispatch({ type: "CLEAR_PROFILE" });
 };
