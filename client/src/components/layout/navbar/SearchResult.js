@@ -1,22 +1,8 @@
 import { makeStyles } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React from "react";
 import { Fragment } from "react";
 import { withRouter } from "react-router-dom";
 
-const demoSearchResult = [
-  "react portfolio website",
-  "react portfolio",
-  "react portal",
-  "react portfolio website tutorial",
-  "react portfolio projects",
-  "react portal in hindi",
-  "react portfolio clever programmer",
-  "react portfolio tutorial",
-  "react portfolio website material ui",
-  "react portal tutorial",
-  "react portfolio design",
-  "react portfolio tips",
-];
 const useStyles = makeStyles(() => {
   return {
     searchResultCon: {

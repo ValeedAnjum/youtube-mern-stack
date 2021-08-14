@@ -14,8 +14,7 @@ export const videoReducer = (state = initialState, action) => {
         loadingRelatedVideos: false,
         relatedVideos: [...state.relatedVideos, ...payload],
       };
-    case "RELATED_VIDEOS_FETCH_START":
-      return { ...state, loadingRelatedVideos: false };
+
     default:
       return state;
   }

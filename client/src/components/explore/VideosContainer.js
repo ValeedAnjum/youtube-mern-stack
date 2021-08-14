@@ -2,7 +2,6 @@ import React from "react";
 import { Typography } from "@material-ui/core";
 import Videos from "./Videos";
 import LoadingVideosSkeleton from "./LoadingVideosSkeleton";
-import { Fragment } from "react";
 const VideosContainer = ({ videos, videosLabel, loadingVideos }) => {
   return (
     <div>

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import FormContentContainer from "../formContentContainer/FormContentContainer";
 import { isEmailRegistered } from "../../../store/actions/authActions";
 
-const Email = ({ history, IsEmailRegister }) => {
+const Email = ({ history, IsEmailRegister, auth }) => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [error, setError] = useState({ state: false, msg: "" });
+  if (auth) return <Redirect to="/home" />;
   const goToSignUp = () => {
     history.push("/signup/email");
   };
@@ -20,20 +21,21 @@ const Email = ({ history, IsEmailRegister }) => {
         email.trim().toLocaleLowerCase()
       );
       setLoading(false);
-      // IsEmailInDb && history.push("/signin/password");
       IsEmailInDb
         ? history.push("/signin/password")
         : setError({ state: true, msg: "user does not exits" });
     } catch (error) {
       setLoading(false);
     }
-    // history.goBack();
   };
   const changeEmailHan = (event) => {
     setEmail(event.target.value);
   };
   const onFocusOfTextField = () => {
     setError({ state: false, msg: "" });
+  };
+  const onKeyPress = (event) => {
+    if (event.key.charCodeAt(0) === 69) checkEmailIsReg();
   };
   return (
     <FormContentContainer
@@ -42,6 +44,7 @@ const Email = ({ history, IsEmailRegister }) => {
         {
           labelText: "Email",
           valueChangeHandler: changeEmailHan,
+          onkeypress: onKeyPress,
           value: email,
           error: error.state,
           helperText: error.msg,
@@ -58,10 +61,10 @@ const Email = ({ history, IsEmailRegister }) => {
 };
 
 const mapState = (state) => {
-  console.log(state);
-  return {};
+  return {
+    auth: state.auth.authenticated,
+  };
 };
-
 const mapDispatch = (dispatch) => {
   return {
     IsEmailRegister: (email) => dispatch(isEmailRegistered(email)),

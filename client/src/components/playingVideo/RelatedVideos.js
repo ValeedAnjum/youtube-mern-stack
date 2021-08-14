@@ -1,6 +1,5 @@
 import { Grid, makeStyles } from "@material-ui/core";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import RelatedVideoCard from "./RelatedVideoCard";
 import RelatedVideoSkeleton from "./RelatedVideoSkeleton";
 
@@ -48,34 +47,7 @@ const useStyles = makeStyles(() => {
   };
 });
 const RelatedVideos = ({ setVideoSrc, videos, loadingVideos }) => {
-  // const [videos, setVideos] = useState([]);
-  // const [loadingVideos, setLoadingVideos] = useState(false);
   const classes = useStyles();
-  // useEffect(() => {
-  //   console.log("RV");
-  //   fetchVideos();
-  //   window.addEventListener("scroll", onScrolling);
-  //   return () => {
-  //     window.removeEventListener("scroll", onScrolling);
-  //   };
-  // }, []);
-  // const onScrolling = (event) => {
-  //   const scrollHeight = document.documentElement.scrollHeight;
-  //   const winInerHeight = window.innerHeight;
-  //   const scroolIsAtBottom =
-  //     scrollHeight - winInerHeight - 100 <= window.scrollY;
-  //   if (scroolIsAtBottom) {
-  //     fetchVideos();
-  //   }
-  // };
-  // const fetchVideos = async () => {
-  //   setLoadingVideos(true);
-  //   const result = await axios.get("/video/randomvideos/12");
-  //   setLoadingVideos(false);
-  //   console.log(result.data);
-  //   setVideos((oldData) => [...oldData, ...result.data]);
-  // };
-
   return (
     <Grid container className={classes.relatedVideos}>
       {videos &&

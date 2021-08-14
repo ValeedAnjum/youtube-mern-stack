@@ -5,22 +5,28 @@ import FormContentContainer from "../formContentContainer/FormContentContainer";
 
 const Email = ({ history }) => {
   const [loading, setLoading] = useState(false);
+  const [email, setemail] = useState("");
   const goToSignin = () => {
     history.push("/signin/email");
   };
   const checkEmailIsReg = () => {
-    console.log("do something");
-    setLoading(true);
-    history.push("/signup/password");
-    // history.goBack();
+    // console.log("do something");
+    // setLoading(true);
+    // history.push("/signup/password");
   };
   const changeEmailHan = (event) => {
-    console.log(event.target.value);
+    setemail(event.target.value);
   };
   return (
     <FormContentContainer
       heading="Sign up"
-      inputFieldLabels={[{ labelText: "Email" }]}
+      inputFieldLabels={[
+        {
+          labelText: "Email",
+          valueChangeHandler: changeEmailHan,
+          value: email,
+        },
+      ]}
       leftBtnLabel="Sign in"
       leftBtnClickHandler={goToSignin}
       rightBtnLabel="Next"

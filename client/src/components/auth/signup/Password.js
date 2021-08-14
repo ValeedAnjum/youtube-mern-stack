@@ -13,9 +13,9 @@ const Password = ({ history }) => {
     setLoading(true);
     // history.goBack();
   };
-  const changePassHan = (event) => {
-    console.log(event.target.value);
-  };
+  // const changePassHan = (event) => {
+  //   console.log(event.target.value);
+  // };
   return (
     <FormContentContainer
       heading="Sign up"

@@ -3,9 +3,6 @@ import React, { Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import MoreVideoOptions from "./MoreVideoOptions";
 
-const imgSrc =
-  "https://i.ytimg.com/vi/PcHa6xPvlbg/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDBi0mZN-OTmcoxDmZIgO99T5xBoA";
-
 const RelatedVideoCard = ({
   classes,
   video: { thumbnail, title, _id },

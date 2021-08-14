@@ -12,16 +12,16 @@ export const authReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case "IS_EMAIL_REGISTERED_START":
-      return { ...state, emailIsRegChecking: true };
+      return { ...state, emailIsReg: false, emailAddress: "" };
     case "IS_EMAIL_REGISTERED_SUCCESS":
       return {
         ...state,
-        emailIsRegChecking: false,
         emailIsReg: true,
         emailAddress: payload,
       };
     case "LOGIN_SUCCESS":
       localStorage.setItem("token", payload);
+      return { ...state };
     // profile data
     case "SET_PROFILE":
       return { ...state, authenticated: true, userProfile: payload };

@@ -27,6 +27,17 @@ const PlayingVideo = (props) => {
   const { id } = props.match.params;
   const classes = useStyles();
   useEffect(() => {
+    const fetchVideoIframe = async () => {
+      try {
+        setLoadingVideo(true);
+        const response = await axios.get(`/video/playvideo/${id}`);
+        setVideoSrc(response.data.src);
+        setLoadingVideo(false);
+        // console.log(response.data);
+      } catch (error) {
+        setLoadingVideo(false);
+      }
+    };
     fetchVideoIframe();
     fetchRelatedVideos();
     window.addEventListener("scroll", onScrolling);
@@ -38,17 +49,17 @@ const PlayingVideo = (props) => {
     if (!isFetching) return;
     fetchRelatedVideosOnScrolling();
   }, [isFetching]);
-  const fetchVideoIframe = async () => {
-    try {
-      setLoadingVideo(true);
-      const response = await axios.get(`/video/playvideo/${id}`);
-      setVideoSrc(response.data.src);
-      setLoadingVideo(false);
-      // console.log(response.data);
-    } catch (error) {
-      setLoadingVideo(false);
-    }
-  };
+  // const fetchVideoIframe = async () => {
+  //   try {
+  //     setLoadingVideo(true);
+  //     const response = await axios.get(`/video/playvideo/${id}`);
+  //     setVideoSrc(response.data.src);
+  //     setLoadingVideo(false);
+  //     // console.log(response.data);
+  //   } catch (error) {
+  //     setLoadingVideo(false);
+  //   }
+  // };
   const fetchRelatedVideos = async () => {
     try {
       setLoadingRelatedVideos(true);

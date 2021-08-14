@@ -27,6 +27,7 @@ const Explore = () => {
     if (!isFetching) return;
     fetchVideos();
   }, [isFetching]);
+
   const onScrolling = (event) => {
     const scrollHeight = document.documentElement.scrollHeight;
     const winInerHeight = window.innerHeight;
@@ -36,6 +37,7 @@ const Explore = () => {
       setIsFetching(true);
     }
   };
+
   const fetchVideos = async () => {
     try {
       setLoadingVideos(true);
@@ -62,6 +64,7 @@ const Explore = () => {
       setIsFetching(false);
     }
   };
+
   return (
     <div className={classes.mainContainer}>
       <Cards videoLabelHan={videoLabelHan} />

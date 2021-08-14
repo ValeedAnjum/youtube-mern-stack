@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import {
   Drawer,
-  Hidden,
   List,
   ListItem,
   ListItemIcon,

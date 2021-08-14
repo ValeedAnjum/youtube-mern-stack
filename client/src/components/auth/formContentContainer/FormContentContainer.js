@@ -1,12 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React from "react";
 import {
   Button,
   Grid,
   makeStyles,
   Slide,
-  Typography,
   LinearProgress,
-  TextField,
 } from "@material-ui/core";
 import IconAndHeadingCon from "../IconAndHeadingCon/IconAndHeadingCon";
 
@@ -70,6 +68,7 @@ const FormContentContainer = ({
                       labelText,
                       inputFieldType,
                       valueChangeHandler,
+                      onkeypress,
                       value,
                       error,
                       helperText,
@@ -87,6 +86,7 @@ const FormContentContainer = ({
                           type={inputFieldType ? inputFieldType : "text"}
                           onChange={valueChangeHandler}
                           onFocus={onFocusOfTextField}
+                          onKeyPress={onkeypress}
                           value={value}
                           error={error}
                           helperText={helperText}
