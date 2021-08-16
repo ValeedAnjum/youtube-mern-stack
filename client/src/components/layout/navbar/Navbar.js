@@ -17,7 +17,7 @@ const Navbar = ({ setSideDrawer }) => {
   const [anchorElForMore, setAnchorElForMore] = useState(null);
   const [anchorElForApps, setAnchorElForApps] = useState(null);
   const [anchorElForCreateVideos, setAnchorElForCreateVideos] = useState(null);
-  const [anchorElForUser, setAnchorElForUser] = useState(null);
+  const [anchorElForUser, setAnchorElForUser] = useState(undefined);
   const moreBtnClickHnd = (event) => {
     setAnchorElForMore(event.currentTarget);
   };
@@ -29,6 +29,7 @@ const Navbar = ({ setSideDrawer }) => {
   };
 
   const userBtnClickHnd = (event) => {
+    console.log(event.currentTarget);
     setAnchorElForUser(event.currentTarget);
   };
   const onMenuClose = () => {

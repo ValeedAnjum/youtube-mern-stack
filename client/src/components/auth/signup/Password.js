@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { register, signIn } from "../../../store/actions/authActions";
 import FormContentContainer from "../formContentContainer/FormContentContainer";
@@ -16,15 +16,14 @@ const Password = ({ history, email, auth, Register }) => {
     state: false,
     msg: "",
   });
-  // if(typeof email === 'string'){
-  //   console.log(email)
-  // }
+  if (email === null) {
+    return <Redirect to="/signup/email" />;
+  }
+  if (auth) return <Redirect to="/home" />;
   const goToSignIn = () => {
     history.push("/signin/email");
   };
   const register = () => {
-    console.log("Ex");
-
     // if (name === "" || password === "") return;
     const isNameValid = ValidateName(name);
 
@@ -40,7 +39,7 @@ const Password = ({ history, email, auth, Register }) => {
         msg: "Length should be greater than 5",
       });
     }
-    console.log("Reached");
+    Register(name, email, password);
   };
   const changePassHan = (event) => {
     setPassword(event.target.value);

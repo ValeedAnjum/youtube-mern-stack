@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { isEmailRegistered } from "../../../store/actions/authActions";
 import FormContentContainer from "../formContentContainer/FormContentContainer";
 import { ValidateEmail } from "../util/formValidations";
 
-const Email = ({ history, IsEmailRegister }) => {
+const Email = ({ history, IsEmailRegister, auth }) => {
   const [loading, setLoading] = useState(false);
   const [email, setemail] = useState("");
   const [error, setError] = useState({ state: false, msg: "" });
+
+  if (auth) return <Redirect to="/home" />;
 
   const goToSignin = () => {
     history.push("/signin/email");

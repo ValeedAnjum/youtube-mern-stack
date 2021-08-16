@@ -6,7 +6,7 @@ export const ValidateEmail = (email) => {
 };
 
 export const ValidateName = (name) => {
-  if (/^[a-zA-Z0-9]{5,20}$/.test(name)) {
+  if (/^[a-zA-Z0-9_ ]{5,20}$/.test(name)) {
     return true;
   }
   return false;
