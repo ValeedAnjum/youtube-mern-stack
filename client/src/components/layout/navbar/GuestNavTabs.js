@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { withRouter } from "react-router-dom";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AppsIcon from "@material-ui/icons/Apps";
@@ -10,15 +10,21 @@ import {
   moreDropDownListData,
 } from "./NavTabsDropdownListDataColl";
 
-const GuestNavTabs = ({
-  classes,
-  moreBtnClickHnd,
-  onMenuClose,
-  anchorElForMore,
-  anchorElForApps,
-  appsBtnClickHnd,
-  history,
-}) => {
+const GuestNavTabs = ({ classes, history }) => {
+  const [anchorElForMore, setAnchorElForMore] = useState(null);
+  const [anchorElForApps, setAnchorElForApps] = useState(null);
+
+  const moreBtnClickHnd = (event) => {
+    setAnchorElForMore(event.currentTarget);
+  };
+  const appsBtnClickHnd = (event) => {
+    setAnchorElForApps(event.currentTarget);
+  };
+
+  const onMenuClose = () => {
+    setAnchorElForMore(null);
+    setAnchorElForApps(null);
+  };
   const goToSignIn = () => {
     history.push("/signin/email");
   };
