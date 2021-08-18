@@ -2,10 +2,12 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 const User = require("../models/user");
+const { sendEmailToUser } = require("./util/sendemail");
 
 router.post(
   "/signin",
@@ -58,12 +60,12 @@ router.post(
 router.post(
   "/register",
   [
-    check("name", "Name is required").not().isEmpty().isLength({ min: 8 }),
+    check("name", "Name is required").not().isEmpty().isLength({ min: 5 }),
     check("email", "Enter a valid email address").isEmail(),
-    check("password", "Enter a Password with minimum 8 characters")
+    check("password", "Enter a Password with minimum 6 characters")
       .not()
       .isEmpty()
-      .isLength({ min: 8 }),
+      .isLength({ min: 6 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -134,6 +136,10 @@ router.post("/checkemailregistration", async (req, res) => {
     console.log(error.message);
     res.status(500).send("Server Error");
   }
+});
+
+router.post("/sendemail", (req, res) => {
+  sendEmailToUser(res, "token");
 });
 
 module.exports = router;

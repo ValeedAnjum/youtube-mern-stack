@@ -13,8 +13,8 @@ const Password = ({ history, emailIsReg, SignIn, email, auth }) => {
   if (!emailIsReg) {
     history.push("/signin/email");
   }
-  const goToSignUp = () => {
-    history.push("/signup/email");
+  const goToForgotPassword = () => {
+    history.push("/signin/forgotpassword");
   };
   const signin = async () => {
     if (email === "" || password === "") return;
@@ -50,8 +50,8 @@ const Password = ({ history, emailIsReg, SignIn, email, auth }) => {
           onFocusOfTextField: onFocusOfTextField,
         },
       ]}
-      leftBtnLabel="Create account"
-      leftBtnClickHandler={goToSignUp}
+      leftBtnLabel="Forgot password?"
+      leftBtnClickHandler={goToForgotPassword}
       rightBtnLabel="Next"
       rightBtnClickHandler={signin}
       loading={loading}

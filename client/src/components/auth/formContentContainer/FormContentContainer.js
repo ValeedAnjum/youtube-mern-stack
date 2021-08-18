@@ -63,37 +63,38 @@ const FormContentContainer = ({
                   alignItems="center"
                   spacing={2}
                 >
-                  {inputFieldLabels.map((inputFieldData, index) => {
-                    const {
-                      labelText,
-                      inputFieldType,
-                      valueChangeHandler,
-                      onkeypress,
-                      value,
-                      error,
-                      helperText,
-                      onFocusOfTextField,
-                    } = inputFieldData;
-                    return (
-                      <Grid
-                        key={index}
-                        item
-                        sm={12}
-                        className={classes.textFieldCon}
-                      >
-                        <InputField
-                          label={labelText}
-                          type={inputFieldType ? inputFieldType : "text"}
-                          onChange={valueChangeHandler}
-                          onFocus={onFocusOfTextField}
-                          onKeyPress={onkeypress}
-                          value={value}
-                          error={error}
-                          helperText={helperText}
-                        />
-                      </Grid>
-                    );
-                  })}
+                  {inputFieldLabels &&
+                    inputFieldLabels.map((inputFieldData, index) => {
+                      const {
+                        labelText,
+                        inputFieldType,
+                        valueChangeHandler,
+                        onkeypress,
+                        value,
+                        error,
+                        helperText,
+                        onFocusOfTextField,
+                      } = inputFieldData;
+                      return (
+                        <Grid
+                          key={index}
+                          item
+                          sm={12}
+                          className={classes.textFieldCon}
+                        >
+                          <InputField
+                            label={labelText}
+                            type={inputFieldType ? inputFieldType : "text"}
+                            onChange={valueChangeHandler}
+                            onFocus={onFocusOfTextField}
+                            onKeyPress={onkeypress}
+                            value={value}
+                            error={error}
+                            helperText={helperText}
+                          />
+                        </Grid>
+                      );
+                    })}
 
                   <Grid item xs={12} className={classes.textFieldCon}>
                     {/* <InputField label="Password" />
@@ -103,18 +104,22 @@ const FormContentContainer = ({
                       </Typography>
                     </div> */}
                     <Grid container justifyContent="space-between">
-                      <Button
-                        className={classes.leftBtn}
-                        onClick={leftBtnClickHandler}
-                      >
-                        {leftBtnLabel}
-                      </Button>
-                      <Button
-                        className={classes.rightBtn}
-                        onClick={rightBtnClickHandler}
-                      >
-                        {rightBtnLabel}
-                      </Button>
+                      {leftBtnLabel && (
+                        <Button
+                          className={classes.leftBtn}
+                          onClick={leftBtnClickHandler}
+                        >
+                          {leftBtnLabel}
+                        </Button>
+                      )}
+                      {rightBtnLabel && (
+                        <Button
+                          className={classes.rightBtn}
+                          onClick={rightBtnClickHandler}
+                        >
+                          {rightBtnLabel}
+                        </Button>
+                      )}
                     </Grid>
                   </Grid>
                 </Grid>

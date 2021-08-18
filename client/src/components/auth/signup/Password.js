@@ -81,7 +81,7 @@ const Password = ({ history, email, auth, Register }) => {
         },
       ]}
       inputFieldType="password"
-      leftBtnLabel="Create account"
+      leftBtnLabel="Sign in"
       leftBtnClickHandler={goToSignIn}
       rightBtnLabel="Next"
       rightBtnClickHandler={register}

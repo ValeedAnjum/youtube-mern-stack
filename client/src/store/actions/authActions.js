@@ -63,11 +63,9 @@ export const register = (name, email, password) => async (dispatch) => {
       "Content-Type": "application/json",
     },
   };
-  console.log(name, email, password);
   const body = JSON.stringify({ name, email, password });
   try {
     const res = await axios.post("/auth/register", body, config);
-    console.log(res);
     dispatch({ type: "REGISTRATION_SUCCESS", payload: res.data.token });
     dispatch(loadUser());
   } catch (error) {

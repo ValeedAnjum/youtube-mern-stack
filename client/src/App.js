@@ -11,6 +11,7 @@ import SigninPassword from "./components/auth/signIn/Password";
 import SignupEmail from "./components/auth/signup/Email";
 import SignupPassword from "./components/auth/signup/Password";
 import { loadUser } from "./store/actions/authActions";
+import ForgotPassword from "./components/auth/signIn/ForgotPassword";
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -25,6 +26,7 @@ function App() {
             <Route path="/video/:id" component={PlayingVideo} />
             <Route path="/signin/email" component={SigninEmail} />
             <Route path="/signin/password" component={SigninPassword} />
+            <Route path="/signin/forgotpassword" component={ForgotPassword} />
             <Route path="/signup/email" component={SignupEmail} />
             <Route path="/signup/password" component={SignupPassword} />
           </Switch>
