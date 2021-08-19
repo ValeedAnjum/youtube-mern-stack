@@ -73,6 +73,23 @@ export const register = (name, email, password) => async (dispatch) => {
   }
 };
 
+export const passwordReset = (email) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  console.log("PASSOWRD_RESET");
+  const body = JSON.stringify({ email });
+  try {
+    const res = await axios.post("/auth/sendpasswordresetlink", body, config);
+    return res.data.success;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
 export const logOut = (dispatch) => async () => {
   dispatch({ type: "CLEAR_PROFILE" });
 };

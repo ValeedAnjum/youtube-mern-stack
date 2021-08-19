@@ -12,6 +12,7 @@ import SignupEmail from "./components/auth/signup/Email";
 import SignupPassword from "./components/auth/signup/Password";
 import { loadUser } from "./store/actions/authActions";
 import ForgotPassword from "./components/auth/signIn/ForgotPassword";
+import ResetPassword from "./components/auth/signIn/ResetPassword";
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -27,6 +28,10 @@ function App() {
             <Route path="/signin/email" component={SigninEmail} />
             <Route path="/signin/password" component={SigninPassword} />
             <Route path="/signin/forgotpassword" component={ForgotPassword} />
+            <Route
+              path="/signin/resetpassword/:token"
+              component={ResetPassword}
+            />
             <Route path="/signup/email" component={SignupEmail} />
             <Route path="/signup/password" component={SignupPassword} />
           </Switch>

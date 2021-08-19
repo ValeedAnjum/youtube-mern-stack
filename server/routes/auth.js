@@ -2,12 +2,14 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 const User = require("../models/user");
 const { sendEmailToUser } = require("./util/sendemail");
+const Token = require("../models/token");
 
 router.post(
   "/signin",
@@ -138,8 +140,58 @@ router.post("/checkemailregistration", async (req, res) => {
   }
 });
 
-router.post("/sendemail", (req, res) => {
-  sendEmailToUser(res, "token");
+router.post("/sendpasswordresetlink", async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await User.find({ email: email.toLowerCase() }).select("_id");
+    if (user.length === 0)
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "user does not exists" }] });
+    // res.json(user[0]._id);
+    const token = new Token({
+      _userId: user[0]._id,
+      token: crypto.randomBytes(16).toString("hex"),
+    });
+    await token.save();
+    sendEmailToUser(res, token.token);
+  } catch (error) {
+    console.log("Serever Error");
+    res.status(500).send("Server Error");
+  }
 });
 
+router.post("/passwordresettokenverification/:usertoken", async (req, res) => {
+  const { usertoken } = req.params;
+  const { password } = req.body;
+  try {
+    const token = await Token.find({ token: usertoken });
+    if (token.length === 0)
+      return res.status(400).json({ errors: [{ msg: "Token is not valid" }] });
+    const user = await User.find({ id: token[0]._userid }).limit(1);
+    console.log(user[0].password);
+    const salt = await bcrypt.genSalt(10);
+    user[0].password = await bcrypt.hash(password, salt);
+    await user[0].save();
+    // generating a token
+    const payload = {
+      user: {
+        id: user.id,
+      },
+    };
+
+    jwt.sign(
+      payload,
+      config.get("jwtSecret"),
+      { expiresIn: 3600 },
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token });
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ errors: [{ msg: "Server Error" }] });
+  }
+});
 module.exports = router;
