@@ -3,17 +3,25 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import FormContentContainer from "../formContentContainer/FormContentContainer";
-import { isEmailRegistered } from "../../../store/actions/authActions";
+import {
+  isEmailRegistered,
+  loadUser,
+} from "../../../store/actions/authActions";
 import axios from "axios";
 
-const ResetPassword = ({ match, history, IsEmailRegister, auth }) => {
+const ResetPassword = ({
+  match,
+  history,
+  IsEmailRegister,
+  auth,
+  PasswordReset,
+  LoadUser,
+}) => {
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState({ state: false, msg: "" });
   if (auth) return <Redirect to="/home" />;
-  const goToSignUp = () => {
-    history.push("/signup/email");
-  };
+
   const resetPassword = async () => {
     if (password.length < 6) return;
     // console.log(match.params.token);
@@ -30,10 +38,12 @@ const ResetPassword = ({ match, history, IsEmailRegister, auth }) => {
         body,
         config
       );
-      console.log(res);
+      if (res.data.token) {
+        PasswordReset(res.data.token);
+        LoadUser();
+      }
     } catch (err) {
       //   console.log(err.response.data.errors);
-
       setError({ state: true, msg: err.response.data.errors[0].msg });
     }
   };
@@ -61,9 +71,7 @@ const ResetPassword = ({ match, history, IsEmailRegister, auth }) => {
           onFocusOfTextField: onFocusOfTextField,
         },
       ]}
-      leftBtnLabel="Create account"
-      leftBtnClickHandler={goToSignUp}
-      rightBtnLabel="Next"
+      rightBtnLabel="Save"
       rightBtnClickHandler={resetPassword}
       loading={loading}
     />
@@ -78,6 +86,9 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     IsEmailRegister: (email) => dispatch(isEmailRegistered(email)),
+    PasswordReset: (token) =>
+      dispatch({ type: "PASSWORD_RESET_SUCCESS", payload: token }),
+    LoadUser: () => dispatch(loadUser()),
   };
 };
 

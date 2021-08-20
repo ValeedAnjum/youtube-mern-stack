@@ -46,8 +46,8 @@ const Explore = () => {
       setIsFetching(false);
       setVideos((oldData) => [...oldData, ...result.data]);
     } catch (error) {
-      setLoadingVideos(false);
-      isFetching(false);
+      // setLoadingVideos(false);
+      setIsFetching(false);
     }
   };
   const videoLabelHan = async (label) => {

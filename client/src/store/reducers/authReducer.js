@@ -21,6 +21,7 @@ export const authReducer = (state = initialState, action) => {
       };
     case "LOGIN_SUCCESS":
     case "REGISTRATION_SUCCESS":
+    case "PASSWORD_RESET_SUCCESS":
       localStorage.setItem("token", payload);
       return { ...state };
     // profile data

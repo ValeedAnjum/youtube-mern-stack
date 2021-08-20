@@ -166,14 +166,17 @@ router.post("/passwordresettokenverification/:usertoken", async (req, res) => {
   const { password } = req.body;
   try {
     const token = await Token.find({ token: usertoken });
+    // console.log("token", token);
     if (token.length === 0)
       return res.status(400).json({ errors: [{ msg: "Token is not valid" }] });
-    const user = await User.find({ id: token[0]._userid }).limit(1);
-    console.log(user[0].password);
+    // const user = await User.find({ _id: token[0]._userid }).limit(1);
+    const user = await User.findById(token[0]._userId);
+    // console.log("user", user);
     const salt = await bcrypt.genSalt(10);
-    user[0].password = await bcrypt.hash(password, salt);
-    await user[0].save();
+    user.password = await bcrypt.hash(password, salt);
+    await user.save();
     // generating a token
+    // console.log(user[0].id);
     const payload = {
       user: {
         id: user.id,

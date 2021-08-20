@@ -7,31 +7,10 @@ import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 // import DoNotDisturbOnIcon from "@material-ui/icons/DoNotDisturbOn";
 import FlagIcon from "@material-ui/icons/Flag";
 import MoreVideoOptionListItems from "../morevideooptionlist/MoreVideoOptionListItems";
-
-const MoreListOptions = [
-  { Text: "Add to queue", Icon: <PlaylistPlayIcon /> },
-  {
-    Text: "Save to Watch later",
-    Icon: <PlaylistAddIcon />,
-  },
-  {
-    Text: "Save To playlist",
-    Icon: <FlagIcon />,
-    divider: true,
-  },
-  {
-    Text: "Not interested",
-    Icon: <PlaylistPlayIcon />,
-  },
-  {
-    Text: "Don't recommend channel",
-    Icon: <PlaylistAddIcon />,
-  },
-  {
-    Text: "Report",
-    Icon: <FlagIcon />,
-  },
-];
+import {
+  MoreListOptionsForGuest,
+  MoreListOptionsForAuth,
+} from "./MoreListOptions";
 
 const useStyle = makeStyles(() => {
   return {
@@ -88,7 +67,7 @@ const VideoTitleAndMore = ({ classes, title, playVideo }) => {
           getContentAnchorEl={null}
         >
           <List className={internelClasses.list}>
-            <MoreVideoOptionListItems data={MoreListOptions} />
+            <MoreVideoOptionListItems data={MoreListOptionsForGuest} />
           </List>
         </Menu>
       </Grid>
