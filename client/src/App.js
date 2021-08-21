@@ -13,6 +13,7 @@ import SignupPassword from "./components/auth/signup/Password";
 import { loadUser } from "./store/actions/authActions";
 import ForgotPassword from "./components/auth/signIn/ForgotPassword";
 import ResetPassword from "./components/auth/signIn/ResetPassword";
+import ModelManager from "./components/modelManager/ModelManager";
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -22,6 +23,8 @@ function App() {
       <Provider store={store}>
         <ScrollToTop>
           <Layout />
+          <ModelManager />
+
           <Switch>
             <Route path="/home" component={Home} />
             <Route path="/video/:id" component={PlayingVideo} />
