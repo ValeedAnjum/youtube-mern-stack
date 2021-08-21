@@ -12,3 +12,8 @@ export const fetchRelatedVideos = () => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const addToQueue = (dispatch, name) => () => {
+  console.log(dispatch);
+  console.log(name);
+};

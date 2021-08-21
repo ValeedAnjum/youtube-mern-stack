@@ -1,10 +1,15 @@
 import React, { useState, Fragment } from "react";
+import { connect } from "react-redux";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { IconButton, List, makeStyles, Menu } from "@material-ui/core";
 import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
 import WatchLaterIcon from "@material-ui/icons/WatchLater";
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 import MoreVideoOptionListItems from "../morevideooptionlist/MoreVideoOptionListItems";
+import {
+  MoreListOptionsForAuth,
+  MoreListOptionsForGuest,
+} from "./MoreVideoOptionsListData";
 
 const MoreListOptions = [
   { Text: "Add to queue", Icon: <PlaylistPlayIcon /> },
@@ -33,10 +38,9 @@ const useStyle = makeStyles(() => {
   };
 });
 
-const MoreVideoOptions = () => {
+const MoreVideoOptions = ({ auth }) => {
   const [anchorElForMore, setAnchorElForMore] = useState(null);
   const internelClasses = useStyle();
-
   const moreBtnClickHnd = (event) => {
     setAnchorElForMore(event.currentTarget);
   };
@@ -69,11 +73,18 @@ const MoreVideoOptions = () => {
         getContentAnchorEl={null}
       >
         <List className={internelClasses.list}>
-          <MoreVideoOptionListItems data={MoreListOptions} />
+          <MoreVideoOptionListItems
+            data={auth ? MoreListOptionsForAuth : MoreListOptionsForGuest}
+          />
         </List>
       </Menu>
     </Fragment>
   );
 };
 
-export default MoreVideoOptions;
+const mapState = (state) => {
+  return {
+    auth: state.auth.authenticated,
+  };
+};
+export default connect(mapState)(MoreVideoOptions);

@@ -1,11 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Grid, IconButton, Menu, List, makeStyles } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
-import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
-// import DoNotDisturbIcon from "@material-ui/icons/DoNotDisturb";
-// import DoNotDisturbOnIcon from "@material-ui/icons/DoNotDisturbOn";
-import FlagIcon from "@material-ui/icons/Flag";
+import { connect } from "react-redux";
 import MoreVideoOptionListItems from "../morevideooptionlist/MoreVideoOptionListItems";
 import {
   MoreListOptionsForGuest,
@@ -27,7 +23,8 @@ const useStyle = makeStyles(() => {
     },
   };
 });
-const VideoTitleAndMore = ({ classes, title, playVideo }) => {
+
+const VideoTitleAndMore = ({ classes, title, playVideo, auth }) => {
   const [anchorElForMore, setAnchorElForMore] = useState(null);
   const internelClasses = useStyle();
   const moreBtnClickHnd = (event) => {
@@ -36,6 +33,7 @@ const VideoTitleAndMore = ({ classes, title, playVideo }) => {
   const onMenuClose = () => {
     setAnchorElForMore(false);
   };
+
   return (
     <Fragment>
       <Grid item sm={10} xs={11} className={classes.videoTitleCon}>
@@ -67,12 +65,19 @@ const VideoTitleAndMore = ({ classes, title, playVideo }) => {
           getContentAnchorEl={null}
         >
           <List className={internelClasses.list}>
-            <MoreVideoOptionListItems data={MoreListOptionsForGuest} />
+            <MoreVideoOptionListItems
+              data={auth ? MoreListOptionsForAuth : MoreListOptionsForGuest}
+            />
           </List>
         </Menu>
       </Grid>
     </Fragment>
   );
 };
+const mapState = (state) => {
+  return {
+    auth: state.auth.authenticated,
+  };
+};
 
-export default VideoTitleAndMore;
+export default connect(mapState)(VideoTitleAndMore);

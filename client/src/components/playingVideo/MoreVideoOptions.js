@@ -1,27 +1,13 @@
 import React, { useState, Fragment } from "react";
+import { connect } from "react-redux";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { IconButton, List, makeStyles, Menu } from "@material-ui/core";
-import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
-import WatchLaterIcon from "@material-ui/icons/WatchLater";
-import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
-import NotInterestedIcon from "@material-ui/icons/NotInterested";
-import FlagIcon from "@material-ui/icons/Flag";
 import MoreVideoOptionListItems from "../morevideooptionlist/MoreVideoOptionListItems";
+import {
+  MoreListOptionsForAuth,
+  MoreListOptionsForGuest,
+} from "./MoreOptionsListData";
 
-const MoreListOptions = [
-  { Text: "Add to queue", Icon: <PlaylistPlayIcon /> },
-  {
-    Text: "Save to Watch later",
-    Icon: <WatchLaterIcon />,
-  },
-  {
-    Text: "Save To playlist",
-    Icon: <PlaylistAddIcon />,
-    divider: true,
-  },
-  { Text: "Not interested", Icon: <NotInterestedIcon /> },
-  { Text: "Report", Icon: <FlagIcon /> },
-];
 const useStyle = makeStyles(() => {
   return {
     "@global": {
@@ -51,10 +37,9 @@ const useStyle = makeStyles(() => {
   };
 });
 
-const MoreVideoOptions = () => {
+const MoreVideoOptions = ({ auth }) => {
   const [anchorElForMore, setAnchorElForMore] = useState(null);
   const internelClasses = useStyle();
-
   const moreBtnClickHnd = (event) => {
     setAnchorElForMore(event.currentTarget);
   };
@@ -87,11 +72,18 @@ const MoreVideoOptions = () => {
         getContentAnchorEl={null}
       >
         <List className={internelClasses.list}>
-          <MoreVideoOptionListItems data={MoreListOptions} />
+          <MoreVideoOptionListItems
+            data={auth ? MoreListOptionsForAuth : MoreListOptionsForGuest}
+          />
         </List>
       </Menu>
     </Fragment>
   );
 };
 
-export default MoreVideoOptions;
+const mapState = (state) => {
+  return {
+    auth: state.auth.authenticated,
+  };
+};
+export default connect(mapState)(MoreVideoOptions);
