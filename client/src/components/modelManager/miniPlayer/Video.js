@@ -4,11 +4,11 @@ const Video = ({ src }) => {
   return (
     <iframe
       width="100%"
-      height="300px"
+      height="100%"
       src={src}
       title="YouTube video player"
       frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allow="accelerometer; autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     ></iframe>
   );
 };

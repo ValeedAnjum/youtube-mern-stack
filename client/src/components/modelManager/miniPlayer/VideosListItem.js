@@ -1,28 +1,60 @@
-import React from "react";
-import { Grid, IconButton, makeStyles } from "@material-ui/core";
+import React, { useState } from "react";
+import {
+  Grid,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  makeStyles,
+  Menu,
+} from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import DragHandleIcon from "@material-ui/icons/DragHandle";
+import MenuForMoreVideoCardOptions from "./MenuForMoreVideoCardOptions";
 const title = "Christian Sister Accept Islam After She ...";
 const image =
   "https://i.ytimg.com/vi/T5ZlSSOhbzQ/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCE1GtvJ71DA7wgpdS9YMPDCNaloQ";
 const useStyles = makeStyles(() => {
   return {
     videoItem: {
-      paddingRight: "10px",
+      padding: "0px 10px 5px 0px",
     },
     titleAndChannelName: {
       paddingLeft: "5px",
     },
     title: {
       fontWeight: "600",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      width: "100%",
+      textOverflow: "ellipsis",
     },
     channel: {
       color: "#767676de",
     },
+    dropDownPopOver: {
+      boxShadow: "none",
+      borderRadius: "0",
+      border: "1px solid #00000026",
+      "&::-webkit-scrollbar": {
+        width: "0.5em",
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#d4d4d4",
+      },
+    },
   };
 });
-const VideosList = () => {
+const VideosListItem = () => {
+  const [anchorElForMore, setAnchorElForMore] = useState(null);
+  const moreVideoBtnClickHan = (event) => {
+    setAnchorElForMore(event.currentTarget);
+  };
+  const onMenuClose = () => {
+    setAnchorElForMore(null);
+  };
   const classes = useStyles();
   return (
     <Grid item container wrap="nowrap" className={classes.videoItem}>
@@ -51,13 +83,18 @@ const VideosList = () => {
           </Grid>
         </Grid>
         <Grid item sm={1}>
-          <IconButton>
+          <IconButton onClick={moreVideoBtnClickHan}>
             <MoreVertIcon />
           </IconButton>
+          <MenuForMoreVideoCardOptions
+            classes={classes}
+            anchorElForMore={anchorElForMore}
+            onMenuClose={onMenuClose}
+          />
         </Grid>
       </Grid>
     </Grid>
   );
 };
 
-export default VideosList;
+export default VideosListItem;
