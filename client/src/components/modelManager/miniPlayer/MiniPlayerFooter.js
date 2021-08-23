@@ -1,7 +1,7 @@
 import { Grid, IconButton, makeStyles } from "@material-ui/core";
 import React from "react";
 import { Fragment } from "react";
-import VideosList from "./VideosListItem";
+import VideoListItem from "./VideosListItem";
 
 const useStyles = makeStyles(() => {
   return {
@@ -25,16 +25,16 @@ const MiniPlayerFooter = () => {
         direction="column"
         className={classes.vidoeItemContainer}
       >
-        <VideosList />
-        <VideosList />
-        <VideosList />
-        <VideosList />
-        <VideosList />
-        <VideosList />
-        <VideosList />
-        <VideosList />
-        <VideosList />
-        <VideosList />
+        <VideoListItem />
+        <VideoListItem />
+        <VideoListItem />
+        <VideoListItem />
+        <VideoListItem />
+        <VideoListItem />
+        <VideoListItem />
+        <VideoListItem />
+        <VideoListItem />
+        <VideoListItem />
       </Grid>
     </Fragment>
   );

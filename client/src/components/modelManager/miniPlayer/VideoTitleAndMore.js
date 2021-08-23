@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Grid, IconButton, makeStyles } from "@material-ui/core";
+import { Grid, Hidden, IconButton, makeStyles } from "@material-ui/core";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 const title =
   "Christian Sister Accept Islam After She Got Her 2 Answer - Dr. Zakir Naik";
 
-const useStyles = makeStyles(() => {
+const useStyles = makeStyles((theme) => {
   return {
     miniPlayertitleAndMore: {
       padding: "10px",
@@ -17,6 +17,9 @@ const useStyles = makeStyles(() => {
       width: "100%",
       overflow: "hidden",
       margin: "0",
+      [theme.breakpoints.down("md")]: {
+        textAlign: "center",
+      },
     },
     queueAndNumebrOfVideosInQueue: {
       margin: "0",
@@ -31,11 +34,12 @@ const useStyles = makeStyles(() => {
     },
   };
 });
-const VideoTitleAndMore = () => {
+const VideoTitleAndMore = ({ toggleExpand }) => {
   const [expand, setExpand] = useState(false);
   const classes = useStyles();
-  const toggleExpand = () => {
+  const toggleExpandLocal = () => {
     setExpand(!expand);
+    toggleExpand();
   };
   return (
     <Grid container className={classes.miniPlayertitleAndMore}>
@@ -44,20 +48,24 @@ const VideoTitleAndMore = () => {
           <p className={classes.videoTitle}>{title}</p>
           {/* {title} */}
         </Grid>
-        <Grid item>
-          <p className={classes.queueAndNumebrOfVideosInQueue}>Queues. 2/9</p>
+        <Hidden mdDown>
+          <Grid item>
+            <p className={classes.queueAndNumebrOfVideosInQueue}>Queues. 2/9</p>
+          </Grid>
+        </Hidden>
+      </Grid>
+      <Hidden mdDown>
+        <Grid item sm={1}>
+          <IconButton
+            onClick={toggleExpandLocal}
+            className={`${classes.moreVideoArrowIcon} ${
+              expand ? classes.moreVideoArrowIconExpand : null
+            }`}
+          >
+            <ExpandLessIcon />
+          </IconButton>
         </Grid>
-      </Grid>
-      <Grid item sm={1}>
-        <IconButton
-          onClick={toggleExpand}
-          className={`${classes.moreVideoArrowIcon} ${
-            expand ? classes.moreVideoArrowIconExpand : null
-          }`}
-        >
-          <ExpandLessIcon />
-        </IconButton>
-      </Grid>
+      </Hidden>
     </Grid>
   );
 };

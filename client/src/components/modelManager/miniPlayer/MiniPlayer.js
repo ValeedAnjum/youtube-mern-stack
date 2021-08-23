@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, makeStyles, Paper } from "@material-ui/core";
 
 import PlayingVideo from "./PlayingVideo";
@@ -6,7 +6,7 @@ import MiniPlayerFooter from "./MiniPlayerFooter";
 import { withRouter } from "react-router-dom";
 import VideoTitleAndMore from "./VideoTitleAndMore";
 
-const useStyles = makeStyles(() => {
+const useStyles = makeStyles((theme) => {
   return {
     miniPlayerMainContainer: {
       position: "fixed",
@@ -17,6 +17,11 @@ const useStyles = makeStyles(() => {
       zIndex: "1202",
       backgroundColor: "white",
       borderRadius: "0",
+      [theme.breakpoints.down("md")]: {
+        left: "0",
+        height: "50%",
+        width: "100%",
+      },
     },
     miniPlayerInnerCon: {
       height: "100%",
@@ -24,11 +29,13 @@ const useStyles = makeStyles(() => {
     miniPlayerVideoCont: {
       height: "45%",
     },
+
     VideoTitleAndQueuePlaylistOptionCon: {
       height: "15%",
     },
     miniPlayerVideoItemCon: {
-      height: "40%",
+      height: "0%",
+      transition: "0.3s",
       overflowX: "hidden",
       "&::-webkit-scrollbar": {
         width: "0.7em",
@@ -38,21 +45,40 @@ const useStyles = makeStyles(() => {
         borderRadius: "10px",
       },
     },
+    expand: {
+      height: "40%",
+      transition: "0.3s",
+    },
   };
 });
 function MiniPlayer(props) {
+  const [expand, setExpand] = useState(false);
   const classes = useStyles();
+  const toggleExpand = () => {
+    setExpand(!expand);
+  };
   if (props.location.pathname.includes("/video/")) return null;
   return (
     <Paper className={classes.miniPlayerMainContainer} elevation={3}>
-      <Grid container direction="column" className={classes.miniPlayerInnerCon}>
-        <Grid item className={classes.miniPlayerVideoCont}>
+      <Grid container item md={12} className={classes.miniPlayerInnerCon}>
+        <Grid item lg={12} md={6} className={classes.miniPlayerVideoCont}>
           <PlayingVideo />
         </Grid>
-        <Grid item className={classes.VideoTitleAndQueuePlaylistOptionCon}>
-          <VideoTitleAndMore />
+        <Grid
+          item
+          lg={12}
+          md={6}
+          className={classes.VideoTitleAndQueuePlaylistOptionCon}
+        >
+          <VideoTitleAndMore toggleExpand={toggleExpand} />
         </Grid>
-        <Grid item className={classes.miniPlayerVideoItemCon}>
+        <Grid
+          item
+          md={12}
+          className={`${classes.miniPlayerVideoItemCon} ${
+            expand ? classes.expand : null
+          }`}
+        >
           <MiniPlayerFooter />
         </Grid>
       </Grid>
