@@ -1,13 +1,21 @@
 import React from "react";
+import { connect } from "react-redux";
 import MiniPlayer from "./miniPlayer/MiniPlayer";
 
-const ModelManager = ({ ModelName }) => {
+const ModelManager = ({ ModelName, Payload }) => {
   switch (ModelName) {
-    case "MINI_PLAYER":
-      return <h1>I AM MINI PLAYER</h1>;
+    case "MINI_PLAYER_OPEN":
+      return <MiniPlayer VideoForMiniplayer={Payload} />;
     default:
-      return <MiniPlayer />;
+      return null;
   }
 };
 
-export default ModelManager;
+const mapState = (state) => {
+  return {
+    Payload: state.videos.videosForMiniPlayer,
+    ModelName: state.videos.modelName,
+  };
+};
+
+export default connect(mapState)(ModelManager);

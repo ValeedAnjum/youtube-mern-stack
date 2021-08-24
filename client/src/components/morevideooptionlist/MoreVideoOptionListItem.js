@@ -25,11 +25,19 @@ const useStyle = makeStyles(() => {
     },
   };
 });
-const MoreVideoOptionListItem = ({ item: { Text, Icon, divider } }) => {
+const MoreVideoOptionListItem = ({
+  item: { Text, Icon, divider, OnClick },
+  video,
+  onMenuClose,
+}) => {
   const classes = useStyle();
+  const onClickHanler = () => {
+    OnClick && OnClick(video)();
+    onMenuClose();
+  };
   return (
     <Fragment>
-      <ListItem button className={classes.listItem}>
+      <ListItem button className={classes.listItem} onClick={onClickHanler}>
         <ListItemIcon className={classes.listIcon}>{Icon}</ListItemIcon>
         <ListItemText className={classes.listItemText} primary={Text} />
       </ListItem>

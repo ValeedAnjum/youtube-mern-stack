@@ -1,6 +1,8 @@
 const initialState = {
   relatedVideos: [],
   loadingRelatedVideos: false,
+  videosForMiniPlayer: [],
+  modelName: null,
 };
 
 export const videoReducer = (state = initialState, action) => {
@@ -14,7 +16,13 @@ export const videoReducer = (state = initialState, action) => {
         loadingRelatedVideos: false,
         relatedVideos: [...state.relatedVideos, ...payload],
       };
-
+    // for mini player
+    case "MINI_PLAYER_OPEN":
+      return {
+        ...state,
+        modelName: "MINI_PLAYER_OPEN",
+        videosForMiniPlayer: [...state.videosForMiniPlayer, payload],
+      };
     default:
       return state;
   }

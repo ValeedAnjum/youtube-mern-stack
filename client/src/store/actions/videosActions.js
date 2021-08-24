@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "../../store";
 
 export const fetchRelatedVideos = () => async (dispatch) => {
   try {
@@ -13,7 +14,6 @@ export const fetchRelatedVideos = () => async (dispatch) => {
   }
 };
 
-export const addToQueue = (dispatch, name) => () => {
-  console.log(dispatch);
-  console.log(name);
+export const addToQueue = (video) => () => {
+  store.dispatch({ type: "MINI_PLAYER_OPEN", payload: video });
 };

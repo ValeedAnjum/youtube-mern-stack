@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Hidden, IconButton, makeStyles } from "@material-ui/core";
+import { Grid, Hidden, IconButton, makeStyles, Slide } from "@material-ui/core";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 const title =
   "Christian Sister Accept Islam After She Got Her 2 Answer - Dr. Zakir Naik";
@@ -17,9 +17,6 @@ const useStyles = makeStyles((theme) => {
       width: "100%",
       overflow: "hidden",
       margin: "0",
-      [theme.breakpoints.down("md")]: {
-        textAlign: "center",
-      },
     },
     queueAndNumebrOfVideosInQueue: {
       margin: "0",
@@ -43,29 +40,25 @@ const VideoTitleAndMore = ({ toggleExpand }) => {
   };
   return (
     <Grid container className={classes.miniPlayertitleAndMore}>
-      <Grid item container direction="column" sm={11}>
+      <Grid item container direction="column" xs={11}>
         <Grid item>
           <p className={classes.videoTitle}>{title}</p>
           {/* {title} */}
         </Grid>
-        <Hidden mdDown>
-          <Grid item>
-            <p className={classes.queueAndNumebrOfVideosInQueue}>Queues. 2/9</p>
-          </Grid>
-        </Hidden>
-      </Grid>
-      <Hidden mdDown>
-        <Grid item sm={1}>
-          <IconButton
-            onClick={toggleExpandLocal}
-            className={`${classes.moreVideoArrowIcon} ${
-              expand ? classes.moreVideoArrowIconExpand : null
-            }`}
-          >
-            <ExpandLessIcon />
-          </IconButton>
+        <Grid item>
+          <p className={classes.queueAndNumebrOfVideosInQueue}>Queues. 2/9</p>
         </Grid>
-      </Hidden>
+      </Grid>
+      <Grid item xs={1}>
+        <IconButton
+          onClick={toggleExpandLocal}
+          className={`${classes.moreVideoArrowIcon} ${
+            expand ? classes.moreVideoArrowIconExpand : null
+          }`}
+        >
+          <ExpandLessIcon />
+        </IconButton>
+      </Grid>
     </Grid>
   );
 };

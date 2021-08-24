@@ -72,12 +72,12 @@ const VideosListItem = () => {
         </IconButton>
       </Grid>
       <Grid item container>
-        <Grid item md={3}>
+        <Grid item xs={3}>
           <img src={image} width="100%" height="100%" />
         </Grid>
         <Grid
           item
-          md={8}
+          xs={8}
           container
           direction="column"
           // justifyContent="space-between"
@@ -90,7 +90,7 @@ const VideosListItem = () => {
             Dr.Zakir
           </Grid>
         </Grid>
-        <Grid item md={1}>
+        <Grid item xs={1}>
           <IconButton
             onClick={moreVideoBtnClickHan}
             className={classes.moreVerticIcon}

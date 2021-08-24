@@ -28,6 +28,7 @@ const VideoCard = (props) => {
               playVideo={playVideo}
               classes={classes}
               title={title}
+              video={{ img, title, channelName, id }}
             />
             <Grid item sm={12} xs={12}>
               <p className={classes.channel}>{channelName}</p>

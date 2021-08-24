@@ -2,14 +2,13 @@ import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 import FlagIcon from "@material-ui/icons/Flag";
 
-import store from "../../store";
 import { addToQueue } from "../../store/actions/videosActions";
 
 export const MoreListOptionsForGuest = [
   {
     Text: "Add to queue",
     Icon: <PlaylistPlayIcon />,
-    onClick: (name) => addToQueue(store.dispatch, name),
+    OnClick: (data) => addToQueue(data),
   },
 ];
 export const MoreListOptionsForAuth = [
