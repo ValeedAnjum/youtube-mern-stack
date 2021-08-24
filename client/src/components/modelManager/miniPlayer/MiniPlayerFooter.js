@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => {
     },
   };
 });
-const MiniPlayerFooter = () => {
+const MiniPlayerFooter = ({ VideoForMiniplayer, videoCardClickHan }) => {
   const classes = useStyles();
   return (
     <Fragment>
@@ -25,16 +25,16 @@ const MiniPlayerFooter = () => {
         direction="column"
         className={classes.vidoeItemContainer}
       >
-        <VideoListItem />
-        <VideoListItem />
-        <VideoListItem />
-        <VideoListItem />
-        <VideoListItem />
-        <VideoListItem />
-        <VideoListItem />
-        <VideoListItem />
-        <VideoListItem />
-        <VideoListItem />
+        {/* <VideoListItem /> */}
+        {VideoForMiniplayer &&
+          VideoForMiniplayer.length >= 1 &&
+          VideoForMiniplayer.map((video) => (
+            <VideoListItem
+              videoCardClickHan={videoCardClickHan}
+              key={video.id}
+              video={video}
+            />
+          ))}
       </Grid>
     </Fragment>
   );

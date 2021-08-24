@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Grid, Hidden, IconButton, makeStyles, Slide } from "@material-ui/core";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-const title =
-  "Christian Sister Accept Islam After She Got Her 2 Answer - Dr. Zakir Naik";
+// const title =
+//   "Christian Sister Accept Islam After She Got Her 2 Answer - Dr. Zakir Naik";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
-const VideoTitleAndMore = ({ toggleExpand }) => {
+const VideoTitleAndMore = ({ toggleExpand, title }) => {
   const [expand, setExpand] = useState(false);
   const classes = useStyles();
   const toggleExpandLocal = () => {

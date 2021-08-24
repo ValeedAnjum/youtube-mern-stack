@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { Grid, makeStyles, Paper, Fade, Slide } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import { Grid, makeStyles, Paper, Slide } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 
+import axios from "axios";
 import PlayingVideo from "./PlayingVideo";
 import MiniPlayerFooter from "./MiniPlayerFooter";
 import { withRouter } from "react-router-dom";
@@ -54,26 +56,50 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
-function MiniPlayer(props) {
+function MiniPlayer({ location, VideoForMiniplayer }) {
   const [expand, setExpand] = useState(false);
+  const [videoSrc, setVideoSrc] = useState({ src: null, title: null });
   const classes = useStyles();
   const toggleExpand = () => {
     setExpand(!expand);
   };
-  if (props.location.pathname.includes("/video/")) return null;
+  useEffect(() => {
+    const fetchActiveVideoSrc = async () => {
+      const response = await axios.get(
+        `/video/playvideo/${VideoForMiniplayer[0].id}`
+      );
+      setVideoSrc({
+        src: response.data.src,
+        title: VideoForMiniplayer[0].title,
+      });
+    };
+    fetchActiveVideoSrc();
+  }, []);
+
+  const videoCardClickHan = (video) => {
+    console.log(video);
+  };
+  if (location.pathname.includes("/video/")) return null;
   return (
     <Slide direction="up" in={true} mountOnEnter unmountOnExit>
       <Paper className={classes.miniPlayerMainContainer} elevation={3}>
         <Grid container item xs={12} className={classes.miniPlayerInnerCon}>
           <Grid item xs={12} className={classes.miniPlayerVideoCont}>
-            <PlayingVideo />
+            {videoSrc.src ? (
+              <PlayingVideo videoSrc={videoSrc.src} />
+            ) : (
+              <Skeleton variant="rect" height={250} />
+            )}
           </Grid>
           <Grid
             item
             xs={12}
             className={classes.VideoTitleAndQueuePlaylistOptionCon}
           >
-            <VideoTitleAndMore toggleExpand={toggleExpand} />
+            <VideoTitleAndMore
+              toggleExpand={toggleExpand}
+              title={videoSrc.title}
+            />
           </Grid>
           <Grid
             item
@@ -82,7 +108,10 @@ function MiniPlayer(props) {
               expand ? classes.expand : null
             }`}
           >
-            <MiniPlayerFooter />
+            <MiniPlayerFooter
+              videoCardClickHan={videoCardClickHan}
+              VideoForMiniplayer={VideoForMiniplayer}
+            />
           </Grid>
         </Grid>
       </Paper>

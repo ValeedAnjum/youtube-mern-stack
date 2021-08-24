@@ -8,8 +8,8 @@ const video = {
     "https://i.ytimg.com/vi/T5ZlSSOhbzQ/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCE1GtvJ71DA7wgpdS9YMPDCNaloQ",
   src: `https://www.youtube.com/embed/T5ZlSSOhbzQ`,
 };
-const PlayingVideo = () => {
-  return <Video src={video.src} />;
+const PlayingVideo = ({ videoSrc }) => {
+  return <Video src={videoSrc} />;
 };
 
 export default PlayingVideo;
