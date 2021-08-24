@@ -31,7 +31,12 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
-const VideoTitleAndMore = ({ toggleExpand, title }) => {
+const VideoTitleAndMore = ({
+  toggleExpand,
+  title,
+  totalVideos,
+  activeVideoIndex,
+}) => {
   const [expand, setExpand] = useState(false);
   const classes = useStyles();
   const toggleExpandLocal = () => {
@@ -46,7 +51,9 @@ const VideoTitleAndMore = ({ toggleExpand, title }) => {
           {/* {title} */}
         </Grid>
         <Grid item>
-          <p className={classes.queueAndNumebrOfVideosInQueue}>Queues. 2/9</p>
+          <p className={classes.queueAndNumebrOfVideosInQueue}>
+            Queues. {activeVideoIndex}/{totalVideos}
+          </p>
         </Grid>
       </Grid>
       <Grid item xs={1}>

@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => {
   return {
     videoItem: {
       padding: "0px 10px 5px 0px",
+      "&:hover": {
+        backgroundColor: "rgb(242 242 242)",
+      },
     },
     imgCon: {
       cursor: "pointer",
@@ -38,9 +41,17 @@ const useStyles = makeStyles((theme) => {
       },
     },
     moreVerticIcon: {
-      [theme.breakpoints.down("md")]: {
-        padding: "0",
+      "&:hover": {
+        backgroundColor: "transparent",
       },
+    },
+    dragHandleIcon: {
+      "&:hover": {
+        backgroundColor: "transparent",
+      },
+    },
+    dragHandleIconCon: {
+      cursor: "pointer",
     },
   };
 });
@@ -64,8 +75,12 @@ const VideosListItem = ({
       alignItems="center"
       className={classes.videoItem}
     >
-      <Grid item>
-        <IconButton>
+      <Grid
+        item
+        className={classes.dragHandleIconCon}
+        onClick={() => videoCardClickHan({ title, id })}
+      >
+        <IconButton className={classes.dragHandleIcon}>
           <DragHandleIcon />
         </IconButton>
       </Grid>

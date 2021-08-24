@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => {
       zIndex: "1202",
       backgroundColor: "white",
       borderRadius: "0",
+      userSelect: "none",
       [theme.breakpoints.down("md")]: {
         left: "0",
         // height: "50%",
@@ -59,25 +60,29 @@ const useStyles = makeStyles((theme) => {
 function MiniPlayer({ location, VideoForMiniplayer }) {
   const [expand, setExpand] = useState(false);
   const [videoSrc, setVideoSrc] = useState({ src: null, title: null });
+  const [activeVideo, setActiveVideo] = useState(1);
   const classes = useStyles();
   const toggleExpand = () => {
     setExpand(!expand);
   };
   useEffect(() => {
-    const fetchActiveVideoSrc = async () => {
-      const response = await axios.get(
-        `/video/playvideo/${VideoForMiniplayer[0].id}`
-      );
-      setVideoSrc({
-        src: response.data.src,
-        title: VideoForMiniplayer[0].title,
-      });
-    };
     fetchActiveVideoSrc();
   }, []);
-
-  const videoCardClickHan = (video) => {
-    console.log(video);
+  const fetchActiveVideoSrc = async (videoData) => {
+    const id = videoData ? videoData.id : VideoForMiniplayer[0].id;
+    setVideoSrc((prevState) => ({
+      src: null,
+      title: prevState.title,
+    }));
+    const response = await axios.get(`/video/playvideo/${id}`);
+    setVideoSrc({
+      src: response.data.src,
+      title: `${videoData ? videoData.title : VideoForMiniplayer[0].title}`,
+    });
+  };
+  const videoCardClickHan = (video, index) => {
+    fetchActiveVideoSrc(video);
+    setActiveVideo(index + 1);
   };
   if (location.pathname.includes("/video/")) return null;
   return (
@@ -97,6 +102,8 @@ function MiniPlayer({ location, VideoForMiniplayer }) {
             className={classes.VideoTitleAndQueuePlaylistOptionCon}
           >
             <VideoTitleAndMore
+              totalVideos={VideoForMiniplayer.length}
+              activeVideoIndex={activeVideo}
               toggleExpand={toggleExpand}
               title={videoSrc.title}
             />

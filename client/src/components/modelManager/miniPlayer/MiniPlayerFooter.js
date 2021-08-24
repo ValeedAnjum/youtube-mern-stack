@@ -10,9 +10,6 @@ const useStyles = makeStyles(() => {
       color: "#767676de",
       margin: "0",
     },
-    vidoeItemContainer: {
-      padding: "0px 10px",
-    },
   };
 });
 const MiniPlayerFooter = ({ VideoForMiniplayer, videoCardClickHan }) => {
@@ -28,9 +25,9 @@ const MiniPlayerFooter = ({ VideoForMiniplayer, videoCardClickHan }) => {
         {/* <VideoListItem /> */}
         {VideoForMiniplayer &&
           VideoForMiniplayer.length >= 1 &&
-          VideoForMiniplayer.map((video) => (
+          VideoForMiniplayer.map((video, index) => (
             <VideoListItem
-              videoCardClickHan={videoCardClickHan}
+              videoCardClickHan={(vid) => videoCardClickHan(vid, index)}
               key={video.id}
               video={video}
             />
