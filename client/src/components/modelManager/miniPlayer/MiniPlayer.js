@@ -29,10 +29,25 @@ const useStyles = makeStyles((theme) => {
     miniPlayerInnerCon: {
       height: "100%",
     },
+    optionsOnVideoCon: {
+      position: "absolute",
+      top: "50%",
+      transform: "translate(0,-50%)",
+      opacity: "0",
+    },
+    videoOptionsIcons: {
+      color: "white",
+    },
     miniPlayerVideoCont: {
       height: "250px",
+      position: "relative",
       [theme.breakpoints.down("md")]: {
         width: "100%",
+      },
+      "&:hover": {
+        "& $optionsOnVideoCon": {
+          opacity: "1",
+        },
       },
     },
 
@@ -91,7 +106,7 @@ function MiniPlayer({ location, VideoForMiniplayer }) {
         <Grid container item xs={12} className={classes.miniPlayerInnerCon}>
           <Grid item xs={12} className={classes.miniPlayerVideoCont}>
             {videoSrc.src ? (
-              <PlayingVideo videoSrc={videoSrc.src} />
+              <PlayingVideo videoSrc={videoSrc.src} classes={classes} />
             ) : (
               <Skeleton variant="rect" height={250} />
             )}

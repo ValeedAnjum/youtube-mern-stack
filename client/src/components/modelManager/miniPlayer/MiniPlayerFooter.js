@@ -1,6 +1,7 @@
-import { Grid, IconButton, makeStyles } from "@material-ui/core";
 import React from "react";
+import { Grid, makeStyles } from "@material-ui/core";
 import { Fragment } from "react";
+import { v4 as uuidv4 } from "uuid";
 import VideoListItem from "./VideosListItem";
 
 const useStyles = makeStyles(() => {
@@ -28,7 +29,7 @@ const MiniPlayerFooter = ({ VideoForMiniplayer, videoCardClickHan }) => {
           VideoForMiniplayer.map((video, index) => (
             <VideoListItem
               videoCardClickHan={(vid) => videoCardClickHan(vid, index)}
-              key={video.id}
+              key={uuidv4()}
               video={video}
             />
           ))}
