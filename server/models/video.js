@@ -16,6 +16,23 @@ const videoSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  views: {
+    type: Number,
+    required: true,
+  },
+  channelName: {
+    type: String,
+    required: true,
+  },
+  videoDuration: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
 });
 
 module.exports = Video = mongoose.model("YOUTUBE_VIDEO", videoSchema);

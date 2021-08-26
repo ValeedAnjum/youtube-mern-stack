@@ -11,17 +11,6 @@ import {
   MoreListOptionsForGuest,
 } from "./MoreVideoOptionsListData";
 
-const MoreListOptions = [
-  { Text: "Add to queue", Icon: <PlaylistPlayIcon /> },
-  {
-    Text: "Save to Watch later",
-    Icon: <WatchLaterIcon />,
-  },
-  {
-    Text: "Save To playlist",
-    Icon: <PlaylistAddIcon />,
-  },
-];
 const useStyle = makeStyles(() => {
   return {
     list: {
@@ -38,7 +27,7 @@ const useStyle = makeStyles(() => {
   };
 });
 
-const MoreVideoOptions = ({ auth }) => {
+const MoreVideoOptions = ({ auth, video }) => {
   const [anchorElForMore, setAnchorElForMore] = useState(null);
   const internelClasses = useStyle();
   const moreBtnClickHnd = (event) => {
@@ -47,7 +36,7 @@ const MoreVideoOptions = ({ auth }) => {
   const onMenuClose = () => {
     setAnchorElForMore(false);
   };
-
+  // console.log(video);
   return (
     <Fragment>
       <IconButton onClick={moreBtnClickHnd}>
@@ -74,6 +63,8 @@ const MoreVideoOptions = ({ auth }) => {
       >
         <List className={internelClasses.list}>
           <MoreVideoOptionListItems
+            video={video}
+            onMenuClose={onMenuClose}
             data={auth ? MoreListOptionsForAuth : MoreListOptionsForGuest}
           />
         </List>

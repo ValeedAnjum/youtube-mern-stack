@@ -12,7 +12,11 @@ export const MoreListOptionsForGuest = [
   },
 ];
 export const MoreListOptionsForAuth = [
-  { Text: "Add to queue", Icon: <PlaylistPlayIcon /> },
+  {
+    Text: "Add to queue",
+    Icon: <PlaylistPlayIcon />,
+    OnClick: (data) => addToQueue(data),
+  },
   {
     Text: "Save to Watch later",
     Icon: <PlaylistAddIcon />,

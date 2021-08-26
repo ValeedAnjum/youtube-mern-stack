@@ -1,6 +1,7 @@
 import React from "react";
 import CloseIcon from "@material-ui/icons/Close";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
+import { connect } from "react-redux";
 import Video from "./Video";
 import { Grid, IconButton, makeStyles } from "@material-ui/core";
 const video = {
@@ -12,30 +13,43 @@ const video = {
   src: `https://www.youtube.com/embed/T5ZlSSOhbzQ`,
 };
 
-const PlayingVideo = ({ videoSrc, classes }) => {
+const PlayingVideo = ({
+  videoSrc,
+  classes,
+  goToPlayingVideo,
+  id,
+  ClearTheQueue,
+  setVideoSrc,
+}) => {
+  const clearTheQueue = () => {
+    ClearTheQueue();
+    setVideoSrc({
+      src: null,
+      title: null,
+      id: null,
+    });
+  };
   return (
     <>
-      <Grid
-        className={classes.optionsOnVideoCon}
-        item
-        xs={12}
-        container
-        justifyContent="space-between"
+      <IconButton
+        className={classes.fullScreenVideoIcon}
+        onClick={() => goToPlayingVideo(id)}
       >
-        <Grid item>
-          <IconButton className={classes.videoOptionsIcons}>
-            <FullscreenIcon />
-          </IconButton>
-        </Grid>
-        <Grid item>
-          <IconButton className={classes.videoOptionsIcons}>
-            <CloseIcon />
-          </IconButton>
-        </Grid>
-      </Grid>
+        <FullscreenIcon />
+      </IconButton>
+      <IconButton onClick={clearTheQueue} className={classes.clearQueueIcon}>
+        <CloseIcon />
+      </IconButton>
+
       <Video src={videoSrc} />
     </>
   );
 };
 
-export default PlayingVideo;
+const mapDispatch = (dispatch) => {
+  return {
+    ClearTheQueue: () => dispatch({ type: "CLEAR_THE_QUEUE" }),
+  };
+};
+
+export default connect(null, mapDispatch)(PlayingVideo);

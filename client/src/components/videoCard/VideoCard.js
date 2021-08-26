@@ -1,5 +1,6 @@
 import { Grid, Hidden, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
+import moment from "moment";
 import { withRouter } from "react-router-dom";
 import MoreVideoOptions from "./MoreVideoOptions";
 
@@ -52,11 +53,14 @@ const useStyle = makeStyles(() => {
     },
   };
 });
-const VideoCard = ({ history, video: { thumbnail, title, _id } }) => {
+const VideoCard = ({ history, video }) => {
   const classes = useStyle();
+  const { thumbnail, title, _id, channelName, createdAt, videoDuration } =
+    video;
   const playVideo = () => {
     history.push(`/video/${_id}`);
   };
+  console.log(video);
   return (
     <Grid container spacing={1}>
       <Grid
@@ -67,7 +71,7 @@ const VideoCard = ({ history, video: { thumbnail, title, _id } }) => {
         onClick={playVideo}
       >
         <img className={classes.img} src={thumbnail} alt={"video_thumbnail"} />
-        <p className={classes.timeDurition}>8:44</p>
+        <p className={classes.timeDurition}>{videoDuration}</p>
       </Grid>
       <Grid item sm={9}>
         <Grid container direction="column">
@@ -87,14 +91,18 @@ const VideoCard = ({ history, video: { thumbnail, title, _id } }) => {
               </Hidden>
             </Grid>
             <Grid item sm={1}>
-              <MoreVideoOptions />
+              <MoreVideoOptions
+                video={{ img: thumbnail, title, channelName, id: _id }}
+              />
             </Grid>
           </Grid>
           <Hidden xsDown>
             <Grid item>
               <p className={classes.channelNameAndViews}>
-                {" "}
-                {`${videos[0].channelName} ${videos[0].views} views . ${videos[0].timeStamp}`}
+                {`${video.channelName.toUpperCase()} ${
+                  Number(video.views).toPrecision(2) / 1000
+                }k views . ${moment(createdAt).fromNow()}`}
+                {/* {`${videos[0].channelName} ${videos[0].views} views . ${videos[0].timeStamp}`} */}
               </p>
             </Grid>
             <Grid item>

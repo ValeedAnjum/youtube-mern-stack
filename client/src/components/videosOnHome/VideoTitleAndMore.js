@@ -38,7 +38,8 @@ const VideoTitleAndMore = ({ classes, title, playVideo, auth, video }) => {
     <Fragment>
       <Grid item sm={10} xs={11} className={classes.videoTitleCon}>
         <p className={classes.title} onClick={playVideo}>
-          {title.length > 53 ? title.slice(0, 50) + "..." : title}
+          {/* {title.length > 53 ? title.slice(0, 50) + "..." : title} */}
+          {title}
         </p>
       </Grid>
       <Grid item sm={2} xs={1}>

@@ -37,7 +37,7 @@ const useStyle = makeStyles(() => {
   };
 });
 
-const MoreVideoOptions = ({ auth }) => {
+const MoreVideoOptions = ({ auth, video }) => {
   const [anchorElForMore, setAnchorElForMore] = useState(null);
   const internelClasses = useStyle();
   const moreBtnClickHnd = (event) => {
@@ -46,7 +46,7 @@ const MoreVideoOptions = ({ auth }) => {
   const onMenuClose = () => {
     setAnchorElForMore(false);
   };
-
+  console.log(video);
   return (
     <Fragment>
       <IconButton onClick={moreBtnClickHnd}>
@@ -73,6 +73,8 @@ const MoreVideoOptions = ({ auth }) => {
       >
         <List className={internelClasses.list}>
           <MoreVideoOptionListItems
+            onMenuClose={onMenuClose}
+            video={video}
             data={auth ? MoreListOptionsForAuth : MoreListOptionsForGuest}
           />
         </List>

@@ -23,6 +23,9 @@ export const videoReducer = (state = initialState, action) => {
         modelName: "MINI_PLAYER_OPEN",
         videosForMiniPlayer: [...state.videosForMiniPlayer, payload],
       };
+    case "CLEAR_THE_QUEUE":
+      console.log("CLEAR_THE_QUEUE");
+      return { ...state, videosForMiniPlayer: [], modelName: null };
     default:
       return state;
   }

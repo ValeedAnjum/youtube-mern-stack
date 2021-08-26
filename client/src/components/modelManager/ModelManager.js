@@ -4,8 +4,12 @@ import MiniPlayer from "./miniPlayer/MiniPlayer";
 
 const ModelManager = ({ ModelName, Payload }) => {
   switch (ModelName) {
-    case "MINI_PLAYER_OPEN":
-      return <MiniPlayer VideoForMiniplayer={Payload} />;
+    case "MINI_PLAYER_OPEN": {
+      return Payload.length === 0 ? null : (
+        <MiniPlayer VideoForMiniplayer={Payload} />
+      );
+    }
+    // return <MiniPlayer VideoForMiniplayer={Payload} />;
     default:
       return null;
   }

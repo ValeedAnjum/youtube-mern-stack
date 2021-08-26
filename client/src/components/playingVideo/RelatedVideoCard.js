@@ -3,13 +3,8 @@ import React, { Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import MoreVideoOptions from "./MoreVideoOptions";
 
-const RelatedVideoCard = ({
-  classes,
-  video: { thumbnail, title, _id },
-  history,
-  setVideoSrc,
-}) => {
-  // console.log(video);
+const RelatedVideoCard = ({ classes, video, history, setVideoSrc }) => {
+  const { thumbnail, title, _id, channelName } = video;
   const playVideo = () => {
     setVideoSrc(null);
     history.push(`/video/${_id}`);
@@ -50,7 +45,10 @@ const RelatedVideoCard = ({
         </Grid>
       </Grid>
       <Grid item sm={1} xs={1}>
-        <MoreVideoOptions classes={classes} />
+        <MoreVideoOptions
+          video={{ img: thumbnail, title, channelName, id: _id }}
+          classes={classes}
+        />
       </Grid>
     </Fragment>
   );

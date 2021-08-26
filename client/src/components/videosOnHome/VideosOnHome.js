@@ -67,6 +67,9 @@ const useStyle = makeStyles((theme) => {
     },
     title: {
       margin: "0",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
     },
     videoTitleCon: {
       margin: "auto",
@@ -81,6 +84,7 @@ const useStyle = makeStyles((theme) => {
       margin: "0",
       fontSize: "0.8em",
       color: "#939191c9",
+      textTransform: "uppercase",
     },
     viewsAndTime: {
       margin: "0",
@@ -125,6 +129,7 @@ const VideosOnHome = () => {
   const fetchVideos = async () => {
     setLoadingVideos(true);
     const result = await axios.get("/video/randomvideos/12");
+    console.log(result.data);
     setLoadingVideos(false);
     setIsFetching(false);
     setVideos((oldData) => [...oldData, ...result.data]);
@@ -135,18 +140,7 @@ const VideosOnHome = () => {
       {videos &&
         videos.length > 0 &&
         videos.map((video, index) => {
-          return (
-            <VideoCard
-              key={index}
-              classes={classes}
-              title={video.title}
-              channelName={videosLocal[0].channelName}
-              views={videosLocal[0].views}
-              timeStamp={videosLocal[0].timeStamp}
-              img={video.thumbnail}
-              id={video._id}
-            />
-          );
+          return <VideoCard key={index} classes={classes} video={video} />;
         })}
       {/* loading placeholder */}
       {loadingVideos ? <LoadingSkeleton classes={classes} /> : null}

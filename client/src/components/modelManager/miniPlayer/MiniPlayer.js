@@ -29,14 +29,28 @@ const useStyles = makeStyles((theme) => {
     miniPlayerInnerCon: {
       height: "100%",
     },
-    optionsOnVideoCon: {
+    fullScreenVideoIcon: {
       position: "absolute",
       top: "50%",
       transform: "translate(0,-50%)",
-      opacity: "0",
-    },
-    videoOptionsIcons: {
       color: "white",
+      opacity: "0",
+      backgroundColor: "rgb(0 0 0 / 22%)",
+      "&:hover": {
+        backgroundColor: "rgb(0 0 0 / 22%)",
+      },
+    },
+    clearQueueIcon: {
+      position: "absolute",
+      top: "50%",
+      right: "0",
+      transform: "translate(0,-50%)",
+      color: "white",
+      opacity: "0",
+      backgroundColor: "rgb(0 0 0 / 22%)",
+      "&:hover": {
+        backgroundColor: "rgb(0 0 0 / 22%)",
+      },
     },
     miniPlayerVideoCont: {
       height: "250px",
@@ -45,8 +59,13 @@ const useStyles = makeStyles((theme) => {
         width: "100%",
       },
       "&:hover": {
-        "& $optionsOnVideoCon": {
+        "& $fullScreenVideoIcon": {
           opacity: "1",
+          transition: "0.3s",
+        },
+        "& $clearQueueIcon": {
+          opacity: "1",
+          transition: "0.3s",
         },
       },
     },
@@ -72,41 +91,60 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
-function MiniPlayer({ location, VideoForMiniplayer }) {
+function MiniPlayer({ location, VideoForMiniplayer, history }) {
   const [expand, setExpand] = useState(false);
-  const [videoSrc, setVideoSrc] = useState({ src: null, title: null });
+  const [videoSrc, setVideoSrc] = useState({
+    src: null,
+    title: null,
+    id: null,
+  });
   const [activeVideo, setActiveVideo] = useState(1);
   const classes = useStyles();
-  const toggleExpand = () => {
-    setExpand(!expand);
-  };
+
   useEffect(() => {
     fetchActiveVideoSrc();
   }, []);
+
+  const toggleExpand = () => {
+    setExpand(!expand);
+  };
+
   const fetchActiveVideoSrc = async (videoData) => {
     const id = videoData ? videoData.id : VideoForMiniplayer[0].id;
     setVideoSrc((prevState) => ({
       src: null,
       title: prevState.title,
+      id: null,
     }));
     const response = await axios.get(`/video/playvideo/${id}`);
     setVideoSrc({
       src: response.data.src,
       title: `${videoData ? videoData.title : VideoForMiniplayer[0].title}`,
+      id: id,
     });
   };
   const videoCardClickHan = (video, index) => {
     fetchActiveVideoSrc(video);
     setActiveVideo(index + 1);
   };
+  const goToPlayingVideo = (id) => {
+    history.push(`/video/${id}`);
+  };
   if (location.pathname.includes("/video/")) return null;
+
   return (
     <Slide direction="up" in={true} mountOnEnter unmountOnExit>
       <Paper className={classes.miniPlayerMainContainer} elevation={3}>
         <Grid container item xs={12} className={classes.miniPlayerInnerCon}>
           <Grid item xs={12} className={classes.miniPlayerVideoCont}>
             {videoSrc.src ? (
-              <PlayingVideo videoSrc={videoSrc.src} classes={classes} />
+              <PlayingVideo
+                videoSrc={videoSrc.src}
+                goToPlayingVideo={goToPlayingVideo}
+                id={videoSrc.id}
+                classes={classes}
+                setVideoSrc={setVideoSrc}
+              />
             ) : (
               <Skeleton variant="rect" height={250} />
             )}

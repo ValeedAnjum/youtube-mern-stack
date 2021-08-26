@@ -17,6 +17,13 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
     const { title, thumbnail, src } = req.body;
+    // generating integer from min to max
+    function generateRandomInteger(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    // channels
+    const channels = ["hum Tv", "ary news", "red chilli", "coding phase"];
+
     videosData.forEach(async (data) => {
       const { title, thumbnail, src, searchTitle } = data;
       const video = new Video({
@@ -24,6 +31,11 @@ router.post(
         thumbnail,
         src,
         searchTitle,
+        views: generateRandomInteger(1000, 5000),
+        channelName: channels[Math.floor(Math.random() * channels.length)],
+        videoDuration: `${Math.floor(Math.random() * 55) + 8}:${Math.floor(
+          Math.random() * 60
+        )}`,
       });
       try {
         await video.save();
