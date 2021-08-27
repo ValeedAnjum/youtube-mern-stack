@@ -5,6 +5,7 @@ import Video from "./Video";
 import RelatedVideos from "./RelatedVideos";
 import axios from "axios";
 import PlayingVideoSkeleton from "./PlayingVideoSkeleton";
+import Queue from "./Queue";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -86,6 +87,7 @@ const PlayingVideo = (props) => {
         {videoSrc ? <Video src={videoSrc} /> : <PlayingVideoSkeleton />}
       </Grid>
       <Grid item sm={4} xs={12}>
+        <Queue />
         <RelatedVideos
           videos={relatedVideos}
           loadingVideos={loadingRelatedVideos}

@@ -4,18 +4,8 @@ import moment from "moment";
 import { withRouter } from "react-router-dom";
 import MoreVideoOptions from "./MoreVideoOptions";
 
-const videos = [
-  {
-    img: "https://i.ytimg.com/vi/PcHa6xPvlbg/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDBi0mZN-OTmcoxDmZIgO99T5xBoA",
-    title:
-      "Raqs-e-Bismil | Episode 25 | Presented by Master Paints, Powered by West Marina & SandalRaqs-e-Bismil | Episode 25 | Presented by Master Paints, Powered by West Marina & Sandal",
-    channelName: "HUM TV",
-    views: "10K",
-    timeStamp: "3 hours ago",
-    description:
-      " Thank you for watching. Subscribe to Tsuriki Show! Thank you for watching.Subscribe to Tsuriki Show! Thank you for watching. Subscribe to Tsuriki Show! Thank you for watching. Subscribe to Tsuriki Show! Thank you for watching. Subscribe to Tsuriki Show!",
-  },
-];
+const des =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In iaculis ligula lorem, auctor vehicula nunc convallis id. Donec fringilla lorem vitae massa feugiat lobortis. Nulla scelerisque quam vel eleifend vestibulum. Nam ac egestas diam, ornare ornare erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam mollis arcu id tempor elementum. Nunc a ipsum id metus rutrum pharetra. Curabitur orci eros, vestibulum sit amet viverra non, pharetra a arcu. Donec varius vitae mauris quis porta. Quisque porta vulputate erat ut fringilla. Ut interdum, nunc sit amet accumsan mollis, sem massa malesuada nisi, in lobortis nibh leo in turpis. Nullam sagittis neque id lobortis luctus. Duis sit amet scelerisque dolor, at feugiat nibh. Quisque condimentum consequat neque ullamcorper rhoncus.";
 
 const useStyle = makeStyles(() => {
   return {
@@ -84,9 +74,7 @@ const VideoCard = ({ history, video }) => {
               </Hidden>
               <Hidden smUp>
                 <Typography className={classes.title}>
-                  {videos[0].title.length > 73
-                    ? videos[0].title.slice(0, 70) + "..."
-                    : videos[0].title}
+                  {title.length > 73 ? title.slice(0, 70) + "..." : title}
                 </Typography>
               </Hidden>
             </Grid>
@@ -107,9 +95,7 @@ const VideoCard = ({ history, video }) => {
             </Grid>
             <Grid item>
               <p className={classes.description}>
-                {videos[0].description.length > 153
-                  ? videos[0].description.slice(0, 150) + "..."
-                  : videos[0].description}
+                {des.length > 153 ? des.slice(0, 150) + "..." : des}
               </p>
             </Grid>
           </Hidden>

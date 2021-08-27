@@ -21,7 +21,7 @@ const MiniPlayerFooter = ({ VideoForMiniplayer, videoCardClickHan }) => {
         item
         container
         direction="column"
-        className={classes.vidoeItemContainer}
+        // className={classes.vidoeItemContainer}
       >
         {/* <VideoListItem /> */}
         {VideoForMiniplayer &&
