@@ -6,6 +6,8 @@ import RelatedVideos from "./RelatedVideos";
 import axios from "axios";
 import PlayingVideoSkeleton from "./PlayingVideoSkeleton";
 import Queue from "./Queue";
+import { compose } from "redux";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -17,7 +19,7 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
-const PlayingVideo = (props) => {
+const PlayingVideo = ({ match, VideosForMiniPlayer }) => {
   // console.log(props.match.params.id);
   const [videoSrc, setVideoSrc] = useState(null);
   const [loadingVideo, setLoadingVideo] = useState(false);
@@ -25,12 +27,13 @@ const PlayingVideo = (props) => {
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [loadingRelatedVideos, setLoadingRelatedVideos] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
-  const { id } = props.match.params;
+  const { id } = match.params;
   const classes = useStyles();
   useEffect(() => {
     const fetchVideoIframe = async () => {
       try {
-        setLoadingVideo(true);
+        // setLoadingVideo(true);
+        setVideoSrc(null);
         const response = await axios.get(`/video/playvideo/${id}`);
         setVideoSrc(response.data.src);
         setLoadingVideo(false);
@@ -87,7 +90,9 @@ const PlayingVideo = (props) => {
         {videoSrc ? <Video src={videoSrc} /> : <PlayingVideoSkeleton />}
       </Grid>
       <Grid item sm={4} xs={12}>
-        <Queue />
+        {VideosForMiniPlayer.length >= 1 && (
+          <Queue VideosForMiniPlayer={VideosForMiniPlayer} />
+        )}
         <RelatedVideos
           videos={relatedVideos}
           loadingVideos={loadingRelatedVideos}
@@ -98,4 +103,11 @@ const PlayingVideo = (props) => {
   );
 };
 
-export default withRouter(PlayingVideo);
+const mapState = (state) => {
+  return {
+    VideosForMiniPlayer: state.videos.videosForMiniPlayer,
+  };
+};
+
+// export default withRouter(PlayingVideo);
+export default compose(connect(mapState), withRouter)(PlayingVideo);

@@ -46,7 +46,6 @@ const MoreVideoOptions = ({ auth, video }) => {
   const onMenuClose = () => {
     setAnchorElForMore(false);
   };
-  console.log(video);
   return (
     <Fragment>
       <IconButton onClick={moreBtnClickHnd}>

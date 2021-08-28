@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Grid, IconButton, makeStyles } from "@material-ui/core";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import { v4 as uuidv4 } from "uuid";
+
+import MiniVideoCard from "../miniVideoCard/MiniVideoCard";
+import { videoCardMoreOptions } from "./VideoCardMoreOptionData";
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles(() => {
   return {
@@ -56,14 +61,20 @@ const useStyles = makeStyles(() => {
     },
     expanded: {
       height: "auto",
+      marginTop: "5px",
     },
   };
 });
-const Queue = () => {
+const Queue = ({ VideosForMiniPlayer, history }) => {
   const classes = useStyles();
-  const [expand, setExpand] = useState(false);
+  const [expand, setExpand] = useState(true);
   const expandToggle = () => {
     setExpand(!expand);
+  };
+  const videoCardClickHan = (id, index) => {
+    console.log(id);
+    console.log(history);
+    history.push(`/video/${id}`);
   };
   return (
     <Grid container className={classes.queue}>
@@ -95,28 +106,19 @@ const Queue = () => {
           item
           className={`${expand ? classes.expanded : classes.queuesVideoCon}`}
         >
-          Video Card
-          <br />
-          Video Card
-          <br />
-          Video Card
-          <br />
-          Video Card
-          <br />
-          Video Card
-          <br />
-          Video Card
-          <br />
-          Video Card
-          <br />
-          Video Card
-          <br />
-          Video Card
-          <br />
+          {VideosForMiniPlayer.length >= 1 &&
+            VideosForMiniPlayer.map((video, index) => (
+              <MiniVideoCard
+                videoCardClickHan={() => videoCardClickHan(video.id, index)}
+                key={uuidv4()}
+                video={video}
+                videoCardMoreOptions={videoCardMoreOptions}
+              />
+            ))}
         </Grid>
       </Grid>
     </Grid>
   );
 };
 
-export default Queue;
+export default withRouter(Queue);

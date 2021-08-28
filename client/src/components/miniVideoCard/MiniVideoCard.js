@@ -4,10 +4,9 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import DragHandleIcon from "@material-ui/icons/DragHandle";
 import MenuForMoreVideoCardOptions from "./MenuForMoreVideoCardOptions";
-// const title =
-//   "Christian Sister Accept Islam After She Got Her 2 Answer - Dr. Zakir Naik";
-// const image =
-//   "https://i.ytimg.com/vi/T5ZlSSOhbzQ/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCE1GtvJ71DA7wgpdS9YMPDCNaloQ";
+// import MenuForMoreVideoCardOptions from "./MenuForMoreVideoCardOptions";
+// import MenuForMoreVideoCardOptions from "../modelManager/miniPlayer/MenuForMoreVideoCardOptions";
+
 const useStyles = makeStyles((theme) => {
   return {
     videoItem: {
@@ -55,9 +54,10 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
-const VideosListItem = ({
+const MiniVideoCard = ({
   video: { img, title, channelName, id },
   videoCardClickHan,
+  videoCardMoreOptions,
 }) => {
   const [anchorElForMore, setAnchorElForMore] = useState(null);
   const moreVideoBtnClickHan = (event) => {
@@ -120,6 +120,7 @@ const VideosListItem = ({
             classes={classes}
             anchorElForMore={anchorElForMore}
             onMenuClose={onMenuClose}
+            videoCardMoreOptions={videoCardMoreOptions}
           />
         </Grid>
       </Grid>
@@ -127,4 +128,4 @@ const VideosListItem = ({
   );
 };
 
-export default VideosListItem;
+export default MiniVideoCard;
