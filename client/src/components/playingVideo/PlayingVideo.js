@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
-const PlayingVideo = ({ match, VideosForMiniPlayer }) => {
+const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
   // console.log(props.match.params.id);
   const [videoSrc, setVideoSrc] = useState(null);
   const [loadingVideo, setLoadingVideo] = useState(false);
@@ -91,7 +91,10 @@ const PlayingVideo = ({ match, VideosForMiniPlayer }) => {
       </Grid>
       <Grid item sm={4} xs={12}>
         {VideosForMiniPlayer.length >= 1 && (
-          <Queue VideosForMiniPlayer={VideosForMiniPlayer} />
+          <Queue
+            VideosForMiniPlayer={VideosForMiniPlayer}
+            ClearTheQueue={ClearTheQueue}
+          />
         )}
         <RelatedVideos
           videos={relatedVideos}
@@ -109,5 +112,12 @@ const mapState = (state) => {
   };
 };
 
-// export default withRouter(PlayingVideo);
-export default compose(connect(mapState), withRouter)(PlayingVideo);
+const mapDispatch = (dispatch) => {
+  return {
+    ClearTheQueue: () => dispatch({ type: "CLEAR_THE_QUEUE" }),
+  };
+};
+export default compose(
+  connect(mapState, mapDispatch),
+  withRouter
+)(PlayingVideo);

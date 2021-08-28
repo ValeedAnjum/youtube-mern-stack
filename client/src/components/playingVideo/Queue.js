@@ -65,7 +65,7 @@ const useStyles = makeStyles(() => {
     },
   };
 });
-const Queue = ({ VideosForMiniPlayer, history }) => {
+const Queue = ({ VideosForMiniPlayer, history, ClearTheQueue }) => {
   const classes = useStyles();
   const [expand, setExpand] = useState(true);
   const expandToggle = () => {
@@ -76,6 +76,7 @@ const Queue = ({ VideosForMiniPlayer, history }) => {
     console.log(history);
     history.push(`/video/${id}`);
   };
+
   return (
     <Grid container className={classes.queue}>
       <Grid className={classes.queueCon} container direction="column">
@@ -99,7 +100,9 @@ const Queue = ({ VideosForMiniPlayer, history }) => {
             </Grid>
           </Grid>
           <Grid item className={classes.clearBtnCon}>
-            <button className={classes.clearBtn}>CLEAR</button>
+            <button className={classes.clearBtn} onClick={ClearTheQueue}>
+              CLEAR
+            </button>
           </Grid>
         </Grid>
         <Grid

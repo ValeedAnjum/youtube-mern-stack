@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => {
   };
 });
 const LogoAndMenu = (props) => {
-  const classes = useStyles();
+  const classes = useStyles({ l: true });
   const { setSideDrawer } = props;
 
   const openSideDrawer = () => {
