@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grid, IconButton, makeStyles } from "@material-ui/core";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { v4 as uuidv4 } from "uuid";
 
 import MiniVideoCard from "../miniVideoCard/MiniVideoCard";
@@ -32,11 +32,11 @@ const useStyles = makeStyles(() => {
       textAlign: "right",
     },
     expandIcon: {
-      transform: "rotate(0deg)",
+      // transform: "rotate(0deg)",
       transition: "0.3s",
     },
     expandIconExpended: {
-      transform: "rotate(-180deg)",
+      transform: "rotate(180deg)",
       transition: "0.3s",
     },
     clearBtnCon: {
@@ -67,13 +67,13 @@ const useStyles = makeStyles(() => {
 });
 const Queue = ({ VideosForMiniPlayer, history, ClearTheQueue }) => {
   const classes = useStyles();
+  const [activeVideo, setActiveVideo] = useState(1);
   const [expand, setExpand] = useState(true);
   const expandToggle = () => {
     setExpand(!expand);
   };
   const videoCardClickHan = (id, index) => {
-    console.log(id);
-    console.log(history);
+    setActiveVideo(index + 1);
     history.push(`/video/${id}`);
   };
 
@@ -86,7 +86,7 @@ const Queue = ({ VideosForMiniPlayer, history, ClearTheQueue }) => {
           </Grid>
           <Grid item container className={classes.queueTotalAndActiveVideoCon}>
             <Grid item xs={6}>
-              1/2
+              {activeVideo}/{VideosForMiniPlayer.length}
             </Grid>
             <Grid item xs={6} className={classes.expandIconCon}>
               <IconButton
@@ -95,7 +95,7 @@ const Queue = ({ VideosForMiniPlayer, history, ClearTheQueue }) => {
                   expand ? classes.expandIcon : classes.expandIconExpended
                 }`}
               >
-                <ExpandLessIcon />
+                <ExpandMoreIcon />
               </IconButton>
             </Grid>
           </Grid>

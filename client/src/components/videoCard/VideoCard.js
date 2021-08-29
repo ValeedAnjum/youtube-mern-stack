@@ -50,7 +50,6 @@ const VideoCard = ({ history, video }) => {
   const playVideo = () => {
     history.push(`/video/${_id}`);
   };
-  console.log(video);
   return (
     <Grid container spacing={1}>
       <Grid

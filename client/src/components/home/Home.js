@@ -41,7 +41,7 @@ const Home = () => {
   const classes = useStyle();
   return (
     <div className={classes.root}>
-      <Hidden xsDown>
+      <Hidden smDown>
         <Drawer
           className={classes.drawer}
           variant="permanent"
