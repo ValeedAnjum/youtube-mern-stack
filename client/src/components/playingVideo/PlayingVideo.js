@@ -8,6 +8,7 @@ import PlayingVideoSkeleton from "./PlayingVideoSkeleton";
 import Queue from "./Queue";
 import { compose } from "redux";
 import { connect } from "react-redux";
+import { base } from "../../store/util/BASE_API_ADDRESS";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -34,7 +35,8 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
       try {
         // setLoadingVideo(true);
         setVideoSrc(null);
-        const response = await axios.get(`/video/playvideo/${id}`);
+        // const response = await axios.get(`/video/playvideo/${id}`);
+        const response = await axios.get(`${base}/video/playvideo/${id}`);
         setVideoSrc(response.data.src);
         setLoadingVideo(false);
         // console.log(response.data);
@@ -57,7 +59,8 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
   const fetchRelatedVideos = async () => {
     try {
       setLoadingRelatedVideos(true);
-      const result = await axios.get("/video/randomvideos/12");
+      // const result = await axios.get("/video/randomvideos/12");
+      const result = await axios.get(`${base}/video/randomvideos/12`);
       setLoadingRelatedVideos(false);
       setRelatedVideos(result.data);
     } catch (error) {
@@ -76,7 +79,8 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
   };
   const fetchRelatedVideosOnScrolling = async () => {
     try {
-      const result = await axios.get("/video/randomvideos/12");
+      // const result = await axios.get("/video/randomvideos/12");
+      const result = await axios.get(`${base}/video/randomvideos/12`);
       setIsFetching(false);
       setRelatedVideos((data) => [...data, ...result.data]);
     } catch (error) {

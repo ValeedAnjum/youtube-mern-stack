@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core";
 import axios from "axios";
 import VideoCard from "./VideoCard";
 import LoadingSkeleton from "./LoadingSkeleton";
+import { base } from "../../store/util/BASE_API_ADDRESS";
 const videosLocal = [
   {
     img: "https://i.ytimg.com/vi/PcHa6xPvlbg/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDBi0mZN-OTmcoxDmZIgO99T5xBoA",
@@ -128,7 +129,8 @@ const VideosOnHome = () => {
   };
   const fetchVideos = async () => {
     setLoadingVideos(true);
-    const result = await axios.get("/video/randomvideos/12");
+    // const result = await axios.get("/video/randomvideos/12");
+    const result = await axios.get(`${base}/video/randomvideos/12`);
     setLoadingVideos(false);
     setIsFetching(false);
     setVideos((oldData) => [...oldData, ...result.data]);

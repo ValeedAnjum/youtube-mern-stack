@@ -8,6 +8,7 @@ import {
   loadUser,
 } from "../../../store/actions/authActions";
 import axios from "axios";
+import { base } from "../../../store/util/BASE_API_ADDRESS";
 
 const ResetPassword = ({
   match,
@@ -33,8 +34,13 @@ const ResetPassword = ({
     console.log(password);
     const body = JSON.stringify({ password });
     try {
+      // const res = await axios.post(
+      //   `/auth/passwordresettokenverification/${match.params.token}`,
+      //   body,
+      //   config
+      // );
       const res = await axios.post(
-        `/auth/passwordresettokenverification/${match.params.token}`,
+        `${base}/auth/passwordresettokenverification/${match.params.token}`,
         body,
         config
       );

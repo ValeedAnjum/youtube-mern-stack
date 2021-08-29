@@ -7,6 +7,7 @@ import PlayingVideo from "./PlayingVideo";
 import MiniPlayerFooter from "./MiniPlayerFooter";
 import { withRouter } from "react-router-dom";
 import VideoTitleAndMore from "./VideoTitleAndMore";
+import { base } from "../../../store/util/BASE_API_ADDRESS";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -116,7 +117,8 @@ function MiniPlayer({ location, VideoForMiniplayer, history }) {
       title: prevState.title,
       id: null,
     }));
-    const response = await axios.get(`/video/playvideo/${id}`);
+    // const response = await axios.get(`/video/playvideo/${id}`);
+    const response = await axios.get(`${base}/video/playvideo/${id}`);
     setVideoSrc({
       src: response.data.src,
       title: `${videoData ? videoData.title : VideoForMiniplayer[0].title}`,

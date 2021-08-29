@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core";
 import axios from "axios";
 import VideoCard from "../videoCard/VideoCard";
 import LoadingVideosSkeleton from "./LoadingVideosSkeleton";
+import { base } from "../../store/util/BASE_API_ADDRESS";
 
 const useStyle = makeStyles(() => {
   return {
@@ -45,7 +46,8 @@ const Search = () => {
   const fetchVideos = async () => {
     try {
       setLoadingVideos(true);
-      const result = await axios.get("/video/randomvideos/12");
+      // const result = await axios.get("/video/randomvideos/12");
+      const result = await axios.get(`${base}/video/randomvideos/12`);
       setIsFetching(false);
       setLoadingVideos(false);
       setVideos((oldData) => [...oldData, ...result.data]);

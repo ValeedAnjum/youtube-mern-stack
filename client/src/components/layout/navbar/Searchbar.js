@@ -6,6 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 
 import SearchResult from "./SearchResult";
 import { withRouter } from "react-router-dom";
+import { base } from "../../../store/util/BASE_API_ADDRESS";
 
 const Searchbar = ({ classes, history }) => {
   const [searchTextBoxValue, setSearchTextBoxValue] = useState("");
@@ -20,7 +21,8 @@ const Searchbar = ({ classes, history }) => {
   };
   const searchRes = async (value) => {
     try {
-      const results = await axios.get(`/video/search/${value}`);
+      // const results = await axios.get(`/video/search/${value}`);
+      const results = await axios.get(`${base}/video/search/${value}`);
       console.log(results.data);
       setSearchResult(results.data);
     } catch (error) {
