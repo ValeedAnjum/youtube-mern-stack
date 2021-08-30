@@ -9,6 +9,7 @@ import Queue from "./Queue";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { base } from "../../store/util/BASE_API_ADDRESS";
+import VideoInfoAndOptions from "./VideoInfoAndOptions";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => {
 const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
   // console.log(props.match.params.id);
   const [videoSrc, setVideoSrc] = useState(null);
-  const [loadingVideo, setLoadingVideo] = useState(false);
+  // const [loadingVideo, setLoadingVideo] = useState(false);
   //for related videos
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [loadingRelatedVideos, setLoadingRelatedVideos] = useState(false);
@@ -38,10 +39,11 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
         const response = await axios.get(`/video/playvideo/${id}`);
         // const response = await axios.get(`${base}/video/playvideo/${id}`);
         setVideoSrc(response.data.src);
-        setLoadingVideo(false);
+        // setLoadingVideo(false);
         // console.log(response.data);
       } catch (error) {
-        setLoadingVideo(false);
+        setVideoSrc(null);
+        // setLoadingVideo(false);
       }
     };
     fetchVideoIframe();
@@ -59,8 +61,8 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
   const fetchRelatedVideos = async () => {
     try {
       setLoadingRelatedVideos(true);
-      // const result = await axios.get("/video/randomvideos/12");
-      const result = await axios.get(`${base}/video/randomvideos/12`);
+      const result = await axios.get("/video/randomvideos/12");
+      // const result = await axios.get(`${base}/video/randomvideos/12`);
       setLoadingRelatedVideos(false);
       setRelatedVideos(result.data);
     } catch (error) {
@@ -79,8 +81,8 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
   };
   const fetchRelatedVideosOnScrolling = async () => {
     try {
-      // const result = await axios.get("/video/randomvideos/12");
-      const result = await axios.get(`${base}/video/randomvideos/12`);
+      const result = await axios.get("/video/randomvideos/12");
+      // const result = await axios.get(`${base}/video/randomvideos/12`);
       setIsFetching(false);
       setRelatedVideos((data) => [...data, ...result.data]);
     } catch (error) {
@@ -92,6 +94,7 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
     <Grid container className={classes.videoplaying}>
       <Grid item md={8} sm={12} xs={12}>
         {videoSrc ? <Video src={videoSrc} /> : <PlayingVideoSkeleton />}
+        <VideoInfoAndOptions />
       </Grid>
       <Grid item md={4} sm={12} xs={12}>
         {VideosForMiniPlayer.length >= 1 && (

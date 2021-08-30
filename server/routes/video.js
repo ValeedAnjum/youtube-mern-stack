@@ -64,7 +64,7 @@ router.get("/randomvideos/:num", async (req, res) => {
 router.get("/playvideo/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const videos = await Video.findById(id);
+    const videos = await Video.findById(id).select("src");
     return res.json(videos);
   } catch (error) {
     return res.status(500).send("Server Error");
