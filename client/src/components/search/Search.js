@@ -46,8 +46,8 @@ const Search = () => {
   const fetchVideos = async () => {
     try {
       setLoadingVideos(true);
-      // const result = await axios.get("/video/randomvideos/12");
-      const result = await axios.get(`${base}/video/randomvideos/12`);
+      const result = await axios.get("/video/randomvideos/12");
+      // const result = await axios.get(`${base}/video/randomvideos/12`);
       setIsFetching(false);
       setLoadingVideos(false);
       setVideos((oldData) => [...oldData, ...result.data]);

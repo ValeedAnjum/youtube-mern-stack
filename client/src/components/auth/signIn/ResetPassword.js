@@ -34,16 +34,16 @@ const ResetPassword = ({
     console.log(password);
     const body = JSON.stringify({ password });
     try {
-      // const res = await axios.post(
-      //   `/auth/passwordresettokenverification/${match.params.token}`,
-      //   body,
-      //   config
-      // );
       const res = await axios.post(
-        `${base}/auth/passwordresettokenverification/${match.params.token}`,
+        `/auth/passwordresettokenverification/${match.params.token}`,
         body,
         config
       );
+      // const res = await axios.post(
+      //   `${base}/auth/passwordresettokenverification/${match.params.token}`,
+      //   body,
+      //   config
+      // );
       if (res.data.token) {
         PasswordReset(res.data.token);
         LoadUser();

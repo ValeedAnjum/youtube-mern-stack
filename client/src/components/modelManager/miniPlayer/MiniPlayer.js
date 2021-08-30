@@ -117,8 +117,8 @@ function MiniPlayer({ location, VideoForMiniplayer, history }) {
       title: prevState.title,
       id: null,
     }));
-    // const response = await axios.get(`/video/playvideo/${id}`);
-    const response = await axios.get(`${base}/video/playvideo/${id}`);
+    const response = await axios.get(`/video/playvideo/${id}`);
+    // const response = await axios.get(`${base}/video/playvideo/${id}`);
     setVideoSrc({
       src: response.data.src,
       title: `${videoData ? videoData.title : VideoForMiniplayer[0].title}`,

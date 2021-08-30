@@ -35,8 +35,8 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
       try {
         // setLoadingVideo(true);
         setVideoSrc(null);
-        // const response = await axios.get(`/video/playvideo/${id}`);
-        const response = await axios.get(`${base}/video/playvideo/${id}`);
+        const response = await axios.get(`/video/playvideo/${id}`);
+        // const response = await axios.get(`${base}/video/playvideo/${id}`);
         setVideoSrc(response.data.src);
         setLoadingVideo(false);
         // console.log(response.data);

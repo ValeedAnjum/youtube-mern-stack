@@ -42,8 +42,8 @@ const Explore = () => {
   const fetchVideos = async () => {
     try {
       setLoadingVideos(true);
-      // const result = await axios.get(`/video/randomvideos/12`);
-      const result = await axios.get(`${base}/video/randomvideos/12`);
+      const result = await axios.get(`/video/randomvideos/12`);
+      // const result = await axios.get(`${base}/video/randomvideos/12`);
       setLoadingVideos(false);
       setIsFetching(false);
       setVideos((oldData) => [...oldData, ...result.data]);
@@ -57,7 +57,8 @@ const Explore = () => {
     try {
       setLoadingVideos(true);
       setVideos([]);
-      const result = await axios.get(`${base}/video/randomvideos/12`);
+      const result = await axios.get(`/video/randomvideos/12`);
+      // const result = await axios.get(`${base}/video/randomvideos/12`);
       setLoadingVideos(false);
       setIsFetching(false);
       setVideos(result.data);
