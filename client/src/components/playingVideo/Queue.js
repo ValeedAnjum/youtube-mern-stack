@@ -76,7 +76,6 @@ const Queue = ({ VideosForMiniPlayer, history, ClearTheQueue }) => {
     setActiveVideo(index + 1);
     history.push(`/video/${id}`);
   };
-
   return (
     <Grid container className={classes.queue}>
       <Grid className={classes.queueCon} container direction="column">
@@ -124,4 +123,4 @@ const Queue = ({ VideosForMiniPlayer, history, ClearTheQueue }) => {
   );
 };
 
-export default withRouter(Queue);
+export default withRouter(React.memo(Queue));

@@ -14,4 +14,4 @@ const Video = ({ src }) => {
   );
 };
 
-export default Video;
+export default React.memo(Video);

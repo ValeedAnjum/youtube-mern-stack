@@ -67,4 +67,4 @@ const RelatedVideos = ({ setVideoSrc, videos, loadingVideos }) => {
   );
 };
 
-export default RelatedVideos;
+export default React.memo(RelatedVideos);

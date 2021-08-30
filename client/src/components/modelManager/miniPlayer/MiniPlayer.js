@@ -133,7 +133,6 @@ function MiniPlayer({ location, VideoForMiniplayer, history }) {
     history.push(`/video/${id}`);
   };
   if (location.pathname.includes("/video/")) return null;
-
   return (
     <Slide direction="up" in={true} mountOnEnter unmountOnExit>
       <Paper className={classes.miniPlayerMainContainer} elevation={3}>
