@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => {
 const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
   // console.log(props.match.params.id);
   const [videoSrc, setVideoSrc] = useState(null);
-  // const [loadingVideo, setLoadingVideo] = useState(false);
+  const [videoId, setVideoId] = useState(null);
   //for related videos
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [loadingRelatedVideos, setLoadingRelatedVideos] = useState(false);
@@ -34,16 +34,15 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
   useEffect(() => {
     const fetchVideoIframe = async () => {
       try {
-        // setLoadingVideo(true);
         setVideoSrc(null);
         const response = await axios.get(`/video/playvideo/${id}`);
         // const response = await axios.get(`${base}/video/playvideo/${id}`);
         setVideoSrc(response.data.src);
-        // setLoadingVideo(false);
+        setVideoId(response.data._id);
         // console.log(response.data);
       } catch (error) {
         setVideoSrc(null);
-        // setLoadingVideo(false);
+        setVideoId(null);
       }
     };
     fetchVideoIframe();
@@ -63,8 +62,9 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
       setLoadingRelatedVideos(true);
       const result = await axios.get("/video/randomvideos/12");
       // const result = await axios.get(`${base}/video/randomvideos/12`);
+      const uniqueVids = result.data.filter((vid) => vid._id !== id);
       setLoadingRelatedVideos(false);
-      setRelatedVideos(result.data);
+      setRelatedVideos(uniqueVids);
     } catch (error) {
       setLoadingRelatedVideos(false);
       console.log(error.message);
@@ -83,8 +83,9 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
     try {
       const result = await axios.get("/video/randomvideos/12");
       // const result = await axios.get(`${base}/video/randomvideos/12`);
+      const uniqueVids = result.data.filter((vid) => vid._id !== id);
       setIsFetching(false);
-      setRelatedVideos((data) => [...data, ...result.data]);
+      setRelatedVideos((data) => [...data, ...uniqueVids]);
     } catch (error) {
       setLoadingRelatedVideos(false);
       console.log(error.message);
@@ -94,7 +95,7 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
     <Grid container className={classes.videoplaying}>
       <Grid item md={8} sm={12} xs={12}>
         {videoSrc ? <Video src={videoSrc} /> : <PlayingVideoSkeleton />}
-        <VideoInfoAndOptions />
+        {videoId && <VideoInfoAndOptions videoId={videoId} />}
       </Grid>
       <Grid item md={4} sm={12} xs={12}>
         {VideosForMiniPlayer.length >= 1 && (

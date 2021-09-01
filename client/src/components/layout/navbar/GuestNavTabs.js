@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button, Hidden, IconButton } from "@material-ui/core";
 import React, { Fragment, useState } from "react";
 import { withRouter } from "react-router-dom";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
@@ -49,14 +49,21 @@ const GuestNavTabs = ({ classes, history }) => {
         onTabClickHandler={moreBtnClickHnd}
       />
 
-      <Button
-        disableRipple
-        startIcon={<AccountCircleIcon />}
-        className={classes.signinBtn}
-        onClick={goToSignIn}
-      >
-        sign in
-      </Button>
+      <Hidden xsDown>
+        <Button
+          disableRipple
+          startIcon={<AccountCircleIcon />}
+          className={classes.signinBtn}
+          onClick={goToSignIn}
+        >
+          sign in
+        </Button>
+      </Hidden>
+      <Hidden smUp>
+        <IconButton onClick={goToSignIn}>
+          <AccountCircleIcon />
+        </IconButton>
+      </Hidden>
     </Fragment>
   );
 };

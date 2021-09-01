@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
+const auth = require("../middleware/auth");
 const Video = require("../models/video");
+const Like = require("../models/videolikes");
+const Unlike = require("../models/videounlikes");
 const videosData = require("../temp_data/videosData");
 
 router.post(
@@ -68,6 +71,88 @@ router.get("/playvideo/:id", async (req, res) => {
     return res.json(videos);
   } catch (error) {
     return res.status(500).send("Server Error");
+  }
+});
+
+router.get("/videotitle/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const title = await Video.findById(id).select("title");
+    return res.json(title);
+  } catch (error) {
+    return res.status(500).send("Server Error");
+  }
+});
+
+router.get("/videoviewsanddata/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const title = await Video.findById(id).select(["views", "createdAt"]);
+    return res.json(title);
+  } catch (error) {
+    return res.status(500).send("Server Error");
+  }
+});
+
+router.post("/like/:id", auth, async (req, res) => {
+  const { id } = req.params;
+  try {
+    // checking user video like status
+    const liked = await Like.find({
+      $and: [{ videoId: id }, { userId: req.user.id }],
+    });
+    //if yes then generating an error
+    if (liked.length > 0) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "You already liked this video" }] });
+    }
+    const like = new Like({ userId: req.user.id, videoId: id });
+    like.save();
+    return res.json(like);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+});
+
+router.get("/getnumberoflikes/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const likesInNum = await Like.find({ videoId: id }).countDocuments();
+    return res.json(likesInNum);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+});
+
+router.get("/getnumberofunlikes/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const UnLikesInNum = await Unlike.find({ videoId: id }).countDocuments();
+    return res.json(UnLikesInNum);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+});
+
+router.post("/unlike/:id", auth, async (req, res) => {
+  const { id } = req.params;
+  try {
+    // checking user video like status
+    const liked = await Unlike.find({
+      $and: [{ videoId: id }, { userId: req.user.id }],
+    });
+    //if yes then generating an error
+    if (liked.length > 0) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "You already unliked this video" }] });
+    }
+    const like = new Unlike({ userId: req.user.id, videoId: id });
+    like.save();
+    return res.json(like);
+  } catch (error) {
+    return res.status(500).send(error);
   }
 });
 

@@ -132,7 +132,7 @@ const FormContentContainer = ({
   );
 };
 
-const useStyles = makeStyles(() => {
+const useStyles = makeStyles((theme) => {
   return {
     signin: {
       width: "100%",
@@ -145,9 +145,13 @@ const useStyles = makeStyles(() => {
     contentContainer: {
       border: "1px solid #0000002b",
       height: "80vh",
+      width: "100%",
       borderRadius: "10px",
       flexWrap: "nowrap",
       overflow: "hidden",
+      [theme.breakpoints.down("xs")]: {
+        border: "none",
+      },
     },
     iconHeadingContainer: {
       paddingTop: "50px !important",

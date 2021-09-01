@@ -6,7 +6,9 @@ import RelatedVideoSkeleton from "./RelatedVideoSkeleton";
 const useStyles = makeStyles(() => {
   return {
     relatedVideos: {
-      padding: "0px 10px",
+      padding: "0px 19px 0px 6px",
+      overflow: "hidden",
+      marginTop: "5px",
     },
     videoInfoCon: {
       paddingLeft: "5px",

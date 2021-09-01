@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const tokenSchema = mongoose.Schema({
   _userId: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true,
     ref: "YouTube_USER",
   },
   token: {
