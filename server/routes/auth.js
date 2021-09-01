@@ -11,6 +11,10 @@ const User = require("../models/user");
 const { sendEmailToUser } = require("./util/sendemail");
 const Token = require("../models/token");
 
+//@route    POST auth/signin
+//@desc     sigin routes
+//@access   Public
+
 router.post(
   "/signin",
   [
@@ -58,6 +62,10 @@ router.post(
     }
   }
 );
+
+//@route    POST auth/register
+//@desc     registration route
+//@access   Public
 
 router.post(
   "/register",
@@ -111,6 +119,9 @@ router.post(
   }
 );
 
+//@route    POST auth/user
+//@desc     getting authenticated user profile
+//@access   Private
 router.get("/user", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
@@ -124,6 +135,9 @@ router.get("/user", auth, async (req, res) => {
   }
 });
 
+//@route    POST auth/checkemailregistration
+//@desc     checking whether the user is registared or not with the enterd email
+//@access   Public
 router.post("/checkemailregistration", async (req, res) => {
   const { email } = req.body;
   try {
@@ -140,6 +154,9 @@ router.post("/checkemailregistration", async (req, res) => {
   }
 });
 
+//@route    POST auth/sendpasswordresetlink
+//@desc     sending the password reset link to user email address
+//@access   Public
 router.post("/sendpasswordresetlink", async (req, res) => {
   const { email } = req.body;
   try {
@@ -161,6 +178,9 @@ router.post("/sendpasswordresetlink", async (req, res) => {
   }
 });
 
+//@route    POST auth/passwordresettokenverification/:usertoken
+//@desc     setting the new password by checking the token validation
+//@access   Public
 router.post("/passwordresettokenverification/:usertoken", async (req, res) => {
   const { usertoken } = req.params;
   const { password } = req.body;
