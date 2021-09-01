@@ -7,6 +7,9 @@ const Like = require("../models/videolikes");
 const Unlike = require("../models/videounlikes");
 const videosData = require("../temp_data/videosData");
 
+//@route    POST video/save
+//@desc     route for saving bulk of videos data into database will not be included in production
+//@access   Public
 router.post(
   "/save",
   [
@@ -50,6 +53,9 @@ router.post(
   }
 );
 
+//@route    GET video/randomvideos/:num
+//@desc     getting random video specified by numbber
+//@access   Public
 router.get("/randomvideos/:num", async (req, res) => {
   const { num } = req.params;
   try {
@@ -64,6 +70,9 @@ router.get("/randomvideos/:num", async (req, res) => {
   }
 });
 
+//@route    GET video/playvideo/:id
+//@desc     getting only video src by id
+//@access   Public
 router.get("/playvideo/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -74,6 +83,9 @@ router.get("/playvideo/:id", async (req, res) => {
   }
 });
 
+//@route    GET video/videotitle/:id
+//@desc     getting only video title by id
+//@access   Public
 router.get("/videotitle/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -84,6 +96,9 @@ router.get("/videotitle/:id", async (req, res) => {
   }
 });
 
+//@route    GET video/videoviewsanddata/:id
+//@desc     getting view and creation data by id
+//@access   Public
 router.get("/videoviewsanddata/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -94,6 +109,9 @@ router.get("/videoviewsanddata/:id", async (req, res) => {
   }
 });
 
+//@route    POST video/like/:id
+//@desc     save a like document with userId and videoId
+//@access   Private
 router.post("/like/:id", auth, async (req, res) => {
   const { id } = req.params;
   try {
@@ -115,6 +133,9 @@ router.post("/like/:id", auth, async (req, res) => {
   }
 });
 
+//@route    GET video/getnumberoflikes/:id
+//@desc     getting number of unlike of a video by video id
+//@access   Public
 router.get("/getnumberoflikes/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -125,6 +146,9 @@ router.get("/getnumberoflikes/:id", async (req, res) => {
   }
 });
 
+//@route    GET video/getnumberofunlikes/:id
+//@desc     getting number of like of a video by video id
+//@access   Public
 router.get("/getnumberofunlikes/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -135,6 +159,9 @@ router.get("/getnumberofunlikes/:id", async (req, res) => {
   }
 });
 
+//@route    POST video/unlike/:id
+//@desc     save a unlike document with userId and videoId
+//@access   Private
 router.post("/unlike/:id", auth, async (req, res) => {
   const { id } = req.params;
   try {
@@ -156,6 +183,9 @@ router.post("/unlike/:id", auth, async (req, res) => {
   }
 });
 
+//@route    POST video/search/:q
+//@desc     getting a search result
+//@access   Public
 router.get("/search/:q", async (req, res) => {
   const { q } = req.params;
   try {
