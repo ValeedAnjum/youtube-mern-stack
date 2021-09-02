@@ -1,5 +1,6 @@
-import { Grid, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
+import { Grid, makeStyles, Typography } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 const useStyles = makeStyles(() => {
   return {
@@ -27,11 +28,13 @@ const VideoTitleAndTags = ({ title, tags }) => {
   return (
     <>
       <Grid item xs={12} container className={classes.tagCon}>
-        {tags
-          ? tags.map((tag, index) => (
-              <Tags key={index} className={classes.tag} tag={tag} />
-            ))
-          : "loading tags"}
+        {tags ? (
+          tags.map((tag, index) => (
+            <Tags key={index} className={classes.tag} tag={tag} />
+          ))
+        ) : (
+          <Skeleton variant="text" />
+        )}
       </Grid>
       <Grid item xs={12} className={classes.titleCon}>
         {title ? (
@@ -39,7 +42,7 @@ const VideoTitleAndTags = ({ title, tags }) => {
             {title}
           </Typography>
         ) : (
-          "Loadinga.sa"
+          <Skeleton variant="rect" height={20} />
         )}
       </Grid>
     </>

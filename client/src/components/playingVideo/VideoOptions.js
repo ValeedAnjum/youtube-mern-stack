@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid, makeStyles } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 import axios from "axios";
 import moment from "moment";
 import VideoOptionsButtons from "./VideoOptionsButtons";
@@ -46,11 +47,13 @@ const VideoOptions = ({ videoId }) => {
   return (
     <Grid item xs={12} container className={classes.videoOptionsMainCon}>
       <Grid item sm={6} xs={12} className={classes.viewAndDataCon}>
-        {viewAndData
-          ? `${viewAndData.views} views . ${moment(
-              viewAndData.createdAt
-            ).format("LL")}`
-          : "Loading ... view and data"}
+        {viewAndData ? (
+          `${viewAndData.views} views . ${moment(viewAndData.createdAt).format(
+            "LL"
+          )}`
+        ) : (
+          <Skeleton variant="text" />
+        )}
       </Grid>
       <Grid
         className={classes.iconCon}

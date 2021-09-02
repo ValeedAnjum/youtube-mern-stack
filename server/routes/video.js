@@ -110,7 +110,7 @@ router.get("/videoviewsanddata/:id", async (req, res) => {
 });
 
 //@route    POST video/like/:id
-//@desc     save a like document with userId and videoId
+//@desc     save or delete a like document with userId and videoId
 //@access   Private
 router.post("/like/:id", auth, async (req, res) => {
   const { id } = req.params;
@@ -119,15 +119,41 @@ router.post("/like/:id", auth, async (req, res) => {
     const liked = await Like.find({
       $and: [{ videoId: id }, { userId: req.user.id }],
     });
-    //if yes then generating an error
     if (liked.length > 0) {
-      return res
-        .status(400)
-        .json({ errors: [{ msg: "You already liked this video" }] });
+      const like = await Like.findByIdAndRemove(liked[0]._id);
+      like.save();
+      return res.json({ ...like._doc, like: false });
     }
     const like = new Like({ userId: req.user.id, videoId: id });
     like.save();
-    return res.json(like);
+    // console.log(like);
+    return res.json({ ...like._doc, like: true });
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+});
+
+//@route    POST video/unlike/:id
+//@desc     save or delete a unlike document with userId and videoId
+//@access   Private
+router.post("/unlike/:id", auth, async (req, res) => {
+  const { id } = req.params;
+  try {
+    // checking user video like status
+    const unliked = await Unlike.find({
+      $and: [{ videoId: id }, { userId: req.user.id }],
+    });
+    //if yes then generating an error
+    console.log(unliked);
+    if (unliked.length > 0) {
+      const unlike = await Unlike.findByIdAndRemove(unliked[0]._id);
+      unlike.save();
+      return res.json({ ...unlike._doc, unlike: false });
+    }
+    const unlike = new Unlike({ userId: req.user.id, videoId: id });
+    unlike.save();
+
+    return res.json({ ...unlike._doc, unlike: true });
   } catch (error) {
     return res.status(500).send(error);
   }
@@ -159,25 +185,37 @@ router.get("/getnumberofunlikes/:id", async (req, res) => {
   }
 });
 
-//@route    POST video/unlike/:id
-//@desc     save a unlike document with userId and videoId
+//@route    POST video/likedbyuser/:id
+//@desc     checking that the authenticated user liked the video or not
 //@access   Private
-router.post("/unlike/:id", auth, async (req, res) => {
+
+router.get("/likedbyuser/:id", auth, async (req, res) => {
   const { id } = req.params;
   try {
     // checking user video like status
-    const liked = await Unlike.find({
+    const liked = await Like.find({
       $and: [{ videoId: id }, { userId: req.user.id }],
     });
-    //if yes then generating an error
-    if (liked.length > 0) {
-      return res
-        .status(400)
-        .json({ errors: [{ msg: "You already unliked this video" }] });
-    }
-    const like = new Unlike({ userId: req.user.id, videoId: id });
-    like.save();
-    return res.json(like);
+
+    return res.json(liked);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+});
+
+//@route    POST video/likedbyuser/:id
+//@desc     checking that the authenticated user unliked the video or not
+//@access   Private
+
+router.get("/unlikedbyuser/:id", auth, async (req, res) => {
+  const { id } = req.params;
+  try {
+    // checking user video like status
+    const unliked = await Unlike.find({
+      $and: [{ videoId: id }, { userId: req.user.id }],
+    });
+
+    return res.json(unliked);
   } catch (error) {
     return res.status(500).send(error);
   }
