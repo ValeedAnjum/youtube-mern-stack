@@ -25,6 +25,8 @@ export const videoReducer = (state = initialState, action) => {
       };
     case "CLEAR_THE_QUEUE":
       return { ...state, videosForMiniPlayer: [], modelName: null };
+    case "UPDATE_THE_QUEUE":
+      return { ...state, videosForMiniPlayer: payload };
     default:
       return state;
   }

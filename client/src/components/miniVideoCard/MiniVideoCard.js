@@ -98,12 +98,10 @@ const MiniVideoCard = ({
           xs={8}
           container
           direction="column"
-          // justifyContent="space-between"
           onClick={() => videoCardClickHan({ title, id })}
           className={classes.titleAndChannelName}
         >
           <Grid item className={classes.title}>
-            {/* {title} */}
             {title.length > 53 ? title.slice(0, 50) + "..." : title}
           </Grid>
           <Grid item className={classes.channel}>
@@ -122,6 +120,7 @@ const MiniVideoCard = ({
             anchorElForMore={anchorElForMore}
             onMenuClose={onMenuClose}
             videoCardMoreOptions={videoCardMoreOptions}
+            videoId={id}
           />
         </Grid>
       </Grid>

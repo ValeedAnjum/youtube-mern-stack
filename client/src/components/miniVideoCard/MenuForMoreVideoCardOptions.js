@@ -14,6 +14,7 @@ const MenuForMoreVideoCardOptions = ({
   anchorElForMore,
   onMenuClose,
   videoCardMoreOptions,
+  videoId,
 }) => {
   return (
     <Menu
@@ -36,14 +37,14 @@ const MenuForMoreVideoCardOptions = ({
       getContentAnchorEl={null}
     >
       <List>
-        {videoCardMoreOptions.map(({ text, icon, divider }, index) => {
+        {videoCardMoreOptions.map(({ text, icon, divider, OnClick }, index) => {
           return (
             <Fragment key={index}>
               {divider ? (
                 <Divider style={{ marginBottom: "8px", marginTop: "8px" }} />
               ) : null}
               {text ? (
-                <ListItem button>
+                <ListItem button onClick={OnClick ? OnClick(videoId) : null}>
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText>{text}</ListItemText>
                 </ListItem>

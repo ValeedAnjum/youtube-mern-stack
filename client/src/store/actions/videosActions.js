@@ -21,5 +21,9 @@ export const addToQueue = (video) => () => {
 };
 
 export const removeVideoFromQueue = (id) => () => {
-  console.log("Anjum", id);
+  const videoForMiniPlayers = store.getState().videos.videosForMiniPlayer;
+  const videoAfterFilter = videoForMiniPlayers.filter(
+    (video) => video.id !== id
+  );
+  store.dispatch({ type: "UPDATE_THE_QUEUE", payload: videoAfterFilter });
 };

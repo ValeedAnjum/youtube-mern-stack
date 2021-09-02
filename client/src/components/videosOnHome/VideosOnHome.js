@@ -123,6 +123,7 @@ const VideosOnHome = () => {
     const winInerHeight = window.innerHeight;
     const scroolIsAtBottom =
       scrollHeight - winInerHeight - 100 <= window.scrollY;
+    console.log(scroolIsAtBottom);
     if (scroolIsAtBottom) {
       setIsFetching(true);
     }
