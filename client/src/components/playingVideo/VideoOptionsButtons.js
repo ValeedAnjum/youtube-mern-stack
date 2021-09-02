@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { IconButton, makeStyles } from "@material-ui/core";
 import ThumbUpAltOutlinedIcon from "@material-ui/icons/ThumbUpAltOutlined";
 import ThumbDownOutlinedIcon from "@material-ui/icons/ThumbDownOutlined";
@@ -19,7 +20,7 @@ const useStyles = makeStyles(() => {
     },
   };
 });
-const VideoOptionsButtons = ({ videoId, auth }) => {
+const VideoOptionsButtons = ({ videoId, auth, history }) => {
   const classes = useStyles();
   const [likesAndUnlikes, setLikesAndUnlikes] = useState({
     likes: null,
@@ -27,6 +28,7 @@ const VideoOptionsButtons = ({ videoId, auth }) => {
   });
   const [likedByUser, setLikedByUser] = useState(false);
   const [unlikedByUser, setUnlikedByUser] = useState(false);
+  const [authenticated, setAuthenticated] = useState(auth);
   useEffect(() => {
     fetchNumberOfLikes(videoId);
     fetchNumberOfUnlikes(videoId);
@@ -61,26 +63,25 @@ const VideoOptionsButtons = ({ videoId, auth }) => {
   };
 
   const likedByTheUser = async (id) => {
-    if (!auth) return;
     try {
       const res = await axios.get(`/video/likedbyuser/${id}`);
       setLikedByUser(res.data.length > 0);
     } catch (error) {
-      console.log(error);
+      // console.log(error.response.data.msg);
     }
   };
 
   const unlikedByTheUser = async (id) => {
-    if (!auth) return;
     try {
       const res = await axios.get(`/video/unlikedbyuser/${id}`);
       setUnlikedByUser(res.data.length > 0);
     } catch (error) {
-      console.log(error);
+      // console.log(error.response.data.msg);
     }
   };
 
   const like = async (id) => {
+    if (!auth) return history.push("/signin/email");
     try {
       setLikedByUser(true);
       const res = await axios.post(`/video/like/${id}`);
@@ -97,10 +98,32 @@ const VideoOptionsButtons = ({ videoId, auth }) => {
       setLikedByUser(res.data.like);
     } catch (error) {
       setLikedByUser(false);
+      // console.log(error.response.data.msg);
+    }
+  };
 
+  const unlike = async (id) => {
+    if (!auth) return history.push("/signin/email");
+    try {
+      setUnlikedByUser(true);
+      const res = await axios.post(`/video/unlike/${id}`);
+      res.data.unlike
+        ? setLikesAndUnlikes((prevState) => ({
+            ...prevState,
+            unlikes: prevState.unlikes + 1,
+          }))
+        : setLikesAndUnlikes((prevState) => ({
+            ...prevState,
+            unlikes: prevState.unlikes - 1,
+          }));
+
+      setUnlikedByUser(res.data.unlike);
+    } catch (error) {
+      setUnlikedByUser(false);
       console.log(error);
     }
   };
+
   return (
     <>
       <IconButton
@@ -111,7 +134,11 @@ const VideoOptionsButtons = ({ videoId, auth }) => {
         {likedByUser ? <ThumbUpAltIcon /> : <ThumbUpAltOutlinedIcon />}
         {likesAndUnlikes.likes && likesAndUnlikes.likes}
       </IconButton>
-      <IconButton className={classes.iconBtn} disableRipple>
+      <IconButton
+        className={classes.iconBtn}
+        disableRipple
+        onClick={() => unlike(videoId)}
+      >
         {unlikedByUser ? <ThumbDownAltIcon /> : <ThumbDownOutlinedIcon />}
         {likesAndUnlikes.unlikes && likesAndUnlikes.unlikes}
       </IconButton>
@@ -132,4 +159,4 @@ const mapState = (state) => {
   };
 };
 
-export default connect(mapState)(VideoOptionsButtons);
+export default connect(mapState)(withRouter(VideoOptionsButtons));
