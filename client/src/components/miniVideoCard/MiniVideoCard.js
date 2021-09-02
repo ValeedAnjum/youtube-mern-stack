@@ -103,10 +103,11 @@ const MiniVideoCard = ({
           className={classes.titleAndChannelName}
         >
           <Grid item className={classes.title}>
-            {title}
+            {/* {title} */}
+            {title.length > 53 ? title.slice(0, 50) + "..." : title}
           </Grid>
           <Grid item className={classes.channel}>
-            {channelName}
+            {channelName.toUpperCase()}
           </Grid>
         </Grid>
         <Grid item xs={1}>

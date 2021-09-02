@@ -53,6 +53,17 @@ const useStyles = makeStyles((theme) => {
         backgroundColor: "rgb(0 0 0 / 22%)",
       },
     },
+    clearQueueIconForMobile: {
+      position: "absolute",
+      color: "white",
+      left: "50%",
+      top: "0",
+      transform: "translate(-50%, -50%)",
+      backgroundColor: "#00000078",
+      "&:hover": {
+        backgroundColor: "black",
+      },
+    },
     miniPlayerVideoCont: {
       height: "250px",
       position: "relative",

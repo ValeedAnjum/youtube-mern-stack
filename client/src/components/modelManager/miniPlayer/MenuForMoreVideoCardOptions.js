@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
 import {
   Divider,

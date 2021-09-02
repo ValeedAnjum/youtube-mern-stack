@@ -126,19 +126,11 @@ const VideoOptionsButtons = ({ videoId, auth, history }) => {
 
   return (
     <>
-      <IconButton
-        className={classes.iconBtn}
-        disableRipple
-        onClick={() => like(videoId)}
-      >
+      <IconButton className={classes.iconBtn} onClick={() => like(videoId)}>
         {likedByUser ? <ThumbUpAltIcon /> : <ThumbUpAltOutlinedIcon />}
         {likesAndUnlikes.likes && likesAndUnlikes.likes}
       </IconButton>
-      <IconButton
-        className={classes.iconBtn}
-        disableRipple
-        onClick={() => unlike(videoId)}
-      >
+      <IconButton className={classes.iconBtn} onClick={() => unlike(videoId)}>
         {unlikedByUser ? <ThumbDownAltIcon /> : <ThumbDownOutlinedIcon />}
         {likesAndUnlikes.unlikes && likesAndUnlikes.unlikes}
       </IconButton>

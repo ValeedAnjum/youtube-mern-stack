@@ -7,14 +7,20 @@ import MiniVideoCard from "../miniVideoCard/MiniVideoCard";
 import { videoCardMoreOptions } from "./VideoCardMoreOptionData";
 import { withRouter } from "react-router-dom";
 
-const useStyles = makeStyles(() => {
+const useStyles = makeStyles((theme) => {
   return {
     queue: {
       padding: "0px 10px",
       marginBottom: "10px",
+      [theme.breakpoints.down("xs")]: {
+        padding: "0px",
+      },
     },
     queueCon: {
       border: "1px solid rgb(0 0 0 / 14%)",
+      [theme.breakpoints.down("xs")]: {
+        border: "none",
+      },
     },
     queueHeadingCon: {
       backgroundColor: "white",

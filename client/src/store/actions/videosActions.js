@@ -19,3 +19,7 @@ export const fetchRelatedVideos = () => async (dispatch) => {
 export const addToQueue = (video) => () => {
   store.dispatch({ type: "MINI_PLAYER_OPEN", payload: video });
 };
+
+export const removeVideoFromQueue = (id) => () => {
+  console.log("Anjum", id);
+};

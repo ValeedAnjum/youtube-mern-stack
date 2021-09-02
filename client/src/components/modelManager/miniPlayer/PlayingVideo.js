@@ -3,7 +3,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import { connect } from "react-redux";
 import Video from "./Video";
-import { Grid, IconButton, makeStyles } from "@material-ui/core";
+import { Grid, Hidden, IconButton, makeStyles } from "@material-ui/core";
 
 const PlayingVideo = ({
   videoSrc,
@@ -23,6 +23,14 @@ const PlayingVideo = ({
   };
   return (
     <>
+      <Hidden smUp>
+        <IconButton
+          onClick={clearTheQueue}
+          className={classes.clearQueueIconForMobile}
+        >
+          <CloseIcon />
+        </IconButton>
+      </Hidden>
       <IconButton
         className={classes.fullScreenVideoIcon}
         onClick={() => goToPlayingVideo(id)}
