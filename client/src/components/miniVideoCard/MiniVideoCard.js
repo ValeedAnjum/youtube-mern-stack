@@ -91,7 +91,7 @@ const MiniVideoCard = ({
           className={classes.imgCon}
           onClick={() => videoCardClickHan({ title, id })}
         >
-          <img src={img} width="100%" height="100%" />
+          <img src={img} width="100%" height="100%" alt={title} />
         </Grid>
         <Grid
           item

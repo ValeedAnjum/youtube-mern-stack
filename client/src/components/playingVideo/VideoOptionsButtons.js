@@ -35,7 +35,7 @@ const VideoOptionsButtons = ({ videoId, auth, history }) => {
       likedByTheUser(videoId);
       unlikedByTheUser(videoId);
     }
-  }, [videoId]);
+  }, [videoId, auth]);
 
   const fetchNumberOfLikes = async (id) => {
     setLikesAndUnlikes((prevState) => ({ ...prevState, likes: null }));
@@ -68,7 +68,7 @@ const VideoOptionsButtons = ({ videoId, auth, history }) => {
       const res = await axios.get(`/video/likedbyuser/${id}`);
       setLikedByUser(res.data.length > 0);
     } catch (error) {
-      // console.log(error.response.data.msg);
+      setLikedByUser(false);
     }
   };
 
@@ -77,7 +77,7 @@ const VideoOptionsButtons = ({ videoId, auth, history }) => {
       const res = await axios.get(`/video/unlikedbyuser/${id}`);
       setUnlikedByUser(res.data.length > 0);
     } catch (error) {
-      // console.log(error.response.data.msg);
+      setUnlikedByUser(false);
     }
   };
 

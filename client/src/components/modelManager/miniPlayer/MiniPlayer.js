@@ -114,7 +114,21 @@ function MiniPlayer({ location, VideoForMiniplayer, history }) {
   const classes = useStyles();
 
   useEffect(() => {
-    fetchActiveVideoSrc();
+    const fetchAVideoSrc = async () => {
+      const id = VideoForMiniplayer[0].id;
+      setVideoSrc((prevState) => ({
+        src: null,
+        title: prevState.title,
+        id: null,
+      }));
+      const response = await axios.get(`/video/playvideo/${id}`);
+      setVideoSrc({
+        src: response.data.src,
+        title: VideoForMiniplayer[0].title,
+        id: id,
+      });
+    };
+    fetchAVideoSrc();
   }, []);
 
   const toggleExpand = () => {
@@ -136,6 +150,7 @@ function MiniPlayer({ location, VideoForMiniplayer, history }) {
       id: id,
     });
   };
+
   const videoCardClickHan = (video, index) => {
     fetchActiveVideoSrc(video);
     setActiveVideo(index + 1);

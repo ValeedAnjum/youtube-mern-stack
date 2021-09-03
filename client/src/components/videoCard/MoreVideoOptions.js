@@ -2,9 +2,7 @@ import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { IconButton, List, makeStyles, Menu } from "@material-ui/core";
-import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
-import WatchLaterIcon from "@material-ui/icons/WatchLater";
-import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
+
 import MoreVideoOptionListItems from "../morevideooptionlist/MoreVideoOptionListItems";
 import {
   MoreListOptionsForAuth,

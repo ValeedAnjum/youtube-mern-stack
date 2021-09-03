@@ -10,14 +10,7 @@ import {
 import axios from "axios";
 import { base } from "../../../store/util/BASE_API_ADDRESS";
 
-const ResetPassword = ({
-  match,
-  history,
-  IsEmailRegister,
-  auth,
-  PasswordReset,
-  LoadUser,
-}) => {
+const ResetPassword = ({ match, auth, PasswordReset, LoadUser }) => {
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState({ state: false, msg: "" });
@@ -31,9 +24,10 @@ const ResetPassword = ({
         "Content-Type": "application/json",
       },
     };
-    console.log(password);
+
     const body = JSON.stringify({ password });
     try {
+      setLoading(true);
       const res = await axios.post(
         `/auth/passwordresettokenverification/${match.params.token}`,
         body,
@@ -44,6 +38,8 @@ const ResetPassword = ({
       //   body,
       //   config
       // );
+
+      setLoading(false);
       if (res.data.token) {
         PasswordReset(res.data.token);
         LoadUser();

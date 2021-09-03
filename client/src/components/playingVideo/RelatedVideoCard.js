@@ -1,14 +1,24 @@
 import { Grid, Typography } from "@material-ui/core";
+import moment from "moment";
 import React, { Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import MoreVideoOptions from "./MoreVideoOptions";
 
 const RelatedVideoCard = ({ classes, video, history, setVideoSrc }) => {
-  const { thumbnail, title, _id, channelName } = video;
+  const {
+    thumbnail,
+    title,
+    _id,
+    channelName,
+    videoDuration,
+    views,
+    createdAt,
+  } = video;
   const playVideo = () => {
     setVideoSrc(null);
     history.push(`/video/${_id}`);
   };
+  console.log(video);
   return (
     <Fragment>
       <Grid item sm={5} xs={5} className={classes.timeDurationcCon}>
@@ -18,7 +28,7 @@ const RelatedVideoCard = ({ classes, video, history, setVideoSrc }) => {
           alt="video_thumbnail"
           onClick={playVideo}
         />
-        <p className={classes.timeDuration}>8:22</p>
+        <p className={classes.timeDuration}>{videoDuration}</p>
       </Grid>
       <Grid
         item
@@ -35,12 +45,13 @@ const RelatedVideoCard = ({ classes, video, history, setVideoSrc }) => {
         </Grid>
         <Grid item>
           <Typography className={classes.channelName}>
-            Travel Diaries Pakistan
+            {channelName.toUpperCase()}
           </Typography>
         </Grid>
         <Grid item>
           <Typography className={classes.views}>
-            200k view . 1 week ago
+            {views > 1000 ? (views / 1000).toPrecision(2) + "k" : views} view .{" "}
+            {moment(createdAt).fromNow()}
           </Typography>
         </Grid>
       </Grid>

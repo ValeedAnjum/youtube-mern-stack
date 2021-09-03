@@ -45,6 +45,19 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
         setVideoId(null);
       }
     };
+    const fetchRelatedVideos = async () => {
+      try {
+        setLoadingRelatedVideos(true);
+        const result = await axios.get("/video/randomvideos/12");
+        // const result = await axios.get(`${base}/video/randomvideos/12`);
+        const uniqueVids = result.data.filter((vid) => vid._id !== id);
+        setLoadingRelatedVideos(false);
+        setRelatedVideos(uniqueVids);
+      } catch (error) {
+        setLoadingRelatedVideos(false);
+        console.log(error.message);
+      }
+    };
     fetchVideoIframe();
     fetchRelatedVideos();
 
@@ -55,8 +68,20 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
   }, [id]);
   useEffect(() => {
     if (!isFetching) return;
+    const fetchRelatedVideosOnScrolling = async () => {
+      try {
+        const result = await axios.get("/video/randomvideos/12");
+        // const result = await axios.get(`${base}/video/randomvideos/12`);
+        const uniqueVids = result.data.filter((vid) => vid._id !== id);
+        setIsFetching(false);
+        setRelatedVideos((data) => [...data, ...uniqueVids]);
+      } catch (error) {
+        setLoadingRelatedVideos(false);
+        console.log(error.message);
+      }
+    };
     fetchRelatedVideosOnScrolling();
-  }, [isFetching]);
+  }, [isFetching, id]);
 
   useEffect(() => {
     return () => {
@@ -64,19 +89,6 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
     };
   }, []);
 
-  const fetchRelatedVideos = async () => {
-    try {
-      setLoadingRelatedVideos(true);
-      const result = await axios.get("/video/randomvideos/12");
-      // const result = await axios.get(`${base}/video/randomvideos/12`);
-      const uniqueVids = result.data.filter((vid) => vid._id !== id);
-      setLoadingRelatedVideos(false);
-      setRelatedVideos(uniqueVids);
-    } catch (error) {
-      setLoadingRelatedVideos(false);
-      console.log(error.message);
-    }
-  };
   const onScrolling = async () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const winInerHeight = window.innerHeight;
@@ -86,18 +98,7 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
       setIsFetching(true);
     }
   };
-  const fetchRelatedVideosOnScrolling = async () => {
-    try {
-      const result = await axios.get("/video/randomvideos/12");
-      // const result = await axios.get(`${base}/video/randomvideos/12`);
-      const uniqueVids = result.data.filter((vid) => vid._id !== id);
-      setIsFetching(false);
-      setRelatedVideos((data) => [...data, ...uniqueVids]);
-    } catch (error) {
-      setLoadingRelatedVideos(false);
-      console.log(error.message);
-    }
-  };
+
   return (
     <Grid container className={classes.videoplaying}>
       <Grid item md={8} sm={12} xs={12}>

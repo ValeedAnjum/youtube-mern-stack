@@ -3,7 +3,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import { connect } from "react-redux";
 import Video from "./Video";
-import { Grid, Hidden, IconButton, makeStyles } from "@material-ui/core";
+import { Hidden, IconButton } from "@material-ui/core";
 
 const PlayingVideo = ({
   videoSrc,

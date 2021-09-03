@@ -3,20 +3,9 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { Redirect, withRouter } from "react-router-dom";
 import FormContentContainer from "../formContentContainer/FormContentContainer";
-import {
-  passwordReset,
-  passwordreset,
-  signIn,
-} from "../../../store/actions/authActions";
+import { passwordReset, signIn } from "../../../store/actions/authActions";
 
-const ForgotPassword = ({
-  history,
-  emailIsReg,
-  SignIn,
-  email,
-  auth,
-  PasswordReset,
-}) => {
+const ForgotPassword = ({ history, email, auth, PasswordReset }) => {
   const [loading, setLoading] = useState(false);
   const [heading, setHeading] = useState("Password Reset");
 
@@ -25,18 +14,23 @@ const ForgotPassword = ({
     if (!email) {
       return history.push("/signin/email");
     }
+
     const fetchData = async () => {
       setLoading(true);
       setHeading("Sending Password Reset Link");
-      const res = await PasswordReset(email);
-      setLoading(false);
-      if (res) {
-        return setHeading("Please Check Your Email");
+      try {
+        await PasswordReset(email);
+        setLoading(false);
+        setHeading("Please Check Your Email");
+      } catch (error) {
+        setLoading(false);
+
+        setHeading("Something Went Wrong");
       }
-      setHeading("Something Went Wrong");
     };
+
     fetchData();
-  }, []);
+  }, [auth, email, history, PasswordReset]);
 
   return <FormContentContainer heading={heading} loading={loading} />;
 };

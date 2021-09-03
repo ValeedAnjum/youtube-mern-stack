@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { Redirect, withRouter } from "react-router-dom";
 import { compose } from "redux";
-import { register, signIn } from "../../../store/actions/authActions";
+import { register } from "../../../store/actions/authActions";
 import FormContentContainer from "../formContentContainer/FormContentContainer";
 import { ValidateName } from "../util/formValidations";
 
@@ -39,6 +39,7 @@ const Password = ({ history, email, auth, Register }) => {
         msg: "Length should be greater than 5",
       });
     }
+    setLoading(true);
     Register(name, email, password);
   };
   const changePassHan = (event) => {
