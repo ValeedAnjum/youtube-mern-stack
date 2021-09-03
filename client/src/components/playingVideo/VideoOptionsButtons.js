@@ -28,12 +28,13 @@ const VideoOptionsButtons = ({ videoId, auth, history }) => {
   });
   const [likedByUser, setLikedByUser] = useState(false);
   const [unlikedByUser, setUnlikedByUser] = useState(false);
-  const [authenticated, setAuthenticated] = useState(auth);
   useEffect(() => {
     fetchNumberOfLikes(videoId);
     fetchNumberOfUnlikes(videoId);
-    likedByTheUser(videoId);
-    unlikedByTheUser(videoId);
+    if (auth) {
+      likedByTheUser(videoId);
+      unlikedByTheUser(videoId);
+    }
   }, [videoId]);
 
   const fetchNumberOfLikes = async (id) => {

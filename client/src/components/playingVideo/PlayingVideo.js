@@ -47,6 +47,7 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
     };
     fetchVideoIframe();
     fetchRelatedVideos();
+
     window.addEventListener("scroll", onScrolling);
     return () => {
       window.removeEventListener("scroll", onScrolling);
@@ -56,6 +57,12 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
     if (!isFetching) return;
     fetchRelatedVideosOnScrolling();
   }, [isFetching]);
+
+  useEffect(() => {
+    return () => {
+      document.getElementsByTagName("title")[0].innerText = "YouTube";
+    };
+  }, []);
 
   const fetchRelatedVideos = async () => {
     try {

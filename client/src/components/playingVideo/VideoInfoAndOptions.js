@@ -13,6 +13,8 @@ const VideoInfoAndOptions = ({ videoId }) => {
   const fetchVideoTitle = async (id) => {
     setTitle(null);
     const res = await axios.get(`/video/videotitle/${id}`);
+    document.getElementsByTagName("title")[0].innerText = res.data.title;
+
     setTitle(res.data.title);
     setTags(tagGenerator(res.data.title));
   };
