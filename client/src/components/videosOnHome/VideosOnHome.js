@@ -5,16 +5,6 @@ import axios from "axios";
 import VideoCard from "./VideoCard";
 import LoadingSkeleton from "./LoadingSkeleton";
 import { base } from "../../store/util/BASE_API_ADDRESS";
-const videosLocal = [
-  {
-    img: "https://i.ytimg.com/vi/PcHa6xPvlbg/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDBi0mZN-OTmcoxDmZIgO99T5xBoA",
-    title:
-      "Raqs-e-Bismil | Episode 25 | Presented by Master Paints, Powered by West Marina & Sandal",
-    channelName: "HUM TV",
-    views: "10K",
-    timeStamp: "3 hours ago",
-  },
-];
 
 const useStyle = makeStyles((theme) => {
   return {
@@ -27,6 +17,10 @@ const useStyle = makeStyles((theme) => {
     },
     contentContainer: {
       cursor: "pointer",
+      "&:target": {
+        backgroundColor: "transparent",
+        userSelect: "none !important",
+      },
     },
     img: {
       width: "100%",
