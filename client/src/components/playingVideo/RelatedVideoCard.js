@@ -18,7 +18,6 @@ const RelatedVideoCard = ({ classes, video, history, setVideoSrc }) => {
     setVideoSrc(null);
     history.push(`/video/${_id}`);
   };
-  console.log(video);
   return (
     <Fragment>
       <Grid item sm={5} xs={5} className={classes.timeDurationcCon}>

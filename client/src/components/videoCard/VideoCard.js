@@ -62,10 +62,10 @@ const VideoCard = ({ history, video }) => {
         <img className={classes.img} src={thumbnail} alt={"video_thumbnail"} />
         <p className={classes.timeDurition}>{videoDuration}</p>
       </Grid>
-      <Grid item sm={9}>
+      <Grid item sm={9} xs={12}>
         <Grid container direction="column">
           <Grid container item className={classes.headingAndMoreCon}>
-            <Grid item sm={11}>
+            <Grid item sm={11} xs={11}>
               <Hidden xsDown>
                 <Typography className={classes.title} onClick={playVideo}>
                   {title.length > 133 ? title.slice(0, 130) + "..." : title}
@@ -77,7 +77,7 @@ const VideoCard = ({ history, video }) => {
                 </Typography>
               </Hidden>
             </Grid>
-            <Grid item sm={1}>
+            <Grid item sm={1} xs={1}>
               <MoreVideoOptions
                 video={{ img: thumbnail, title, channelName, id: _id }}
               />

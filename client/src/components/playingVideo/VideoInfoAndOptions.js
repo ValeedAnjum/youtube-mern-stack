@@ -1,6 +1,7 @@
 import { Grid } from "@material-ui/core";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { base } from "../../store/util/BASE_API_ADDRESS";
 import VideoOptions from "./VideoOptions";
 import VideoTitleAndTags from "./VideoTitleAndTags";
 
@@ -10,7 +11,8 @@ const VideoInfoAndOptions = ({ videoId }) => {
   useEffect(() => {
     const fetchVideoTitle = async (id) => {
       setTitle(null);
-      const res = await axios.get(`/video/videotitle/${id}`);
+      // const res = await axios.get(`/video/videotitle/${id}`);
+      const res = await axios.get(`${base}/video/videotitle/${id}`);
       document.getElementsByTagName("title")[0].innerText = res.data.title;
 
       setTitle(res.data.title);

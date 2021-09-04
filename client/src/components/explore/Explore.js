@@ -4,10 +4,13 @@ import axios from "axios";
 import Cards from "./Cards";
 import VideosContainer from "./VideosContainer";
 import { base } from "../../store/util/BASE_API_ADDRESS";
-const useStyle = makeStyles(() => {
+const useStyle = makeStyles((theme) => {
   return {
     mainContainer: {
       padding: "10px 10px 10px 40px",
+      [theme.breakpoints.down("xs")]: {
+        padding: "10px",
+      },
     },
   };
 });
@@ -29,7 +32,7 @@ const Explore = () => {
     fetchVideos();
   }, [isFetching]);
 
-  const onScrolling = (event) => {
+  const onScrolling = () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const winInerHeight = window.innerHeight;
     const scroolIsAtBottom =
@@ -42,8 +45,8 @@ const Explore = () => {
   const fetchVideos = async () => {
     try {
       setLoadingVideos(true);
-      const result = await axios.get(`/video/randomvideos/12`);
-      // const result = await axios.get(`${base}/video/randomvideos/12`);
+      // const result = await axios.get(`/video/randomvideos/12`);
+      const result = await axios.get(`${base}/video/randomvideos/12`);
       setLoadingVideos(false);
       setIsFetching(false);
       setVideos((oldData) => [...oldData, ...result.data]);
@@ -57,8 +60,8 @@ const Explore = () => {
     try {
       setLoadingVideos(true);
       setVideos([]);
-      const result = await axios.get(`/video/randomvideos/12`);
-      // const result = await axios.get(`${base}/video/randomvideos/12`);
+      // const result = await axios.get(`/video/randomvideos/12`);
+      const result = await axios.get(`${base}/video/randomvideos/12`);
       setLoadingVideos(false);
       setIsFetching(false);
       setVideos(result.data);

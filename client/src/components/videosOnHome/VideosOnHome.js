@@ -123,8 +123,8 @@ const VideosOnHome = () => {
   };
   const fetchVideos = async () => {
     setLoadingVideos(true);
-    const result = await axios.get("/video/randomvideos/12");
-    // const result = await axios.get(`${base}/video/randomvideos/12`);
+    // const result = await axios.get("/video/randomvideos/12");
+    const result = await axios.get(`${base}/video/randomvideos/12`);
     setLoadingVideos(false);
     setIsFetching(false);
     setVideos((oldData) => [...oldData, ...result.data]);

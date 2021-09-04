@@ -35,8 +35,8 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
     const fetchVideoIframe = async () => {
       try {
         setVideoSrc(null);
-        const response = await axios.get(`/video/playvideo/${id}`);
-        // const response = await axios.get(`${base}/video/playvideo/${id}`);
+        // const response = await axios.get(`/video/playvideo/${id}`);
+        const response = await axios.get(`${base}/video/playvideo/${id}`);
         setVideoSrc(response.data.src);
         setVideoId(response.data._id);
         // console.log(response.data);
@@ -48,8 +48,8 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
     const fetchRelatedVideos = async () => {
       try {
         setLoadingRelatedVideos(true);
-        const result = await axios.get("/video/randomvideos/12");
-        // const result = await axios.get(`${base}/video/randomvideos/12`);
+        // const result = await axios.get("/video/randomvideos/12");
+        const result = await axios.get(`${base}/video/randomvideos/12`);
         const uniqueVids = result.data.filter((vid) => vid._id !== id);
         setLoadingRelatedVideos(false);
         setRelatedVideos(uniqueVids);
@@ -70,8 +70,8 @@ const PlayingVideo = ({ match, VideosForMiniPlayer, ClearTheQueue }) => {
     if (!isFetching) return;
     const fetchRelatedVideosOnScrolling = async () => {
       try {
-        const result = await axios.get("/video/randomvideos/12");
-        // const result = await axios.get(`${base}/video/randomvideos/12`);
+        // const result = await axios.get("/video/randomvideos/12");
+        const result = await axios.get(`${base}/video/randomvideos/12`);
         const uniqueVids = result.data.filter((vid) => vid._id !== id);
         setIsFetching(false);
         setRelatedVideos((data) => [...data, ...uniqueVids]);

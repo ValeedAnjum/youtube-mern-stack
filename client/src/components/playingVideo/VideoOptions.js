@@ -4,6 +4,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import axios from "axios";
 import moment from "moment";
 import VideoOptionsButtons from "./VideoOptionsButtons";
+import { base } from "../../store/util/BASE_API_ADDRESS";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -40,7 +41,8 @@ const VideoOptions = ({ videoId }) => {
   }, [videoId]);
   const fetchVideoViewsData = async (id) => {
     setViewAndData(null);
-    const res = await axios.get(`/video/videoviewsanddata/${id}`);
+    // const res = await axios.get(`/video/videoviewsanddata/${id}`);
+    const res = await axios.get(`${base}/video/videoviewsanddata/${id}`);
     setViewAndData(res.data);
     // setTags(tagGenerator(res.data.title));
   };

@@ -12,13 +12,7 @@ import { connect } from "react-redux";
 
 const AuthNavTabs = ({
   classes,
-  // onMenuClose,
-  // appsBtnClickHnd,
-  // anchorElForApps,
-  // createVideoBtnClickHnd,
-  // anchorElForCreateVideos,
-  // userBtnClickHnd,
-  // anchorElForUser,
+
   profile: { name },
 }) => {
   const [anchorElForApps, setAnchorElForApps] = useState(null);

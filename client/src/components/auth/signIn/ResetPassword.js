@@ -28,16 +28,16 @@ const ResetPassword = ({ match, auth, PasswordReset, LoadUser }) => {
     const body = JSON.stringify({ password });
     try {
       setLoading(true);
-      const res = await axios.post(
-        `/auth/passwordresettokenverification/${match.params.token}`,
-        body,
-        config
-      );
       // const res = await axios.post(
-      //   `${base}/auth/passwordresettokenverification/${match.params.token}`,
+      //   `/auth/passwordresettokenverification/${match.params.token}`,
       //   body,
       //   config
       // );
+      const res = await axios.post(
+        `${base}/auth/passwordresettokenverification/${match.params.token}`,
+        body,
+        config
+      );
 
       setLoading(false);
       if (res.data.token) {

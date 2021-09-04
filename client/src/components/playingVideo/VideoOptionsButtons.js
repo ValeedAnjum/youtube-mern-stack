@@ -9,6 +9,7 @@ import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import MoreHorizOutlinedIcon from "@material-ui/icons/MoreHorizOutlined";
 import axios from "axios";
+import { base } from "../../store/util/BASE_API_ADDRESS";
 
 const useStyles = makeStyles(() => {
   return {
@@ -40,7 +41,8 @@ const VideoOptionsButtons = ({ videoId, auth, history }) => {
   const fetchNumberOfLikes = async (id) => {
     setLikesAndUnlikes((prevState) => ({ ...prevState, likes: null }));
     try {
-      const res = await axios.get(`/video/getnumberoflikes/${id}`);
+      // const res = await axios.get(`/video/getnumberoflikes/${id}`);
+      const res = await axios.get(`${base}/video/getnumberoflikes/${id}`);
       setLikesAndUnlikes((prevState) => ({
         ...prevState,
         likes: Number(res.data),
@@ -53,7 +55,8 @@ const VideoOptionsButtons = ({ videoId, auth, history }) => {
   const fetchNumberOfUnlikes = async (id) => {
     setLikesAndUnlikes((prevState) => ({ ...prevState, likes: null }));
     try {
-      const res = await axios.get(`/video/getnumberofunlikes/${id}`);
+      // const res = await axios.get(`/video/getnumberofunlikes/${id}`);
+      const res = await axios.get(`${base}/video/getnumberofunlikes/${id}`);
       setLikesAndUnlikes((prevState) => ({
         ...prevState,
         unlikes: Number(res.data),
@@ -65,7 +68,8 @@ const VideoOptionsButtons = ({ videoId, auth, history }) => {
 
   const likedByTheUser = async (id) => {
     try {
-      const res = await axios.get(`/video/likedbyuser/${id}`);
+      // const res = await axios.get(`/video/likedbyuser/${id}`);
+      const res = await axios.get(`${base}/video/likedbyuser/${id}`);
       setLikedByUser(res.data.length > 0);
     } catch (error) {
       setLikedByUser(false);
@@ -74,7 +78,8 @@ const VideoOptionsButtons = ({ videoId, auth, history }) => {
 
   const unlikedByTheUser = async (id) => {
     try {
-      const res = await axios.get(`/video/unlikedbyuser/${id}`);
+      // const res = await axios.get(`/video/unlikedbyuser/${id}`);
+      const res = await axios.get(`${base}/video/unlikedbyuser/${id}`);
       setUnlikedByUser(res.data.length > 0);
     } catch (error) {
       setUnlikedByUser(false);
@@ -85,7 +90,8 @@ const VideoOptionsButtons = ({ videoId, auth, history }) => {
     if (!auth) return history.push("/signin/email");
     try {
       setLikedByUser(true);
-      const res = await axios.post(`/video/like/${id}`);
+      // const res = await axios.post(`/video/like/${id}`);
+      const res = await axios.post(`${base}/video/like/${id}`);
       res.data.like
         ? setLikesAndUnlikes((prevState) => ({
             ...prevState,
@@ -107,7 +113,8 @@ const VideoOptionsButtons = ({ videoId, auth, history }) => {
     if (!auth) return history.push("/signin/email");
     try {
       setUnlikedByUser(true);
-      const res = await axios.post(`/video/unlike/${id}`);
+      // const res = await axios.post(`/video/unlike/${id}`);
+      const res = await axios.post(`${base}/video/unlike/${id}`);
       res.data.unlike
         ? setLikesAndUnlikes((prevState) => ({
             ...prevState,

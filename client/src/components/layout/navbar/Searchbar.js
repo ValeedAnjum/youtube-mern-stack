@@ -21,8 +21,8 @@ const Searchbar = ({ classes, history }) => {
   };
   const searchRes = async (value) => {
     try {
-      const results = await axios.get(`/video/search/${value}`);
-      // const results = await axios.get(`${base}/video/search/${value}`);
+      // const results = await axios.get(`/video/search/${value}`);
+      const results = await axios.get(`${base}/video/search/${value}`);
       console.log(results.data);
       setSearchResult(results.data);
     } catch (error) {

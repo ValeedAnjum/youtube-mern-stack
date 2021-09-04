@@ -4,8 +4,6 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import DragHandleIcon from "@material-ui/icons/DragHandle";
 import MenuForMoreVideoCardOptions from "./MenuForMoreVideoCardOptions";
-// import MenuForMoreVideoCardOptions from "./MenuForMoreVideoCardOptions";
-// import MenuForMoreVideoCardOptions from "../modelManager/miniPlayer/MenuForMoreVideoCardOptions";
 
 const useStyles = makeStyles((theme) => {
   return {

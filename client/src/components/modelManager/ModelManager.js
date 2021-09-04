@@ -9,7 +9,7 @@ const ModelManager = ({ ModelName, Payload }) => {
         <MiniPlayer VideoForMiniplayer={Payload} />
       );
     }
-    // return <MiniPlayer VideoForMiniplayer={Payload} />;
+
     default:
       return null;
   }
