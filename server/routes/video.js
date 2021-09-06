@@ -31,7 +31,7 @@ router.post(
     const channels = ["hum Tv", "ary news", "red chilli", "coding phase"];
 
     videosData.forEach(async (data) => {
-      const { title, thumbnail, src, searchTitle } = data;
+      const { title, thumbnail, src, searchTitle, videoDuration } = data;
       const video = new Video({
         title,
         thumbnail,
@@ -39,9 +39,7 @@ router.post(
         searchTitle,
         views: generateRandomInteger(1000, 5000),
         channelName: channels[Math.floor(Math.random() * channels.length)],
-        videoDuration: `${Math.floor(Math.random() * 55) + 8}:${Math.floor(
-          Math.random() * 60
-        )}`,
+        videoDuration,
       });
       try {
         await video.save();
