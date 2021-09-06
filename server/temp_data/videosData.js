@@ -1,28 +1,28 @@
 const videosData = [
   {
-    title: "ARY News | Prime Time Headlines | 12 AM | 6th September 2021",
-    searchTitle: "ARY NEWS HAEDLINES",
+    title: "Web Developer Jobs with Just HTML & CSS",
+    searchTitle: "Web Developer Jobs with Just HTML & CSS",
     thumbnail:
-      "https://i.ytimg.com/vi/38IEolI8f-w/hq720_live.jpg?sqp=CPDv-IcG-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBpp8eBs9moeiX_JbV--tvFJF20bA",
-    src: "https://www.youtube.com/embed/38IEolI8f-w",
-    videoDuration: "13:30",
+      "https://i.ytimg.com/vi/SWLjGeP_4C4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB99eMy3OfaLrga_CNcdNMlxt6QNg",
+    src: "https://www.youtube.com/embed/SWLjGeP_4C4",
+    videoDuration: "1:40:39",
   },
   {
-    title: "How to Trade Forex | Live Demonstration | Educational Video",
-    searchTitle: "Trade Forex Live",
+    title: "From $13 Hour to $22,000 a month (Developer Stories - Codingphase)",
+    searchTitle: "From $13 Hour to $22,000 a month",
     thumbnail:
-      "https://i.ytimg.com/vi/GON4kF-gp4A/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDFgw9b9hCd3zeZ_OSE6u3c77-YoQ",
-    src: "https://www.youtube.com/embed/GON4kF-gp4A",
-    videoDuration: "27:50",
+      "https://i.ytimg.com/vi/Z6IvLgDMP7w/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDqh3IVzltuZNBYd66fc5AAqhK63Q",
+    src: "https://www.youtube.com/embed/Z6IvLgDMP7w",
+    videoDuration: "20:50",
   },
   {
     title:
-      "Daily 60 KG Aloo Ke Chips Bechne Wala - Jisne Nokri Chor Kar Arabian Foods Ka Auto Stall Laga Lia",
-    searchTitle: "Nokri Chor Kar Stall Laga Lia",
+      "Are You Ready to apply to Web Development and Engineering jobs? | Tech Industry",
+    searchTitle: "Are You Ready to apply to jobs?",
     thumbnail:
-      "https://i.ytimg.com/vi/6RN3uzDrlcM/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDuu0wY4aR7L3ZgZcZvJARBaC3E4Q",
-    src: `https://www.youtube.com/embed/6RN3uzDrlcM`,
-    videoDuration: "10:22",
+      "https://i.ytimg.com/vi/06zPxlwpI98/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDBxhnDRvNWPGUXcj1bt_v_JrwuLQ",
+    src: `https://www.youtube.com/embed/06zPxlwpI98`,
+    videoDuration: "10:54",
   },
   {
     title: "10 Animals That Can Defeat A Lion",
@@ -34,29 +34,28 @@ const videosData = [
   },
   {
     title:
-      "AMJAD BALTISTANI | YA HAYYU YA QAYYUM | Official Video | Kalam 2021",
-    searchTitle: "AMJAD BALTISTANI | YA HAYYU YA QAYYUM",
+      "Make $500/Week With an Email List - Developer Side Hustle(Passive Income) #grindreel",
+    searchTitle: "Make $500/Week With an Email List",
     thumbnail:
-      "https://i.ytimg.com/vi/LwO9COsEJn8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA6T2x4iSKR4he-YgY5PEA9l7E-Ow",
-    src: `https://www.youtube.com/embed/LwO9COsEJn8`,
-    videoDuration: "4:19",
+      "https://i.ytimg.com/vi/Y4A3kFndF40/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA9jT1i2_anSHa2YHQz9UnWHTkGQg",
+    src: `https://www.youtube.com/embed/Y4A3kFndF40`,
+    videoDuration: "11:39",
   },
   {
-    title: "Azad Kashmir Legislative Assembly elections PTI won 15 seats",
-    searchTitle: "Azad Kashmir elections PTI won 15 seats",
+    title: "Why people fail at learning code",
+    searchTitle: "Why people fail at learning code",
     thumbnail:
-      "https://i.ytimg.com/vi/ioARqKQLbdQ/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDsza7Qei3LAYfP5rsODeASKPePbQ",
-    src: `https://www.youtube.com/embed/LuIxFw34YFU`,
-    videoDuration: "3:45",
+      "https://i.ytimg.com/vi/BYU9HUSAueM/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCvkRPMdNpegF3dp85W1wYgga_D_w",
+    src: `https://www.youtube.com/embed/BYU9HUSAueM`,
+    videoDuration: "10:11",
   },
   {
-    title:
-      "Istiklal Street |Night Walking Tour In The Beating heart Of Istanbul 17July 2021 |4k UHD 60fps",
-    searchTitle: "Istiklal Street 4k UHD 60fps",
+    title: "Can you get a job with THESE REAL portfolios?",
+    searchTitle: "Can you get a job with THESE REAL portfolios?",
     thumbnail:
-      "https://i.ytimg.com/vi/t_fA6amyfGs/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBntm8HvuJx2jkkXX1WdQ9kbvjW7A",
-    src: `https://www.youtube.com/embed/t_fA6amyfGs`,
-    videoDuration: "36:06",
+      "https://i.ytimg.com/vi/AZUxfJ9PvoM/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDPHSyv4c6OQsUFxeYbOjcT4jsknw",
+    src: `https://www.youtube.com/embed/AZUxfJ9PvoM`,
+    videoDuration: "11:46",
   },
   {
     title: "Ronaldo First Day at Juventus!",
@@ -68,37 +67,37 @@ const videosData = [
   },
   {
     title:
-      "They Call Me Trinity | WESTERN | English | Full Length Spaghetti Western Film | Full Movie",
-    searchTitle: "They Call Me Trinity",
+      "Web Developer: I Got Hired After 2 Months Studying to Code | #CodingPhase",
+    searchTitle: "I Got Hired After 2 Months Studying to Code",
     thumbnail:
-      "https://i.ytimg.com/vi/CVw1WMJFdlQ/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAEBLtSbTNh60h3CBCw_kIYja3_NQ",
-    src: `https://www.youtube.com/embed/r8dfQja43Ik`,
-    videoDuration: "1:53:18",
-  },
-  {
-    title: "Ertugrul Ghazi Urdu | Episode 60| Season 4",
-    searchTitle: "Ertugrul Ghazi Urdu",
-    thumbnail:
-      "https://i.ytimg.com/vi/aJMXuCkP6vE/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCrEBqLiDaKQYQO47iK1bpbBHjqCA",
-    src: `https://www.youtube.com/embed/pbx2K04pTrk`,
-    videoDuration: "44:38",
+      "https://i.ytimg.com/vi/JsgZx2MLwxA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBeC9YfDG_nPjuUODUlmm6z6XZHuw",
+    src: `https://www.youtube.com/embed/JsgZx2MLwxA`,
+    videoDuration: "5:05",
   },
   {
     title:
-      "Mission Dubai | Part 1 | Paisay Kahan gaye? | Our Vines | Rakx Production",
-    searchTitle: "Mission Dubai",
+      "Task 80 - WordPress Theme Development from Scratch - Coding Phase - Urdu | Hindi",
+    searchTitle: "WordPress Theme Development from Scratch",
     thumbnail:
-      "https://i.ytimg.com/vi/Fbu-i8m_MFw/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD6UprzwJJLPniyWIyLYIpUA0HzWw",
+      "https://i.ytimg.com/vi/SsdJk1-_JYE/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDMvO9FmfzCFcXJHXNS45pFfFmIUA",
+    src: `https://www.youtube.com/embed/SsdJk1-_JYE`,
+    videoDuration: "1:03:46",
+  },
+  {
+    title:
+      "Web Developer Portfolio Review - Focused On HTML Emails Guaranteed To Get Hired",
+    searchTitle: "Focused On HTML Emails Guaranteed To Get Hired",
+    thumbnail:
+      "https://i.ytimg.com/vi/eTghRu0Pt_Q/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCMYurPoftXCk_RTK2S4uuFmVBXYA",
     src: `https://www.youtube.com/embed/Fbu-i8m_MFw`,
-    videoDuration: "15:00",
+    videoDuration: "16:05",
   },
   {
-    title:
-      "MongoDB 5.0, Build a Flutter Game, FARM Stack ?🤯 // STACKr News Weekly - Issue 3",
-    searchTitle: "MongoDB 5.0, Build a Flutter Game",
+    title: "5 Projects to Get You Hired as an HTML Email Developer",
+    searchTitle: "5 Projects to Get You Hired as an HTML Email Developer",
     thumbnail:
-      "https://i.ytimg.com/vi/UyO3r3_rECw/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAjO6GcBuMGmW8tzYqiA-ih1ILDag",
-    src: `https://www.youtube.com/embed/UyO3r3_rECw`,
+      "https://i.ytimg.com/vi/3I2gLI7k_Wk/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBzIifs2wtTlnYaafpAGdlH-JHWfg",
+    src: `https://www.youtube.com/embed/3I2gLI7k_Wk`,
   },
   {
     title:
@@ -110,20 +109,20 @@ const videosData = [
     videoDuration: "4:20",
   },
   {
-    title: "Why Web Development Is Hard",
-    searchTitle: "Why Web Development Is Hard",
+    title: "Why PHP Frameworks | #CodingPhase",
+    searchTitle: "Why PHP Frameworks | #CodingPhase",
     thumbnail:
-      "https://i.ytimg.com/vi/CuWowKXsNHg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD9kwCtgMP3S3r9mHIXI6h92jkeoA",
-    src: `https://www.youtube.com/embed/CuWowKXsNHg`,
-    videoDuration: "11:49",
+      "https://i.ytimg.com/vi/mT08N8Lfwhg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAF70z_S3A46AdzNnzf5_TX9thoOg",
+    src: `https://www.youtube.com/embed/mT08N8Lfwhg`,
+    videoDuration: "17:15",
   },
   {
-    title: "React Tutorial For Beginners",
-    searchTitle: "React Tutorial For Beginners",
+    title: "Everything You Need To Know to Become A HTML Email Developer",
+    searchTitle: "Become A HTML Email Developer",
     thumbnail:
-      "https://i.ytimg.com/vi/Ke90Tje7VS0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC3_J8cSnEXaxGCt_FS2SLg9dc0SQ",
-    src: `https://www.youtube.com/embed/dGcsHMXbSOA`,
-    videoDuration: "2:25:27",
+      "https://i.ytimg.com/vi/j7vxvX0yoVM/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDMDEcbC23_i9nJvMLHSXJAy9U7Fw",
+    src: `https://www.youtube.com/embed/j7vxvX0yoVM`,
+    videoDuration: "23:22",
   },
 ];
 
