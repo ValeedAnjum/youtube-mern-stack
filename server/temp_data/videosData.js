@@ -1,28 +1,29 @@
 const videosData = [
   {
-    title: "Web Developer Jobs with Just HTML & CSS",
-    searchTitle: "Web Developer Jobs with Just HTML & CSS",
+    title:
+      "10 GENIUS NEW GADGETS | SONY NEW DRONE | YOU CAN BUY ON AMAZON Under Rs100, Rs500, Rs1000 & Lakh",
+    searchTitle: "10 GENIUS NEW GADGETS",
     thumbnail:
-      "https://i.ytimg.com/vi/SWLjGeP_4C4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB99eMy3OfaLrga_CNcdNMlxt6QNg",
-    src: "https://www.youtube.com/embed/SWLjGeP_4C4",
-    videoDuration: "1:40:39",
+      "https://i.ytimg.com/vi/nlbecSowFuw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCHw4sNJjBO7-szKKbSecVPS8vxuQ",
+    src: "https://www.youtube.com/embed/nlbecSowFuw",
+    videoDuration: "8:24",
   },
   {
-    title: "From $13 Hour to $22,000 a month (Developer Stories - Codingphase)",
-    searchTitle: "From $13 Hour to $22,000 a month",
+    title: "Top 10 New Technology Gadgets You Can Buy Online",
+    searchTitle: "Top 10 New Technology Gadgets You Can Buy Online",
     thumbnail:
-      "https://i.ytimg.com/vi/Z6IvLgDMP7w/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDqh3IVzltuZNBYd66fc5AAqhK63Q",
-    src: "https://www.youtube.com/embed/Z6IvLgDMP7w",
-    videoDuration: "20:50",
+      "https://i.ytimg.com/vi/0-Q4AkQlMEM/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCIQDLyr1HipRUglQqUax0ThwUxCw",
+    src: "https://www.youtube.com/embed/0-Q4AkQlMEM",
+    videoDuration: "8:45",
   },
   {
     title:
-      "Are You Ready to apply to Web Development and Engineering jobs? | Tech Industry",
-    searchTitle: "Are You Ready to apply to jobs?",
+      "Incredible Modern Construction Machines Technology - Biggest Heavy Equipment Machines Working",
+    searchTitle: "Incredible Modern Construction Machines Technology",
     thumbnail:
-      "https://i.ytimg.com/vi/06zPxlwpI98/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDBxhnDRvNWPGUXcj1bt_v_JrwuLQ",
-    src: `https://www.youtube.com/embed/06zPxlwpI98`,
-    videoDuration: "10:54",
+      "https://i.ytimg.com/vi/_eF5x1PqUOc/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB0R2Q8r2TQ5A83TIwTUx9lsVyvgA",
+    src: `https://www.youtube.com/embed/_eF5x1PqUOc`,
+    videoDuration: "9:53",
   },
   {
     title: "10 Animals That Can Defeat A Lion",
@@ -33,96 +34,96 @@ const videosData = [
     videoDuration: "9:46",
   },
   {
-    title:
-      "Make $500/Week With an Email List - Developer Side Hustle(Passive Income) #grindreel",
-    searchTitle: "Make $500/Week With an Email List",
+    title: "VERY SMART TECHNOLOGIES THAT ARE ON ANOTHER LEVEL",
+    searchTitle: "TECHNOLOGIES THAT ARE ON ANOTHER LEVEL",
     thumbnail:
-      "https://i.ytimg.com/vi/Y4A3kFndF40/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA9jT1i2_anSHa2YHQz9UnWHTkGQg",
-    src: `https://www.youtube.com/embed/Y4A3kFndF40`,
-    videoDuration: "11:39",
-  },
-  {
-    title: "Why people fail at learning code",
-    searchTitle: "Why people fail at learning code",
-    thumbnail:
-      "https://i.ytimg.com/vi/BYU9HUSAueM/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCvkRPMdNpegF3dp85W1wYgga_D_w",
-    src: `https://www.youtube.com/embed/BYU9HUSAueM`,
-    videoDuration: "10:11",
-  },
-  {
-    title: "Can you get a job with THESE REAL portfolios?",
-    searchTitle: "Can you get a job with THESE REAL portfolios?",
-    thumbnail:
-      "https://i.ytimg.com/vi/AZUxfJ9PvoM/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDPHSyv4c6OQsUFxeYbOjcT4jsknw",
-    src: `https://www.youtube.com/embed/AZUxfJ9PvoM`,
-    videoDuration: "11:46",
-  },
-  {
-    title: "Ronaldo First Day at Juventus!",
-    searchTitle: "Ronaldo First Day at Juventus!",
-    thumbnail:
-      "https://i.ytimg.com/vi/_DyxqCcidTg/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBSNok5eALZLgGwE1Ucv_huof8Ozw",
-    src: `https://www.youtube.com/embed/_DyxqCcidTg`,
-    videoDuration: "4:26",
+      "https://i.ytimg.com/vi/9AMPsDXGAxY/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCXJ7GTLx9xIq0_u_CR5oErSr_l9w",
+    src: `https://www.youtube.com/embed/9AMPsDXGAxY`,
+    videoDuration: "10:28",
   },
   {
     title:
-      "Web Developer: I Got Hired After 2 Months Studying to Code | #CodingPhase",
-    searchTitle: "I Got Hired After 2 Months Studying to Code",
+      "Modern Potato Agriculture Technology - Aeroponics Potato Farming - Potato Chip Process Factory",
+    searchTitle: "Modern Potato Agriculture Technology",
     thumbnail:
-      "https://i.ytimg.com/vi/JsgZx2MLwxA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBeC9YfDG_nPjuUODUlmm6z6XZHuw",
-    src: `https://www.youtube.com/embed/JsgZx2MLwxA`,
-    videoDuration: "5:05",
+      "https://i.ytimg.com/vi/9ck5iEP03g4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCdGWyrKkv7Kl_uqLXedHStBmNiew",
+    src: `https://www.youtube.com/embed/9ck5iEP03g4`,
+    videoDuration: "9:46",
   },
   {
     title:
-      "Task 80 - WordPress Theme Development from Scratch - Coding Phase - Urdu | Hindi",
-    searchTitle: "WordPress Theme Development from Scratch",
+      "Top 10 Technologies To Learn In 2021 | Trending Technologies In 2021 | Simplilearn",
+    searchTitle: "Top 10 Technologies To Learn In 2021",
     thumbnail:
-      "https://i.ytimg.com/vi/SsdJk1-_JYE/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDMvO9FmfzCFcXJHXNS45pFfFmIUA",
-    src: `https://www.youtube.com/embed/SsdJk1-_JYE`,
-    videoDuration: "1:03:46",
+      "https://i.ytimg.com/vi/vPk-H7Cu9Lo/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAnyPMhI2k4ddhTA29YJbTlkJtJzA",
+    src: `https://www.youtube.com/embed/vPk-H7Cu9Lo`,
+    videoDuration: "10:07",
+  },
+  {
+    title: "15 Amazing Homemade Inventions Made by True Geniuses",
+    searchTitle: "Homemade Inventions Made by True Geniuses",
+    thumbnail:
+      "https://i.ytimg.com/vi/TLAI7XhdSso/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCGmMoHiUlqp4QAzhfIXcpPfEEdpg",
+    src: `https://www.youtube.com/embed/TLAI7XhdSso`,
+    videoDuration: "18:15",
+  },
+  {
+    title: "Mind Blowing Road Technologies You Never Considered",
+    searchTitle: "Mind Blowing Road Technologies You Never Considered",
+    thumbnail:
+      "https://i.ytimg.com/vi/c4w3uL2xDgw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCIglZohWT5yqwXT0pSismnlEjc9g",
+    src: `https://www.youtube.com/embed/c4w3uL2xDgw`,
+    videoDuration: "13:04",
+  },
+  {
+    title: "8 INVENTIONS AND TECHNOLOGIES THAT WILL CHANGE OUR WORLD",
+    searchTitle: "TECHNOLOGIES THAT WILL CHANGE OUR WORLD",
+    thumbnail:
+      "https://i.ytimg.com/vi/9Hxt3GttF38/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC_vqgiC3JRFxH5WxX5jHLgJlmWFA",
+    src: `https://www.youtube.com/embed/9Hxt3GttF38`,
+    videoDuration: "8:32",
+  },
+  {
+    title: "10 Mind Blowing NEW Technologies That Will CHANGE the WORLD",
+    searchTitle: "NEW Technologies That Will CHANGE the WORLD",
+    thumbnail:
+      "https://i.ytimg.com/vi/7vQznLKEfBs/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBvqdrBbT7rOD9rXEKnpEoVe1XzWQ",
+    src: `https://www.youtube.com/embed/7vQznLKEfBs`,
+    videoDuration: "13:15",
+  },
+  {
+    title: "60 Days Build Underground House For Rescue Dog",
+    searchTitle: "Build Underground House For Rescue Dog",
+    thumbnail:
+      "https://i.ytimg.com/vi/cF2jLXzYulw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDs-l_HcnhnFSBAcj1rfGGJWa46wQ",
+    src: `https://www.youtube.com/embed/cF2jLXzYulw`,
+    videoDuration: "20:02",
   },
   {
     title:
-      "Web Developer Portfolio Review - Focused On HTML Emails Guaranteed To Get Hired",
-    searchTitle: "Focused On HTML Emails Guaranteed To Get Hired",
-    thumbnail:
-      "https://i.ytimg.com/vi/eTghRu0Pt_Q/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCMYurPoftXCk_RTK2S4uuFmVBXYA",
-    src: `https://www.youtube.com/embed/Fbu-i8m_MFw`,
-    videoDuration: "16:05",
-  },
-  {
-    title: "5 Projects to Get You Hired as an HTML Email Developer",
-    searchTitle: "5 Projects to Get You Hired as an HTML Email Developer",
-    thumbnail:
-      "https://i.ytimg.com/vi/3I2gLI7k_Wk/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBzIifs2wtTlnYaafpAGdlH-JHWfg",
-    src: `https://www.youtube.com/embed/3I2gLI7k_Wk`,
-  },
-  {
-    title:
-      "Christian Sister Accept Islam After She Got Her 2 Answer - Dr. Zakir Naik",
-    searchTitle: "Christian Sister Accept Islam - Dr. Zakir Naik",
+      "17 New Technology Inventions You Must Have | Gadgets Under 500 Rupees to Rs1000, Rs5K and Lakh",
+    searchTitle: "17 New Technology Inventions You Must Have",
     thumbnail:
       "https://i.ytimg.com/vi/T5ZlSSOhbzQ/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCE1GtvJ71DA7wgpdS9YMPDCNaloQ",
     src: `https://www.youtube.com/embed/T5ZlSSOhbzQ`,
-    videoDuration: "4:20",
+    videoDuration: "11:14",
   },
   {
-    title: "Why PHP Frameworks | #CodingPhase",
-    searchTitle: "Why PHP Frameworks | #CodingPhase",
+    title: "'Bloomberg Technology' Full Show (09/01/2021)",
+    searchTitle: "'Bloomberg Technology' Full Show",
     thumbnail:
-      "https://i.ytimg.com/vi/mT08N8Lfwhg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAF70z_S3A46AdzNnzf5_TX9thoOg",
-    src: `https://www.youtube.com/embed/mT08N8Lfwhg`,
-    videoDuration: "17:15",
+      "https://i.ytimg.com/vi/66VSQJykeQc/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBy53340_5jcGzd1DNF7r_dQmjMfA",
+    src: `https://www.youtube.com/embed/66VSQJykeQc`,
+    videoDuration: "45:49",
   },
   {
-    title: "Everything You Need To Know to Become A HTML Email Developer",
-    searchTitle: "Become A HTML Email Developer",
+    title:
+      "This is How Turbine Production, Technology In Modern Industry Change The World",
+    searchTitle: "Turbine Production, Technology In Modern Industry",
     thumbnail:
-      "https://i.ytimg.com/vi/j7vxvX0yoVM/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDMDEcbC23_i9nJvMLHSXJAy9U7Fw",
-    src: `https://www.youtube.com/embed/j7vxvX0yoVM`,
-    videoDuration: "23:22",
+      "https://i.ytimg.com/vi/y5sPjzN0iaA/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBPx_f20Z23adUE2W1kRUXPxV5ohg",
+    src: `https://www.youtube.com/embed/y5sPjzN0iaA`,
+    videoDuration: "9:10",
   },
 ];
 

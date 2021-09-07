@@ -28,7 +28,12 @@ router.post(
       return Math.floor(Math.random() * (max - min)) + min;
     }
     // channels
-    const channels = ["hum Tv", "ary news", "red chilli", "coding phase"];
+    const channels = [
+      "machinery and technology",
+      "machinery",
+      "technology",
+      "future",
+    ];
 
     videosData.forEach(async (data) => {
       const { title, thumbnail, src, searchTitle, videoDuration } = data;
@@ -226,7 +231,9 @@ router.get("/search/:q", async (req, res) => {
   const { q } = req.params;
   try {
     const regex = new RegExp(q, "i");
-    const result = await Video.find({ title: regex }).select("searchTitle");
+    const result = await Video.find({ title: regex })
+      .limit(10)
+      .select("searchTitle");
     res.json(result);
   } catch (error) {
     res.status(500).send("Server Error");
