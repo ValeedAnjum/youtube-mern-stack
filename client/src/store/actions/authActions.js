@@ -84,12 +84,12 @@ export const passwordReset = (email) => async (dispatch) => {
   console.log("PASSOWRD_RESET");
   const body = JSON.stringify({ email });
   try {
-    // const res = await axios.post("/auth/sendpasswordresetlink", body, config);
-    const res = await axios.post(
-      `${base}/auth/sendpasswordresetlink`,
-      body,
-      config
-    );
+    const res = await axios.post("/auth/sendpasswordresetlink", body, config);
+    // const res = await axios.post(
+    //   `${base}/auth/sendpasswordresetlink`,
+    //   body,
+    //   config
+    // );
     return res.data.success;
   } catch (error) {
     console.log(error);

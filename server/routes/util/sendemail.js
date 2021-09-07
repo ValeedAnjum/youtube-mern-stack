@@ -2,7 +2,7 @@ const config = require("config");
 const nodemailer = require("nodemailer");
 const forgotPasswordEmailtemplate = require("./forgotPasswordEmailtemplate");
 
-module.exports.sendEmailToUser = function async(res, token) {
+module.exports.sendEmailToUser = function async(res, token, email) {
   // creating a transporter
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -14,7 +14,7 @@ module.exports.sendEmailToUser = function async(res, token) {
   // mail data
   const mailData = {
     from: "noreplay@gmail.com",
-    to: "valeedanjumsiddiqui@gmail.com",
+    to: email,
     subject: "YouTube Clone Password Reset",
     html: forgotPasswordEmailtemplate(token),
   };

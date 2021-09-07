@@ -10,51 +10,51 @@ const videosData = require("../temp_data/videosData");
 //@route    POST video/save
 //@desc     route for saving bulk of videos data into database will not be included in production
 //@access   Public
-router.post(
-  "/save",
-  [
-    check("title", "Please enter a title").not().isEmpty(),
-    check("thumbnail", "Please enter thumbnail source").not().isEmpty(),
-    check("src", "Please enter a source url").not().isEmpty(),
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    const { title, thumbnail, src } = req.body;
-    // generating integer from min to max
-    function generateRandomInteger(min, max) {
-      return Math.floor(Math.random() * (max - min)) + min;
-    }
-    // channels
-    const channels = [
-      "machinery and technology",
-      "machinery",
-      "technology",
-      "future",
-    ];
+// router.post(
+//   "/save",
+//   [
+//     check("title", "Please enter a title").not().isEmpty(),
+//     check("thumbnail", "Please enter thumbnail source").not().isEmpty(),
+//     check("src", "Please enter a source url").not().isEmpty(),
+//   ],
+//   async (req, res) => {
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//       return res.status(400).json({ errors: errors.array() });
+//     }
+//     const { title, thumbnail, src } = req.body;
+//     // generating integer from min to max
+//     function generateRandomInteger(min, max) {
+//       return Math.floor(Math.random() * (max - min)) + min;
+//     }
+//     // channels
+//     const channels = [
+//       "machinery and technology",
+//       "machinery",
+//       "technology",
+//       "future",
+//     ];
 
-    videosData.forEach(async (data) => {
-      const { title, thumbnail, src, searchTitle, videoDuration } = data;
-      const video = new Video({
-        title,
-        thumbnail,
-        src,
-        searchTitle,
-        views: generateRandomInteger(1000, 5000),
-        channelName: channels[Math.floor(Math.random() * channels.length)],
-        videoDuration,
-      });
-      try {
-        await video.save();
-      } catch (error) {
-        return res.status(500).send("Server error");
-      }
-    });
-    return res.send("Success");
-  }
-);
+//     videosData.forEach(async (data) => {
+//       const { title, thumbnail, src, searchTitle, videoDuration } = data;
+//       const video = new Video({
+//         title,
+//         thumbnail,
+//         src,
+//         searchTitle,
+//         views: generateRandomInteger(1000, 5000),
+//         channelName: channels[Math.floor(Math.random() * channels.length)],
+//         videoDuration,
+//       });
+//       try {
+//         await video.save();
+//       } catch (error) {
+//         return res.status(500).send("Server error");
+//       }
+//     });
+//     return res.send("Success");
+//   }
+// );
 
 //@route    GET video/randomvideos/:num
 //@desc     getting random video specified by numbber

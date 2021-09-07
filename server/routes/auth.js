@@ -171,7 +171,7 @@ router.post("/sendpasswordresetlink", async (req, res) => {
       token: crypto.randomBytes(16).toString("hex"),
     });
     await token.save();
-    sendEmailToUser(res, token.token);
+    sendEmailToUser(res, token.token, email);
   } catch (error) {
     console.log("Serever Error");
     res.status(500).send("Server Error");
