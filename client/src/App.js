@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import Layout from "./components/layout/Layout";
 import Home from "./components/home/Home";
@@ -14,12 +14,13 @@ import { loadUser } from "./store/actions/authActions";
 import ForgotPassword from "./components/auth/signIn/ForgotPassword";
 import ResetPassword from "./components/auth/signIn/ResetPassword";
 import ModelManager from "./components/modelManager/ModelManager";
+import Error from "./components/error404/Error";
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
   return (
-    <BrowserRouter>
+    <Router>
       <Provider store={store}>
         <ScrollToTop>
           <Layout />
@@ -37,10 +38,11 @@ function App() {
             />
             <Route path="/signup/email" component={SignupEmail} />
             <Route path="/signup/password" component={SignupPassword} />
+            <Route component={Error} />
           </Switch>
         </ScrollToTop>
       </Provider>
-    </BrowserRouter>
+    </Router>
   );
 }
 
