@@ -54,3 +54,6 @@ YouTube MERN clone uses a number of open source projects:
 - [Nodemailer](https://nodemailer.com/about/) - Nodemailer is a module for Node.js applications to allow easy as cake email sending.
 
 ## Video
+
+https://user-images.githubusercontent.com/32477374/132477815-246c6229-517e-4d01-a9d1-f93ae9dedf9b.mp4
+
