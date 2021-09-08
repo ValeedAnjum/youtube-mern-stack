@@ -1,4 +1,4 @@
-# [YouTube MERN Clone](https://valeedanjum.github.io/yourportfolio/)
+# [YouTube MERN Clone](https://valeedanjum.github.io/home/)
 
 A YouTube clone using MERN stack technologies.The purpose of this project is to showcase my skills to the recruiters. I used best coding practices in this project.
 
@@ -56,4 +56,3 @@ YouTube MERN clone uses a number of open source projects:
 ## Video
 
 https://user-images.githubusercontent.com/32477374/132477815-246c6229-517e-4d01-a9d1-f93ae9dedf9b.mp4
-
